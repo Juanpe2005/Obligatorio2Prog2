@@ -40,6 +40,7 @@ public class ventRegAutor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Autor");
         getContentPane().setLayout(null);
 
         jLabel1.setText("Ingrese nombre");

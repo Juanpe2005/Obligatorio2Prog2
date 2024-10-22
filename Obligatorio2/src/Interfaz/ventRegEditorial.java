@@ -26,21 +26,96 @@ public class ventRegEditorial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        txtNombreEdi = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtPaisEdi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnRegEdi = new javax.swing.JButton();
+        btnCancRegEdi = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEdiReg = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Editorial");
+        getContentPane().setLayout(null);
+
+        jLabel1.setText("Nombre de la editorial :");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 50, 180, 16);
+
+        txtNombreEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreEdiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNombreEdi);
+        txtNombreEdi.setBounds(20, 70, 140, 22);
+
+        jLabel2.setText("Pais de origen :");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 110, 100, 16);
+
+        txtPaisEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPaisEdiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtPaisEdi);
+        txtPaisEdi.setBounds(20, 130, 140, 22);
+
+        jLabel3.setText("Resgistro de Editorial");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 10, 170, 20);
+
+        btnRegEdi.setText("Registrar");
+        getContentPane().add(btnRegEdi);
+        btnRegEdi.setBounds(20, 180, 80, 23);
+
+        btnCancRegEdi.setText("Cancelar");
+        btnCancRegEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancRegEdiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancRegEdi);
+        btnCancRegEdi.setBounds(110, 180, 76, 23);
+
+        tblEdiReg.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre ", "Pais"
+            }
+        ));
+        jScrollPane1.setViewportView(tblEdiReg);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(230, 30, 180, 200);
+
+        jLabel4.setText("Tabla de Editoriales registradas");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(240, 10, 190, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreEdiActionPerformed
+
+    private void txtPaisEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaisEdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPaisEdiActionPerformed
+
+    private void btnCancRegEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancRegEdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancRegEdiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +153,15 @@ public class ventRegEditorial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancRegEdi;
+    private javax.swing.JButton btnRegEdi;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblEdiReg;
+    private javax.swing.JTextField txtNombreEdi;
+    private javax.swing.JTextField txtPaisEdi;
     // End of variables declaration//GEN-END:variables
 }

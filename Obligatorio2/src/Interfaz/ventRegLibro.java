@@ -45,6 +45,7 @@ public class ventRegLibro extends javax.swing.JFrame {
         btnCancLibro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Libro");
         getContentPane().setLayout(null);
 
         jLabel1.setText("Registrar Libro");

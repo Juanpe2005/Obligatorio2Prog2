@@ -26,73 +26,91 @@ public class menuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-
-        jMenu4.setText("File");
-        jMenuBar2.add(jMenu4);
-
-        jMenu5.setText("Edit");
-        jMenuBar2.add(jMenu5);
+        registro = new javax.swing.JMenu();
+        registroEditorial = new javax.swing.JMenuItem();
+        registroGenero = new javax.swing.JMenuItem();
+        registroAutor = new javax.swing.JMenuItem();
+        registroLibro = new javax.swing.JMenuItem();
+        ventas = new javax.swing.JMenu();
+        registrarVenta = new javax.swing.JMenuItem();
+        anularVenta = new javax.swing.JMenuItem();
+        consultas = new javax.swing.JMenu();
+        consultaLibros = new javax.swing.JMenuItem();
+        consultaVenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de librerias - Realizado por: Juan Pedro Longo (329112) - José Ignacio Arbilla (338084)");
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
-        jMenu2.setText("Registros");
+        registro.setText("Registros");
 
-        jMenuItem1.setText("Editorial");
-        jMenu2.add(jMenuItem1);
+        registroEditorial.setText("Editorial");
+        registro.add(registroEditorial);
 
-        jMenuItem2.setText("Género");
-        jMenu2.add(jMenuItem2);
+        registroGenero.setText("Género");
+        registro.add(registroGenero);
 
-        jMenuItem3.setText("Autor");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        registroAutor.setText("Autor");
+        registroAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                registroAutorActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        registro.add(registroAutor);
 
-        jMenuItem4.setText("Libro");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        registroLibro.setText("Libro");
+        registroLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                registroLibroActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        registro.add(registroLibro);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(registro);
 
-        jMenu3.setText("Ventas");
-        jMenuBar1.add(jMenu3);
+        ventas.setText("Ventas");
 
-        jMenu6.setText("Consultas");
-        jMenuBar1.add(jMenu6);
+        registrarVenta.setText("Registrar Venta");
+        ventas.add(registrarVenta);
+
+        anularVenta.setText("Anular Venta");
+        anularVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anularVentaActionPerformed(evt);
+            }
+        });
+        ventas.add(anularVenta);
+
+        jMenuBar1.add(ventas);
+
+        consultas.setText("Consultas");
+
+        consultaLibros.setText("Consulta de libros");
+        consultas.add(consultaLibros);
+
+        consultaVenta.setText("Consulta de ventas");
+        consultas.add(consultaVenta);
+
+        jMenuBar1.add(consultas);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void registroAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroAutorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_registroAutorActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void registroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroLibroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_registroLibroActionPerformed
+
+    private void anularVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anularVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,16 +148,17 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuItem anularVenta;
+    private javax.swing.JMenuItem consultaLibros;
+    private javax.swing.JMenuItem consultaVenta;
+    private javax.swing.JMenu consultas;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem registrarVenta;
+    private javax.swing.JMenu registro;
+    private javax.swing.JMenuItem registroAutor;
+    private javax.swing.JMenuItem registroEditorial;
+    private javax.swing.JMenuItem registroGenero;
+    private javax.swing.JMenuItem registroLibro;
+    private javax.swing.JMenu ventas;
     // End of variables declaration//GEN-END:variables
 }
