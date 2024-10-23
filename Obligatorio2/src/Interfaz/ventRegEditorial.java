@@ -4,17 +4,26 @@
  */
 package Interfaz;
 
+import Dominio.*;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
  */
 public class ventRegEditorial extends javax.swing.JFrame {
 
+    Sistema sistema;
     /**
      * Creates new form ventRegEditorial
      */
-    public ventRegEditorial() {
+    public ventRegEditorial(Sistema sis) {
         initComponents();
+        sistema = sis;
+        //se carga la tabla con los datos que ya se tienen
+        cargaTabla();
     }
 
     /**
@@ -37,8 +46,9 @@ public class ventRegEditorial extends javax.swing.JFrame {
         tblEdiReg = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Editorial");
+        setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Nombre de la editorial :");
@@ -70,6 +80,11 @@ public class ventRegEditorial extends javax.swing.JFrame {
         jLabel3.setBounds(30, 10, 170, 20);
 
         btnRegEdi.setText("Registrar");
+        btnRegEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegEdiActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnRegEdi);
         btnRegEdi.setBounds(20, 180, 80, 23);
 
@@ -115,43 +130,46 @@ public class ventRegEditorial extends javax.swing.JFrame {
 
     private void btnCancRegEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancRegEdiActionPerformed
         // TODO add your handling code here:
+        //con esta linea se cierra la ventana
+        this.dispose();
     }//GEN-LAST:event_btnCancRegEdiActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventRegEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventRegEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventRegEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventRegEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnRegEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEdiActionPerformed
+        // TODO add your handling code here:
+        //Se agrega una nueva editorial si el nobre no existe 
+       if(sistema.regEditorial(txtNombreEdi.getText(), txtPaisEdi.getText())){
+           JOptionPane.showMessageDialog(null,"Se guardo la Editorial", "info", JOptionPane.INFORMATION_MESSAGE);
+           //luego de agregar se ponen ambos campos de texto vacios
+           txtNombreEdi.setText("");
+           txtPaisEdi.setText("");
+           //se carga la tabla
+           cargaTabla();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ventRegEditorial().setVisible(true);
+       }else{
+            //si ya existe muestra mensaje de error
+            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+       }
+       
+    }//GEN-LAST:event_btnRegEdiActionPerformed
+
+    //sacado de una pagina de internet, para cargar la tabla con los datos
+    public void cargaTabla(){
+        DefaultTableModel tableModel = (DefaultTableModel) tblEdiReg.getModel();
+        tableModel.setRowCount(0);
+           
+         ArrayList<Editorial> list = sistema.getListaEditoriales();
+           
+            for (int i = 0; i < list.size(); i++) {
+                    String[] data = new String[2];
+                    data[0] = list.get(i).getNombre();
+                    data[1] = list.get(i).getPais();
+                tableModel.addRow(data);
             }
-        });
+            tblEdiReg.setModel(tableModel);
+            tableModel.fireTableDataChanged();
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancRegEdi;
     private javax.swing.JButton btnRegEdi;

@@ -4,17 +4,23 @@
  */
 package Interfaz;
 
+import Dominio.*;
+
 /**
  *
  * @author Juan
  */
 public class menuPrincipal extends javax.swing.JFrame {
 
+     Sistema sistema;
+     
     /**
      * Creates new form menuPrincipal
+     * @param sis
      */
-    public menuPrincipal() {
+    public menuPrincipal(Sistema sis) {
         initComponents();
+        sistema = sis;
     }
 
     /**
@@ -47,6 +53,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         registro.setText("Registros");
 
         registroEditorial.setText("Editorial");
+        registroEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroEditorialActionPerformed(evt);
+            }
+        });
         registro.add(registroEditorial);
 
         registroGenero.setText("Género");
@@ -112,40 +123,13 @@ public class menuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_anularVentaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new menuPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void registroEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroEditorialActionPerformed
+        // TODO add your handling code here:
+        //se crea la ventana y se le manda el sistema
+        ventRegEditorial vent=new ventRegEditorial(sistema);
+        vent.setVisible(true);
+       
+    }//GEN-LAST:event_registroEditorialActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem anularVenta;

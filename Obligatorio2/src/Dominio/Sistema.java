@@ -53,4 +53,20 @@ public class Sistema {
     }
     
     
+    public boolean regEditorial(String nom, String pais){
+        Editorial editorial = new Editorial(nom,pais);
+        //se registra una editorial en el caso de que ninguna otra tenga el mismo nombre
+        boolean existe =false;
+        for (int i = 0; i < this.getListaEditoriales().size() && !existe; i++) {
+            if(editorial.equals(this.getListaEditoriales().get(i))){
+                existe = true;
+            }
+        }
+        if(!existe){
+            this.getListaEditoriales().add(editorial);
+        }
+        //si no existia antes, la agrega
+        return !existe;
+        
+    }
 }
