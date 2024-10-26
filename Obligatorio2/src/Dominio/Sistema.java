@@ -69,4 +69,40 @@ public class Sistema {
         return !existe;
         
     }
+    
+    public ArrayList<Autor> getAutoresPorGénero(Genero genBuscado){
+        ArrayList<Autor> autoresConGenero = new ArrayList<>();
+        Iterator<Autor> iterator = getListaAutores().iterator();
+        while (iterator.hasNext()) {
+            Autor autor = iterator.next();
+            if (autor.getGenerosPorAutor().contains(genBuscado)) {
+                autoresConGenero.add(autor);
+            }
+        }
+        return autoresConGenero;
+    }
+    
+    public boolean chequearISBN(String isbn){
+        boolean unico = true;
+        Iterator<Libro> iterator = getListaLibros().iterator();
+        while (iterator.hasNext() && unico) {
+            Libro libro = iterator.next();
+            if (libro.getIsbn().equals(isbn)) {
+                unico = false;
+            }
+        }
+        return unico;
+    }
+    
+    public boolean chequearStock(int stock){
+        boolean valido = true;
+        if(stock < 0){
+            valido = false;
+        }
+        return valido;
+    }
+    
+    
+    
+    
 }
