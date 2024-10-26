@@ -102,7 +102,15 @@ public class Sistema {
         return valido;
     }
     
-    
+    public ArrayList<Libro> ordenarXTitulo(){
+        //clonar la lista original para poder ordenarla y que la maquina quede siempre en la pos 0 en la original
+        ArrayList<Libro> retorno = new ArrayList<Libro>(this.getListaLibros());
+        retorno.sort((Libro l2, Libro l1) -> {
+            int dif = l1.getTitulo().compareTo(l2.getTitulo());
+            return dif;
+        });
+        return retorno;
+    }
     
     
 }
