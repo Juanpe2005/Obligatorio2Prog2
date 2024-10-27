@@ -4,17 +4,26 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+import Dominio.*;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Juan
  */
 public class ventRegAutor extends javax.swing.JFrame {
 
+    Sistema sistema;
     /**
      * Creates new form ventRegAutor
      */
-    public ventRegAutor() {
+    public ventRegAutor(Sistema sis) {
         initComponents();
+        sistema= sis;
+        cargarLista();
+        cargarListaGenero();
     }
 
     /**
@@ -31,16 +40,18 @@ public class ventRegAutor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnRegAut = new javax.swing.JButton();
         btnCancAut = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
         txtNomAut = new javax.swing.JTextField();
         txtNacAut = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaAutIngresados = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listGenAut = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Autor");
+        setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Ingrese nombre");
@@ -62,7 +73,7 @@ public class ventRegAutor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRegAut);
-        btnRegAut.setBounds(30, 230, 80, 23);
+        btnRegAut.setBounds(40, 230, 80, 23);
 
         btnCancAut.setText("Cancelar");
         btnCancAut.addActionListener(new java.awt.event.ActionListener() {
@@ -71,11 +82,7 @@ public class ventRegAutor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancAut);
-        btnCancAut.setBounds(120, 230, 76, 23);
-
-        jCheckBox1.setText("jCheckBox1");
-        getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(40, 170, 85, 20);
+        btnCancAut.setBounds(130, 230, 76, 23);
 
         txtNomAut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,11 +104,6 @@ public class ventRegAutor extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(40, 150, 150, 16);
 
-        listaAutIngresados.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaAutIngresados);
 
         getContentPane().add(jScrollPane1);
@@ -110,6 +112,12 @@ public class ventRegAutor extends javax.swing.JFrame {
         jLabel5.setText("Autores ingresados:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(300, 30, 130, 16);
+
+        listGenAut.setMinimumSize(new java.awt.Dimension(500, 500));
+        jScrollPane2.setViewportView(listGenAut);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(40, 170, 150, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,6 +128,33 @@ public class ventRegAutor extends javax.swing.JFrame {
 
     private void btnRegAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAutActionPerformed
         // TODO add your handling code here:
+        //SelectedIndices, es un metodo que toma todas las opciones seleccionadas de la lista y te devuelve un array con los numeros de las posiciones
+        int[] indices =  listGenAut.getSelectedIndices();
+        ArrayList<Genero> generosPorAutor = new ArrayList<Genero>();
+        
+       
+        ArrayList<Genero> list = sistema.getListaGeneros();
+        //se recorre con la cantidad de indices que hayan y se toma el valor que hay en cada posicion y toma el genero de esa posicion
+        for (int i = 0; i < indices.length; i++) {
+            generosPorAutor.add(list.get(indices[i]));
+            
+        }
+        
+        if(sistema.regAutor(txtNomAut.getText(), txtNacAut.getText(), generosPorAutor)){
+            JOptionPane.showMessageDialog(null,"Se guardo el Autor", "info", JOptionPane.INFORMATION_MESSAGE);
+            
+            txtNomAut.setText("");
+            txtNacAut.setText("");
+            listGenAut.clearSelection();
+             cargarLista();
+        }else{
+            //si ya existe muestra mensaje de error
+            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+            txtNomAut.setText("");
+            txtNacAut.setText("");
+        }
+        
+        
     }//GEN-LAST:event_btnRegAutActionPerformed
 
     private void btnCancAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancAutActionPerformed
@@ -129,20 +164,43 @@ public class ventRegAutor extends javax.swing.JFrame {
 
     private void txtNomAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomAutActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomAutActionPerformed
 
     
+    public void cargarListaGenero(){
+        DefaultListModel model = new DefaultListModel();
+
+        ArrayList<Genero> list = sistema.getListaGeneros();
+        for (int i = 0; i < list.size(); i++) {
+            String text= list.get(i).getNombre()+" "+list.get(i).getDescripcion();
+            model.addElement(text);
+        }
+        listGenAut.setModel(model);
+    }
+    public void cargarLista(){
+        DefaultListModel model = new DefaultListModel();
+        
+        
+        ArrayList<Autor> list = sistema.getListaAutores();
+        for (int i = 0; i < list.size(); i++) {
+            String text= list.get(i).getNombre()+" "+list.get(i).getPais();
+            model.addElement(text);
+        }
+        listaAutIngresados.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancAut;
     private javax.swing.JButton btnRegAut;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listGenAut;
     private javax.swing.JList<String> listaAutIngresados;
     private javax.swing.JTextField txtNacAut;
     private javax.swing.JTextField txtNomAut;

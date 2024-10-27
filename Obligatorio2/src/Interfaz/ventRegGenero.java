@@ -1,20 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 /**
  *
  * @author Juan
  */
-public class ventRegGenero extends javax.swing.JFrame {
+import Dominio.*;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
+
+public class ventRegGenero extends javax.swing.JFrame {
+    
+    Sistema sistema;
     /**
      * Creates new form ventRegGenero
      */
-    public ventRegGenero() {
+    public ventRegGenero(Sistema sis) {
         initComponents();
+        sistema=sis;
+        cargarLista();
     }
 
     /**
@@ -37,8 +43,9 @@ public class ventRegGenero extends javax.swing.JFrame {
         listaRegGen = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Genero");
+        setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Registro de Género");
@@ -52,6 +59,12 @@ public class ventRegGenero extends javax.swing.JFrame {
         jLabel3.setText("Descripción del género:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(30, 120, 140, 16);
+
+        txtNomGen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomGenActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtNomGen);
         txtNomGen.setBounds(30, 90, 170, 22);
         getContentPane().add(txtDescGen);
@@ -75,11 +88,6 @@ public class ventRegGenero extends javax.swing.JFrame {
         getContentPane().add(btnCancGen);
         btnCancGen.setBounds(120, 190, 76, 23);
 
-        listaRegGen.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaRegGen);
 
         getContentPane().add(jScrollPane1);
@@ -94,7 +102,18 @@ public class ventRegGenero extends javax.swing.JFrame {
 
     private void btnRegGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegGenActionPerformed
         // TODO add your handling code here:
-        
+        if(sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())){
+            JOptionPane.showMessageDialog(null,"Se guardo el Genero", "info", JOptionPane.INFORMATION_MESSAGE);
+            cargarLista();
+            txtNomGen.setText("");
+            txtDescGen.setText("");
+            
+        }else{
+            //si ya existe muestra mensaje de error
+            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+            txtNomGen.setText("");
+            txtDescGen.setText("");
+       }
     }//GEN-LAST:event_btnRegGenActionPerformed
 
     private void btnCancGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancGenActionPerformed
@@ -102,7 +121,20 @@ public class ventRegGenero extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancGenActionPerformed
 
-    
+    private void txtNomGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomGenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomGenActionPerformed
+
+    public void cargarLista(){
+        DefaultListModel model = new DefaultListModel();
+        
+        ArrayList<Genero> list = sistema.getListaGeneros();
+        for (int i = 0; i < list.size(); i++) {
+            String text= list.get(i).getNombre()+" "+list.get(i).getDescripcion();
+            model.addElement(text);
+        }
+        listaRegGen.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancGen;

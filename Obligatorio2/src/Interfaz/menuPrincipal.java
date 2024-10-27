@@ -61,6 +61,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         registro.add(registroEditorial);
 
         registroGenero.setText("Género");
+        registroGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroGeneroActionPerformed(evt);
+            }
+        });
         registro.add(registroGenero);
 
         registroAutor.setText("Autor");
@@ -113,6 +118,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void registroAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroAutorActionPerformed
         // TODO add your handling code here:
+        ventRegAutor vent=new ventRegAutor(sistema);
+        vent.setVisible(true);
     }//GEN-LAST:event_registroAutorActionPerformed
 
     private void registroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroLibroActionPerformed
@@ -130,6 +137,12 @@ public class menuPrincipal extends javax.swing.JFrame {
         vent.setVisible(true);
        
     }//GEN-LAST:event_registroEditorialActionPerformed
+
+    private void registroGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroGeneroActionPerformed
+        // TODO add your handling code here:
+        ventRegGenero vent=new ventRegGenero(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_registroGeneroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem anularVenta;

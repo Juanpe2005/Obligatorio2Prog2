@@ -44,9 +44,11 @@ public class Editorial {
     }
     
     //para comparar con el resto de editoriales con el nombre
-    public boolean equals(Editorial e) {
- 
+    @Override
+    public boolean equals(Object obj){
         // If the object is compared with itself then return true
+        //hay que castear el obj con editorial para luego usar este equals y no el que tiene object por defecto
+        Editorial e = (Editorial) obj;
         return e.nombre.equals(this.nombre);
     }  
     

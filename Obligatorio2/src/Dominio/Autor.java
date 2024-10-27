@@ -12,6 +12,12 @@ public class Autor {
     private String pais;
     private ArrayList<Genero> generosPorAutor = new ArrayList<Genero>();
 
+    public Autor(String nombre, String pais) {
+        this.nombre = nombre;
+        this.pais = pais;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -35,6 +41,11 @@ public class Autor {
     public void setGenerosPorAutor(ArrayList<Genero> generosPorAutor) {
         this.generosPorAutor = generosPorAutor;
     }
+     public boolean equals(Autor a) {
+ 
+        // If the object is compared with itself then return true
+        return a.nombre.equals(this.nombre);
+    }  
     
     
 }

@@ -9,6 +9,11 @@ public class Genero {
     private String nombre;
     private String descripcion;
 
+    public Genero(String nom, String desc){
+        this.descripcion=desc;
+        this.nombre=nom;
+        
+    }
     public String getNombre() {
         return nombre;
     }
@@ -25,4 +30,9 @@ public class Genero {
         this.descripcion = descripcion;
     }
     
+    public boolean equals(Genero g) {
+        
+        // If the object is compared with itself then return true
+        return g.nombre.equals(this.nombre);
+    }  
 }
