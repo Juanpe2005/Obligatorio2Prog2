@@ -1,7 +1,7 @@
 
 package Dominio;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /*
 @author Juan Pedro Longo (329112)

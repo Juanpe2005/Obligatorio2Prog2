@@ -100,6 +100,7 @@ public class Sistema {
         
     }
     
+
     public boolean regGenero(String nom, String desc){
         Genero genero= new Genero(nom, desc);
         boolean existe =chequearNombre(this.getListaGeneros(), genero);;
@@ -123,4 +124,49 @@ public class Sistema {
         return !existe;
         
     }
+
+    public ArrayList<Autor> getAutoresPorGénero(Genero genBuscado){
+        ArrayList<Autor> autoresConGenero = new ArrayList<>();
+        Iterator<Autor> iterator = getListaAutores().iterator();
+        while (iterator.hasNext()) {
+            Autor autor = iterator.next();
+            if (autor.getGenerosPorAutor().contains(genBuscado)) {
+                autoresConGenero.add(autor);
+            }
+        }
+        return autoresConGenero;
+    }
+    
+    public boolean chequearISBN(String isbn){
+        boolean unico = true;
+        Iterator<Libro> iterator = getListaLibros().iterator();
+        while (iterator.hasNext() && unico) {
+            Libro libro = iterator.next();
+            if (libro.getIsbn().equals(isbn)) {
+                unico = false;
+            }
+        }
+        return unico;
+    }
+    
+    public boolean chequearStock(int stock){
+        boolean valido = true;
+        if(stock < 0){
+            valido = false;
+        }
+        return valido;
+    }
+    
+    public ArrayList<Libro> ordenarXTitulo(){
+        //clonar la lista original para poder ordenarla y que la maquina quede siempre en la pos 0 en la original
+        ArrayList<Libro> retorno = new ArrayList<Libro>(this.getListaLibros());
+        retorno.sort((Libro l2, Libro l1) -> {
+            int dif = l1.getTitulo().compareTo(l2.getTitulo());
+            return dif;
+        });
+        return retorno;
+    }
+    
+    
+
 }
