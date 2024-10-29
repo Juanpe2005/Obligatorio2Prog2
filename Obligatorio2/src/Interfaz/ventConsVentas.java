@@ -26,7 +26,7 @@ public class ventConsVentas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbisbnConsVenta = new javax.swing.JLabel();
         isbnConsVenta = new javax.swing.JTextField();
         btnConsVenta = new javax.swing.JButton();
         btnExpVenta = new javax.swing.JButton();
@@ -36,10 +36,10 @@ public class ventConsVentas extends javax.swing.JFrame {
         btnLibrosIngConsVent = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaLibrosIngConsVent = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
+        lbTotRecConsVenta = new javax.swing.JLabel();
         nroTotRecConsVen = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTotGanConsVenta = new javax.swing.JLabel();
+        lbTotVenConsVenta = new javax.swing.JLabel();
         nroTotGanConsVen = new javax.swing.JLabel();
         nroEjVendConsVen2 = new javax.swing.JLabel();
 
@@ -47,9 +47,9 @@ public class ventConsVentas extends javax.swing.JFrame {
         setTitle("Consulta de Ventas");
         getContentPane().setLayout(null);
 
-        jLabel1.setText("ISBN");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 30, 20);
+        lbisbnConsVenta.setText("ISBN");
+        getContentPane().add(lbisbnConsVenta);
+        lbisbnConsVenta.setBounds(20, 20, 30, 20);
         getContentPane().add(isbnConsVenta);
         isbnConsVenta.setBounds(50, 20, 200, 22);
 
@@ -107,10 +107,10 @@ public class ventConsVentas extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(350, 60, 190, 250);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Total recaudado");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(250, 330, 150, 20);
+        lbTotRecConsVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTotRecConsVenta.setText("Total recaudado");
+        getContentPane().add(lbTotRecConsVenta);
+        lbTotRecConsVenta.setBounds(250, 330, 150, 20);
 
         nroTotRecConsVen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         nroTotRecConsVen.setForeground(new java.awt.Color(0, 0, 255));
@@ -118,15 +118,15 @@ public class ventConsVentas extends javax.swing.JFrame {
         getContentPane().add(nroTotRecConsVen);
         nroTotRecConsVen.setBounds(290, 350, 70, 20);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Total ganancias");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(430, 330, 130, 20);
+        lbTotGanConsVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTotGanConsVenta.setText("Total ganancias");
+        getContentPane().add(lbTotGanConsVenta);
+        lbTotGanConsVenta.setBounds(430, 330, 130, 20);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Ejemplares vendidos");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 330, 150, 20);
+        lbTotVenConsVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTotVenConsVenta.setText("Ejemplares vendidos");
+        getContentPane().add(lbTotVenConsVenta);
+        lbTotVenConsVenta.setBounds(40, 330, 150, 20);
 
         nroTotGanConsVen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         nroTotGanConsVen.setForeground(new java.awt.Color(0, 0, 255));
@@ -192,12 +192,12 @@ public class ventConsVentas extends javax.swing.JFrame {
     private javax.swing.JButton btnExpVenta;
     private javax.swing.JButton btnLibrosIngConsVent;
     private javax.swing.JTextField isbnConsVenta;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbTotGanConsVenta;
+    private javax.swing.JLabel lbTotRecConsVenta;
+    private javax.swing.JLabel lbTotVenConsVenta;
+    private javax.swing.JLabel lbisbnConsVenta;
     private javax.swing.JList<String> listaLibrosIngConsVent;
     private javax.swing.JLabel nroEjVendConsVen2;
     private javax.swing.JLabel nroTotGanConsVen;

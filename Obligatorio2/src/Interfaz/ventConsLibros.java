@@ -29,26 +29,26 @@ public class ventConsLibros extends javax.swing.JFrame {
         txtGenConsLibro = new javax.swing.JTextField();
         txtTitConsLibro = new javax.swing.JTextField();
         txtAutConsLibro = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbTitConsLib = new javax.swing.JLabel();
+        lbAutConsLib = new javax.swing.JLabel();
         btnConsLibros = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lbGenConsLib = new javax.swing.JLabel();
+        lbConsLib = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Título:");
+        lbTitConsLib.setText("Título:");
 
-        jLabel3.setText("Autor:");
+        lbAutConsLib.setText("Autor:");
 
         btnConsLibros.setText("Consultar");
 
-        jLabel4.setText("Género:");
+        lbGenConsLib.setText("Género:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("Consulta de libros");
+        lbConsLib.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbConsLib.setForeground(new java.awt.Color(0, 0, 255));
+        lbConsLib.setText("Consulta de libros");
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -61,13 +61,13 @@ public class ventConsLibros extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
+                            .addComponent(lbTitConsLib)
+                            .addComponent(lbAutConsLib)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtGenConsLibro)
                                 .addComponent(txtTitConsLibro)
                                 .addComponent(txtAutConsLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
-                            .addComponent(jLabel4)))
+                            .addComponent(lbGenConsLib)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(btnConsLibros)))
@@ -76,7 +76,7 @@ public class ventConsLibros extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 122, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(lbConsLib)
                 .addGap(269, 269, 269))
         );
         layout.setVerticalGroup(
@@ -86,17 +86,17 @@ public class ventConsLibros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(lbConsLib)
                         .addGap(24, 24, 24)
-                        .addComponent(jLabel4)
+                        .addComponent(lbGenConsLib)
                         .addGap(18, 18, 18)
                         .addComponent(txtGenConsLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel2)
+                        .addComponent(lbTitConsLib)
                         .addGap(18, 18, 18)
                         .addComponent(txtTitConsLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel3)
+                        .addComponent(lbAutConsLib)
                         .addGap(18, 18, 18)
                         .addComponent(txtAutConsLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
@@ -145,11 +145,11 @@ public class ventConsLibros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsLibros;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbAutConsLib;
+    private javax.swing.JLabel lbConsLib;
+    private javax.swing.JLabel lbGenConsLib;
+    private javax.swing.JLabel lbTitConsLib;
     private javax.swing.JTextField txtAutConsLibro;
     private javax.swing.JTextField txtGenConsLibro;
     private javax.swing.JTextField txtTitConsLibro;

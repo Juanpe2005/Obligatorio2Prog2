@@ -26,37 +26,35 @@ public class ventAnularVenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbFacAnuVenta = new javax.swing.JLabel();
         txtNumFact = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
+        lbDatAnuVenta = new javax.swing.JLabel();
         btnAnular = new javax.swing.JButton();
         btnCancAnular = new javax.swing.JButton();
+        lbAnuVenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Anular Venta");
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Ingrese el número de factura: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 40, 180, 16);
+        lbFacAnuVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbFacAnuVenta.setText("Ingrese el número de factura: ");
+        getContentPane().add(lbFacAnuVenta);
+        lbFacAnuVenta.setBounds(30, 50, 210, 20);
         getContentPane().add(txtNumFact);
-        txtNumFact.setBounds(200, 40, 64, 22);
+        txtNumFact.setBounds(220, 50, 100, 22);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 100, 270, 140);
+        jScrollPane1.setBounds(30, 110, 270, 140);
 
-        jLabel2.setText("Datos de la Venta:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 80, 160, 16);
+        lbDatAnuVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbDatAnuVenta.setText("Datos de la Venta:");
+        getContentPane().add(lbDatAnuVenta);
+        lbDatAnuVenta.setBounds(30, 80, 160, 20);
 
         btnAnular.setText("Anular");
         getContentPane().add(btnAnular);
@@ -69,7 +67,13 @@ public class ventAnularVenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancAnular);
-        btnCancAnular.setBounds(320, 270, 74, 23);
+        btnCancAnular.setBounds(320, 270, 76, 23);
+
+        lbAnuVenta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbAnuVenta.setForeground(new java.awt.Color(255, 0, 0));
+        lbAnuVenta.setText("Anular Venta");
+        getContentPane().add(lbAnuVenta);
+        lbAnuVenta.setBounds(110, 10, 160, 20);
 
         setSize(new java.awt.Dimension(414, 307));
         setLocationRelativeTo(null);
@@ -85,10 +89,11 @@ public class ventAnularVenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnular;
     private javax.swing.JButton btnCancAnular;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbAnuVenta;
+    private javax.swing.JLabel lbDatAnuVenta;
+    private javax.swing.JLabel lbFacAnuVenta;
     private javax.swing.JTextField txtNumFact;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,17 +42,17 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbNomRegAut = new javax.swing.JLabel();
         pnlListGen = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lbRegAutor = new javax.swing.JLabel();
         pnlListAut = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbNacRegAut = new javax.swing.JLabel();
         btnRegAut = new javax.swing.JButton();
         btnCancAut = new javax.swing.JButton();
         txtNomAut = new javax.swing.JTextField();
         txtNacAut = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lbGenQEscRegAut = new javax.swing.JLabel();
+        lbAutIngRegAut = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listGenAut = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -63,21 +63,23 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Ingrese nombre");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 50, 180, 16);
+        lbNomRegAut.setText("Ingrese nombre");
+        getContentPane().add(lbNomRegAut);
+        lbNomRegAut.setBounds(40, 50, 180, 16);
         getContentPane().add(pnlListGen);
         pnlListGen.setBounds(0, 150, 240, 70);
 
-        jLabel2.setText("Registro de Autor");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 20, 200, 16);
+        lbRegAutor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbRegAutor.setForeground(new java.awt.Color(0, 171, 0));
+        lbRegAutor.setText("Registro de Autor");
+        getContentPane().add(lbRegAutor);
+        lbRegAutor.setBounds(40, 10, 200, 30);
         getContentPane().add(pnlListAut);
         pnlListAut.setBounds(240, 10, 240, 250);
 
-        jLabel3.setText("Nacionalidad");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 100, 130, 16);
+        lbNacRegAut.setText("Nacionalidad");
+        getContentPane().add(lbNacRegAut);
+        lbNacRegAut.setBounds(40, 100, 130, 16);
 
         btnRegAut.setText("Registrar");
         btnRegAut.addActionListener(new java.awt.event.ActionListener() {
@@ -113,13 +115,13 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
         getContentPane().add(txtNacAut);
         txtNacAut.setBounds(40, 120, 160, 22);
 
-        jLabel4.setText("Generos que escribe:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 150, 150, 16);
+        lbGenQEscRegAut.setText("Generos que escribe:");
+        getContentPane().add(lbGenQEscRegAut);
+        lbGenQEscRegAut.setBounds(40, 150, 150, 16);
 
-        jLabel5.setText("Autores ingresados:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(300, 30, 130, 16);
+        lbAutIngRegAut.setText("Autores ingresados:");
+        getContentPane().add(lbAutIngRegAut);
+        lbAutIngRegAut.setBounds(300, 30, 130, 16);
 
         listGenAut.setMinimumSize(new java.awt.Dimension(500, 500));
         jScrollPane2.setViewportView(listGenAut);
@@ -194,13 +196,13 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancAut;
     private javax.swing.JButton btnRegAut;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbAutIngRegAut;
+    private javax.swing.JLabel lbGenQEscRegAut;
+    private javax.swing.JLabel lbNacRegAut;
+    private javax.swing.JLabel lbNomRegAut;
+    private javax.swing.JLabel lbRegAutor;
     private javax.swing.JList listGenAut;
     private javax.swing.JList listaAutIngresados;
     private javax.swing.JPanel pnlListAut;

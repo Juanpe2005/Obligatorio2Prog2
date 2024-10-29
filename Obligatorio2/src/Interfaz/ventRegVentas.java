@@ -26,34 +26,35 @@ public class ventRegVentas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblFacturaRegVenta = new javax.swing.JLabel();
+        lblFechaRegVenta = new javax.swing.JLabel();
         txtFechaVenta = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblClienteRegVenta = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblLibroRegVenta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        btneliminarlbr = new javax.swing.JButton();
+        btnEliminarLbr = new javax.swing.JButton();
         btnAgregarlbr1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lblVentaRegVenta = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        jLabel6 = new javax.swing.JLabel();
+        lblTotalVenta = new javax.swing.JLabel();
         btnCancVenta = new javax.swing.JButton();
         btnRegVenta = new javax.swing.JButton();
+        lblRegVenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Venta de Libros");
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Factura : número");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 110, 16);
+        lblFacturaRegVenta.setText("Factura : número");
+        getContentPane().add(lblFacturaRegVenta);
+        lblFacturaRegVenta.setBounds(20, 20, 110, 16);
 
-        jLabel2.setText("Fecha");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 50, 30, 16);
+        lblFechaRegVenta.setText("Fecha");
+        getContentPane().add(lblFechaRegVenta);
+        lblFechaRegVenta.setBounds(20, 50, 31, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,9 +64,9 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(txtFechaVenta);
         txtFechaVenta.setBounds(60, 50, 200, 22);
 
-        jLabel3.setText("Cliente");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(280, 50, 37, 16);
+        lblClienteRegVenta.setText("Cliente");
+        getContentPane().add(lblClienteRegVenta);
+        lblClienteRegVenta.setBounds(280, 50, 37, 16);
 
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,9 +76,9 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(txtNombreCliente);
         txtNombreCliente.setBounds(330, 50, 230, 22);
 
-        jLabel4.setText("Libros");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 100, 32, 16);
+        lblLibroRegVenta.setText("Libros");
+        getContentPane().add(lblLibroRegVenta);
+        lblLibroRegVenta.setBounds(20, 100, 32, 16);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -89,14 +90,14 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 120, 220, 120);
 
-        btneliminarlbr.setText("<-");
-        btneliminarlbr.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarLbr.setText("<-");
+        btnEliminarLbr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminarlbrActionPerformed(evt);
+                btnEliminarLbrActionPerformed(evt);
             }
         });
-        getContentPane().add(btneliminarlbr);
-        btneliminarlbr.setBounds(260, 190, 50, 40);
+        getContentPane().add(btnEliminarLbr);
+        btnEliminarLbr.setBounds(260, 190, 50, 40);
 
         btnAgregarlbr1.setText("->");
         btnAgregarlbr1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +108,9 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(btnAgregarlbr1);
         btnAgregarlbr1.setBounds(260, 140, 50, 40);
 
-        jLabel5.setText("Venta");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(340, 100, 30, 16);
+        lblVentaRegVenta.setText("Venta");
+        getContentPane().add(lblVentaRegVenta);
+        lblVentaRegVenta.setBounds(340, 100, 30, 16);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -121,9 +122,9 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(330, 120, 230, 120);
 
-        jLabel6.setText("Total: $ número total de venta");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(330, 260, 220, 16);
+        lblTotalVenta.setText("Total: $ número total de venta");
+        getContentPane().add(lblTotalVenta);
+        lblTotalVenta.setBounds(330, 260, 220, 16);
 
         btnCancVenta.setText("Cancelar");
         btnCancVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -132,11 +133,17 @@ public class ventRegVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 74, 23);
+        btnCancVenta.setBounds(390, 300, 76, 23);
 
         btnRegVenta.setText("Registrar");
         getContentPane().add(btnRegVenta);
         btnRegVenta.setBounds(130, 300, 80, 23);
+
+        lblRegVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblRegVenta.setForeground(new java.awt.Color(0, 171, 0));
+        lblRegVenta.setText("Registro de Ventas");
+        getContentPane().add(lblRegVenta);
+        lblRegVenta.setBounds(210, 0, 210, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -149,9 +156,9 @@ public class ventRegVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreClienteActionPerformed
 
-    private void btneliminarlbrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarlbrActionPerformed
+    private void btnEliminarLbrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLbrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btneliminarlbrActionPerformed
+    }//GEN-LAST:event_btnEliminarLbrActionPerformed
 
     private void btnAgregarlbr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarlbr1ActionPerformed
         // TODO add your handling code here:
@@ -167,18 +174,19 @@ public class ventRegVentas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarlbr1;
     private javax.swing.JButton btnCancVenta;
+    private javax.swing.JButton btnEliminarLbr;
     private javax.swing.JButton btnRegVenta;
-    private javax.swing.JButton btneliminarlbr;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblClienteRegVenta;
+    private javax.swing.JLabel lblFacturaRegVenta;
+    private javax.swing.JLabel lblFechaRegVenta;
+    private javax.swing.JLabel lblLibroRegVenta;
+    private javax.swing.JLabel lblRegVenta;
+    private javax.swing.JLabel lblTotalVenta;
+    private javax.swing.JLabel lblVentaRegVenta;
     private javax.swing.JTextField txtFechaVenta;
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables

@@ -46,36 +46,38 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbRegGen = new javax.swing.JLabel();
+        lbNomRegGen = new javax.swing.JLabel();
         pnlListaGen = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbDescRegGen = new javax.swing.JLabel();
         txtNomGen = new javax.swing.JTextField();
         txtDescGen = new javax.swing.JTextField();
         btnRegGen = new javax.swing.JButton();
         btnCancGen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaRegGen = new javax.swing.JList();
-        jLabel4 = new javax.swing.JLabel();
+        lbGenIngRegGen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Genero");
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Registro de Género");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 20, 130, 16);
+        lbRegGen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbRegGen.setForeground(new java.awt.Color(0, 171, 0));
+        lbRegGen.setText("Registro de Género");
+        getContentPane().add(lbRegGen);
+        lbRegGen.setBounds(30, 20, 170, 25);
 
-        jLabel2.setText("Nombre del género:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 70, 130, 16);
+        lbNomRegGen.setText("Nombre del género:");
+        getContentPane().add(lbNomRegGen);
+        lbNomRegGen.setBounds(30, 70, 130, 16);
         getContentPane().add(pnlListaGen);
         pnlListaGen.setBounds(230, 10, 260, 230);
 
-        jLabel3.setText("Descripción del género:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 120, 140, 16);
+        lbDescRegGen.setText("Descripción del género:");
+        getContentPane().add(lbDescRegGen);
+        lbDescRegGen.setBounds(30, 120, 140, 16);
 
         txtNomGen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,9 +112,9 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 50, 220, 180);
 
-        jLabel4.setText("Lista de géneros ingresados");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(270, 20, 190, 20);
+        lbGenIngRegGen.setText("Lista de géneros ingresados");
+        getContentPane().add(lbGenIngRegGen);
+        lbGenIngRegGen.setBounds(270, 20, 190, 20);
 
         setSize(new java.awt.Dimension(516, 256));
         setLocationRelativeTo(null);
@@ -148,11 +150,11 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancGen;
     private javax.swing.JButton btnRegGen;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbDescRegGen;
+    private javax.swing.JLabel lbGenIngRegGen;
+    private javax.swing.JLabel lbNomRegGen;
+    private javax.swing.JLabel lbRegGen;
     private javax.swing.JList listaRegGen;
     private javax.swing.JPanel pnlListaGen;
     private javax.swing.JTextField txtDescGen;

@@ -32,26 +32,26 @@ public class ventRegEditorial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbNomRegEdi = new javax.swing.JLabel();
         pnlEdi = new javax.swing.JPanel();
         txtNombreEdi = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lbPaisRegEdi = new javax.swing.JLabel();
         txtPaisEdi = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lbRegEdi = new javax.swing.JLabel();
         btnRegEdi = new javax.swing.JButton();
         btnCancRegEdi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEdiReg = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        lbEdiIngRegEdi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Editorial");
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Nombre de la editorial :");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 50, 180, 16);
+        lbNomRegEdi.setText("Nombre de la editorial :");
+        getContentPane().add(lbNomRegEdi);
+        lbNomRegEdi.setBounds(20, 50, 180, 16);
         getContentPane().add(pnlEdi);
         pnlEdi.setBounds(220, 0, 220, 240);
 
@@ -63,9 +63,9 @@ public class ventRegEditorial extends javax.swing.JFrame {
         getContentPane().add(txtNombreEdi);
         txtNombreEdi.setBounds(20, 70, 140, 22);
 
-        jLabel2.setText("Pais de origen :");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 110, 100, 16);
+        lbPaisRegEdi.setText("Pais de origen :");
+        getContentPane().add(lbPaisRegEdi);
+        lbPaisRegEdi.setBounds(20, 110, 100, 16);
 
         txtPaisEdi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,9 +75,11 @@ public class ventRegEditorial extends javax.swing.JFrame {
         getContentPane().add(txtPaisEdi);
         txtPaisEdi.setBounds(20, 130, 140, 22);
 
-        jLabel3.setText("Resgistro de Editorial");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 10, 170, 20);
+        lbRegEdi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbRegEdi.setForeground(new java.awt.Color(0, 171, 0));
+        lbRegEdi.setText("Resgistro de Editorial");
+        getContentPane().add(lbRegEdi);
+        lbRegEdi.setBounds(20, 10, 190, 25);
 
         btnRegEdi.setText("Registrar");
         btnRegEdi.addActionListener(new java.awt.event.ActionListener() {
@@ -113,9 +115,9 @@ public class ventRegEditorial extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(230, 30, 180, 200);
 
-        jLabel4.setText("Tabla de Editoriales registradas");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(240, 10, 190, 16);
+        lbEdiIngRegEdi.setText("Tabla de Editoriales registradas");
+        getContentPane().add(lbEdiIngRegEdi);
+        lbEdiIngRegEdi.setBounds(240, 10, 190, 16);
 
         setSize(new java.awt.Dimension(457, 253));
         setLocationRelativeTo(null);
@@ -180,11 +182,11 @@ public class ventRegEditorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancRegEdi;
     private javax.swing.JButton btnRegEdi;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbEdiIngRegEdi;
+    private javax.swing.JLabel lbNomRegEdi;
+    private javax.swing.JLabel lbPaisRegEdi;
+    private javax.swing.JLabel lbRegEdi;
     private javax.swing.JPanel pnlEdi;
     private javax.swing.JTable tblEdiReg;
     private javax.swing.JTextField txtNombreEdi;

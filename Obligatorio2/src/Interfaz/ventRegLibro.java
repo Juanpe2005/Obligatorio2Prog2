@@ -45,17 +45,17 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbRegLibro = new javax.swing.JLabel();
+        lbTitRegLib = new javax.swing.JLabel();
         txtTituloLibro = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lbEdiRegLib = new javax.swing.JLabel();
+        lbGenRegLib = new javax.swing.JLabel();
+        lbAutRegLib = new javax.swing.JLabel();
+        lbPrecCosRegLib = new javax.swing.JLabel();
         txtPrecioCosto = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lbisbnRegLib = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lbPrecVentaRegLib = new javax.swing.JLabel();
         txtPrecioVenta = new javax.swing.JTextField();
         btnRegLibro = new javax.swing.JButton();
         btnCancLibro = new javax.swing.JButton();
@@ -66,9 +66,9 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         jScrollPane4 = new javax.swing.JScrollPane();
         listAut = new javax.swing.JList();
         btnFoto = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        lbFotoRegLib = new javax.swing.JLabel();
         txtStock = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        lbStockRegLib = new javax.swing.JLabel();
         pnllistGen = new javax.swing.JPanel();
         pnlListEdi = new javax.swing.JPanel();
         pnlListAut = new javax.swing.JPanel();
@@ -78,37 +78,39 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Registrar Libro");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(28, 17, 170, 16);
+        lbRegLibro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbRegLibro.setForeground(new java.awt.Color(0, 171, 0));
+        lbRegLibro.setText("Registrar Libro");
+        getContentPane().add(lbRegLibro);
+        lbRegLibro.setBounds(28, 17, 170, 25);
 
-        jLabel2.setText("Titulo");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 50, 29, 16);
+        lbTitRegLib.setText("Titulo");
+        getContentPane().add(lbTitRegLib);
+        lbTitRegLib.setBounds(30, 50, 30, 16);
         getContentPane().add(txtTituloLibro);
-        txtTituloLibro.setBounds(30, 70, 64, 22);
+        txtTituloLibro.setBounds(30, 70, 180, 22);
 
-        jLabel3.setText("Editorial:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 160, 70, 16);
+        lbEdiRegLib.setText("Editorial:");
+        getContentPane().add(lbEdiRegLib);
+        lbEdiRegLib.setBounds(30, 160, 70, 16);
 
-        jLabel4.setText("Género:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 100, 60, 16);
+        lbGenRegLib.setText("Género:");
+        getContentPane().add(lbGenRegLib);
+        lbGenRegLib.setBounds(30, 100, 60, 16);
 
-        jLabel5.setText("Autor:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 210, 33, 16);
+        lbAutRegLib.setText("Autor:");
+        getContentPane().add(lbAutRegLib);
+        lbAutRegLib.setBounds(30, 210, 33, 16);
 
-        jLabel6.setText("Precio costo");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(210, 100, 70, 16);
+        lbPrecCosRegLib.setText("Precio costo");
+        getContentPane().add(lbPrecCosRegLib);
+        lbPrecCosRegLib.setBounds(230, 130, 70, 16);
         getContentPane().add(txtPrecioCosto);
-        txtPrecioCosto.setBounds(210, 120, 64, 22);
+        txtPrecioCosto.setBounds(230, 150, 64, 22);
 
-        jLabel7.setText("ISBN");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(210, 170, 25, 16);
+        lbisbnRegLib.setText("ISBN");
+        getContentPane().add(lbisbnRegLib);
+        lbisbnRegLib.setBounds(320, 50, 25, 16);
 
         txtISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,13 +118,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtISBN);
-        txtISBN.setBounds(210, 190, 71, 22);
+        txtISBN.setBounds(320, 70, 71, 22);
 
-        jLabel8.setText("Precio venta");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(330, 100, 64, 16);
+        lbPrecVentaRegLib.setText("Precio venta");
+        getContentPane().add(lbPrecVentaRegLib);
+        lbPrecVentaRegLib.setBounds(320, 130, 65, 16);
         getContentPane().add(txtPrecioVenta);
-        txtPrecioVenta.setBounds(330, 120, 64, 22);
+        txtPrecioVenta.setBounds(320, 150, 64, 22);
 
         btnRegLibro.setText("Registrar");
         btnRegLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +142,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancLibro);
-        btnCancLibro.setBounds(310, 260, 74, 23);
+        btnCancLibro.setBounds(310, 260, 76, 23);
 
         listGenero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listGenero.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -174,11 +176,11 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnFoto);
-        btnFoto.setBounds(305, 190, 90, 23);
+        btnFoto.setBounds(260, 210, 90, 23);
 
-        jLabel9.setText("Foto");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(320, 170, 40, 16);
+        lbFotoRegLib.setText("Foto");
+        getContentPane().add(lbFotoRegLib);
+        lbFotoRegLib.setBounds(290, 190, 40, 16);
 
         txtStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,11 +188,11 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtStock);
-        txtStock.setBounds(210, 70, 64, 22);
+        txtStock.setBounds(230, 70, 64, 22);
 
-        jLabel10.setText("Stock");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(210, 50, 29, 16);
+        lbStockRegLib.setText("Stock");
+        getContentPane().add(lbStockRegLib);
+        lbStockRegLib.setBounds(230, 50, 29, 16);
         getContentPane().add(pnllistGen);
         pnllistGen.setBounds(10, 100, 180, 60);
         getContentPane().add(pnlListEdi);
@@ -292,20 +294,20 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton btnCancLibro;
     private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnRegLibro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lbAutRegLib;
+    private javax.swing.JLabel lbEdiRegLib;
+    private javax.swing.JLabel lbFotoRegLib;
+    private javax.swing.JLabel lbGenRegLib;
+    private javax.swing.JLabel lbPrecCosRegLib;
+    private javax.swing.JLabel lbPrecVentaRegLib;
+    private javax.swing.JLabel lbRegLibro;
+    private javax.swing.JLabel lbStockRegLib;
+    private javax.swing.JLabel lbTitRegLib;
+    private javax.swing.JLabel lbisbnRegLib;
     private javax.swing.JList listAut;
     private javax.swing.JList listEdi;
     private javax.swing.JList listGenero;
