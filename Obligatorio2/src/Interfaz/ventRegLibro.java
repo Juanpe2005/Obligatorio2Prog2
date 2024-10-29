@@ -11,9 +11,9 @@ import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Juan
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class ventRegLibro extends javax.swing.JFrame implements Observer {
     
@@ -229,11 +229,19 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         //a la hora de registrar el libro hay que fijarse si ya existia el isbn
         try{
+            if (!sistema.chequearNum(Integer.parseInt(txtPrecioCosto.getText()))){
+                JOptionPane.showMessageDialog(null,"El precio de costo debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecioCosto.setText("");
+            }
+            if (!sistema.chequearNum(Integer.parseInt(txtPrecioVenta.getText()))){
+                JOptionPane.showMessageDialog(null,"El precio de venta debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecioVenta.setText("");
+            }
             if(!sistema.chequearISBN(txtISBN.getText())){
                 JOptionPane.showMessageDialog(null,"ISBN duplicado", "Error", JOptionPane.ERROR_MESSAGE);
                 txtISBN.setText("");
                 
-            }else if(Integer.parseInt(txtStock.getText())<=0){
+            }else if(!sistema.chequearNum(Integer.parseInt(txtStock.getText()))){
                 //chequeo del stock, tiene que ser mayor a 0
                 JOptionPane.showMessageDialog(null,"El stock debe de ser mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtStock.setText("");
@@ -245,12 +253,12 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 Autor aut=  (Autor) listAut.getSelectedValue();
                 
                 //hay que parsear los datos que vienen en string
-                int stcok = Integer.parseInt(txtStock.getText());
+                int stock = Integer.parseInt(txtStock.getText());
                 int precioCosto = Integer.parseInt(txtPrecioCosto.getText());
                 int precioVenta =Integer.parseInt(txtPrecioVenta.getText());
                 
                 if(gen != null && edi !=null && aut!=null){
-                    Libro lib=new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stcok, precioCosto, precioVenta);
+                    Libro lib=new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
                     sistema.getListaLibros().add(lib);
                     JOptionPane.showMessageDialog(null,"guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }else{
@@ -260,7 +268,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"El stock no puede estar vacio y debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegLibroActionPerformed
 

@@ -3,9 +3,9 @@ package Interfaz;
 
 import Dominio.*;
 
-/**
- *
- * @author Juan
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class menuPrincipal extends javax.swing.JFrame {
 
@@ -86,6 +86,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         ventas.setText("Ventas");
 
         registrarVenta.setText("Registrar Venta");
+        registrarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarVentaActionPerformed(evt);
+            }
+        });
         ventas.add(registrarVenta);
 
         anularVenta.setText("Anular Venta");
@@ -101,9 +106,19 @@ public class menuPrincipal extends javax.swing.JFrame {
         consultas.setText("Consultas");
 
         consultaLibros.setText("Consulta de libros");
+        consultaLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaLibrosActionPerformed(evt);
+            }
+        });
         consultas.add(consultaLibros);
 
         consultaVenta.setText("Consulta de ventas");
+        consultaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaVentaActionPerformed(evt);
+            }
+        });
         consultas.add(consultaVenta);
 
         jMenuBar1.add(consultas);
@@ -128,6 +143,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void anularVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularVentaActionPerformed
         // TODO add your handling code here:
+        ventAnularVenta vent=new ventAnularVenta(sistema);
+        vent.setVisible(true);
     }//GEN-LAST:event_anularVentaActionPerformed
 
     private void registroEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroEditorialActionPerformed
@@ -143,6 +160,24 @@ public class menuPrincipal extends javax.swing.JFrame {
         ventRegGenero vent=new ventRegGenero(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_registroGeneroActionPerformed
+
+    private void registrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaActionPerformed
+        // TODO add your handling code here:
+        ventRegVentas vent=new ventRegVentas(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_registrarVentaActionPerformed
+
+    private void consultaLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaLibrosActionPerformed
+        // TODO add your handling code here:
+        ventConsLibros vent=new ventConsLibros(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_consultaLibrosActionPerformed
+
+    private void consultaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaVentaActionPerformed
+        // TODO add your handling code here:
+        ventConsVentas vent=new ventConsVentas(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_consultaVentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem anularVenta;

@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
-/**
- *
- * @author Juan
+import Dominio.Sistema;
+
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class ventAnularVenta extends javax.swing.JFrame {
 
+    Sistema sistema;
     /**
      * Creates new form ventAnularVenta
      */
-    public ventAnularVenta() {
+    public ventAnularVenta(Sistema sis) {
         initComponents();
+        sistema=sis;
     }
 
     /**

@@ -1,9 +1,9 @@
 
 package Interfaz;
 
-/**
- *
- * @author Juan
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 import Dominio.*;
 import java.util.ArrayList;
@@ -125,14 +125,11 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
         if(sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())){
             JOptionPane.showMessageDialog(null,"Se guardo el Genero", "info", JOptionPane.INFORMATION_MESSAGE);
             cargar();
-            txtNomGen.setText("");
-            txtDescGen.setText("");
-            
+            actualizar();
         }else{
             //si ya existe muestra mensaje de error
             JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
-            txtNomGen.setText("");
-            txtDescGen.setText("");
+            actualizar();
        }
     }//GEN-LAST:event_btnRegGenActionPerformed
 
@@ -144,7 +141,10 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
     private void txtNomGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomGenActionPerformed
-     
+     public void actualizar(){
+        txtNomGen.setText("");
+        txtDescGen.setText("");
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

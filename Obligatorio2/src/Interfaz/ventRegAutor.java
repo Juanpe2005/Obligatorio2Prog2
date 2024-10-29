@@ -11,9 +11,9 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author Juan
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class ventRegAutor extends javax.swing.JFrame implements Observer{
 
@@ -88,7 +88,7 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
             }
         });
         getContentPane().add(btnRegAut);
-        btnRegAut.setBounds(40, 230, 80, 23);
+        btnRegAut.setBounds(40, 230, 90, 23);
 
         btnCancAut.setText("Cancelar");
         btnCancAut.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +97,7 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
             }
         });
         getContentPane().add(btnCancAut);
-        btnCancAut.setBounds(130, 230, 76, 23);
+        btnCancAut.setBounds(140, 230, 90, 23);
 
         txtNomAut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,23 +144,24 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
 
     private void btnRegAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAutActionPerformed
         // TODO add your handling code here:
-        
-        ArrayList<Genero> generosPorAutor = (ArrayList<Genero>) listGenAut.getSelectedValuesList();
-        
-        if(sistema.regAutor(txtNomAut.getText(), txtNacAut.getText(), generosPorAutor)){
-            JOptionPane.showMessageDialog(null,"Se guardo el Autor", "info", JOptionPane.INFORMATION_MESSAGE);
-            
-            txtNomAut.setText("");
-            txtNacAut.setText("");
-            listGenAut.clearSelection();
-            cargarLista();
+
+        if (listGenAut.isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null,"No se puede guardar un autor sin genero", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
-            //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
-            txtNomAut.setText("");
-            txtNacAut.setText("");
-        }
+            ArrayList<Genero> generosPorAutor = (ArrayList<Genero>) listGenAut.getSelectedValuesList();
         
+            if(sistema.regAutor(txtNomAut.getText(), txtNacAut.getText(), generosPorAutor)){
+                JOptionPane.showMessageDialog(null,"Se guardo el Autor", "info", JOptionPane.INFORMATION_MESSAGE);
+
+                actualizar();
+                listGenAut.clearSelection();
+                cargarLista();
+            }else{
+                //si ya existe muestra mensaje de error
+                JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+                actualizar();
+            }
+        }
         
     }//GEN-LAST:event_btnRegAutActionPerformed
 
@@ -174,7 +175,10 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
         
     }//GEN-LAST:event_txtNomAutActionPerformed
 
-    
+    public void actualizar(){
+        txtNomAut.setText("");
+        txtNacAut.setText("");
+    }
     public void cargarListaGenero(){
         if(sistema.getListaGeneros().size() >0){
             listGenAut.setListData(sistema.getListaGeneros().toArray());

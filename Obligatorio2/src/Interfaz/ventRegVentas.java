@@ -4,19 +4,37 @@
  */
 package Interfaz;
 
-/**
- *
- * @author Juan
- */
-public class ventRegVentas extends javax.swing.JFrame {
+import Dominio.Genero;
+import Dominio.Libro;
+import Dominio.Sistema;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
 
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
+ */
+public class ventRegVentas extends javax.swing.JFrame implements Observer {
+
+    Sistema sistema;
+    
     /**
      * Creates new form ventRegVentas
      */
-    public ventRegVentas() {
+    public ventRegVentas(Sistema sis) {
         initComponents();
+        sistema=sis;
+        cargarListaLibros();
+       
     }
-
+    
+    public void update(Observable o, Object ob){
+        cargarListaLibros();
+        
+        sistema.addObserver(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,28 +51,29 @@ public class ventRegVentas extends javax.swing.JFrame {
         txtNombreCliente = new javax.swing.JTextField();
         lblLibroRegVenta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listLibros = new javax.swing.JList();
         btnEliminarLbr = new javax.swing.JButton();
         btnAgregarlbr1 = new javax.swing.JButton();
         lblVentaRegVenta = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        listVentas = new javax.swing.JList<>();
         lblTotalVenta = new javax.swing.JLabel();
         btnCancVenta = new javax.swing.JButton();
         btnRegVenta = new javax.swing.JButton();
         lblRegVenta = new javax.swing.JLabel();
+        lblNumFac = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de Libros");
         getContentPane().setLayout(null);
 
-        lblFacturaRegVenta.setText("Factura : número");
+        lblFacturaRegVenta.setText("Factura : ");
         getContentPane().add(lblFacturaRegVenta);
-        lblFacturaRegVenta.setBounds(20, 20, 110, 16);
+        lblFacturaRegVenta.setBounds(20, 20, 50, 16);
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 31, 16);
+        lblFechaRegVenta.setBounds(20, 50, 30, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,12 +99,7 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(lblLibroRegVenta);
         lblLibroRegVenta.setBounds(20, 100, 32, 16);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listLibros);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 120, 220, 120);
@@ -112,12 +126,7 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(lblVentaRegVenta);
         lblVentaRegVenta.setBounds(340, 100, 30, 16);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listVentas);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(330, 120, 230, 120);
@@ -133,9 +142,14 @@ public class ventRegVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 76, 23);
+        btnCancVenta.setBounds(390, 300, 74, 23);
 
         btnRegVenta.setText("Registrar");
+        btnRegVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegVentaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnRegVenta);
         btnRegVenta.setBounds(130, 300, 80, 23);
 
@@ -145,7 +159,12 @@ public class ventRegVentas extends javax.swing.JFrame {
         getContentPane().add(lblRegVenta);
         lblRegVenta.setBounds(210, 0, 210, 25);
 
-        pack();
+        lblNumFac.setText("1");
+        getContentPane().add(lblNumFac);
+        lblNumFac.setBounds(90, 20, 100, 16);
+
+        setSize(new java.awt.Dimension(602, 360));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
@@ -162,6 +181,8 @@ public class ventRegVentas extends javax.swing.JFrame {
 
     private void btnAgregarlbr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarlbr1ActionPerformed
         // TODO add your handling code here:
+        guardarEnLista();
+        cargarListaVentas();
     }//GEN-LAST:event_btnAgregarlbr1ActionPerformed
 
     private void btnCancVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancVentaActionPerformed
@@ -169,24 +190,41 @@ public class ventRegVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancVentaActionPerformed
 
+    private void btnRegVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegVentaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnRegVentaActionPerformed
+
+   public void cargarListaLibros(){
+        listLibros.setListData(sistema.ordenarXTitulo().toArray());
+    }
    
+   public void cargarListaVentas(){
+       
+   }
+   //HASHMAP
+   public void guardarEnLista(){
+       if(listLibros.isSelectionEmpty()){
+       }
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarlbr1;
     private javax.swing.JButton btnCancVenta;
     private javax.swing.JButton btnEliminarLbr;
     private javax.swing.JButton btnRegVenta;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblClienteRegVenta;
     private javax.swing.JLabel lblFacturaRegVenta;
     private javax.swing.JLabel lblFechaRegVenta;
     private javax.swing.JLabel lblLibroRegVenta;
+    private javax.swing.JLabel lblNumFac;
     private javax.swing.JLabel lblRegVenta;
     private javax.swing.JLabel lblTotalVenta;
     private javax.swing.JLabel lblVentaRegVenta;
+    private javax.swing.JList listLibros;
+    private javax.swing.JList<String> listVentas;
     private javax.swing.JTextField txtFechaVenta;
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables

@@ -159,9 +159,9 @@ public class Sistema extends Observable {
         return unico;
     }
     
-    public boolean chequearStock(int stock){
+    public boolean chequearNum(int num){
         boolean valido = true;
-        if(stock < 0){
+        if(num < 0){
             valido = false;
         }
         return valido;
@@ -169,8 +169,8 @@ public class Sistema extends Observable {
     
     public ArrayList<Libro> ordenarXTitulo(){
         //clonar la lista original para poder ordenarla y que la maquina quede siempre en la pos 0 en la original
-        ArrayList<Libro> retorno = new ArrayList<Libro>(this.getListaLibros());
-        retorno.sort((Libro l2, Libro l1) -> {
+        ArrayList<Libro> retorno = new ArrayList<Libro> (this.getListaLibros());
+        retorno.sort((Libro l1, Libro l2) -> {
             int dif = l1.getTitulo().compareTo(l2.getTitulo());
             return dif;
         });
