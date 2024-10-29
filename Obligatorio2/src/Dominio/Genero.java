@@ -34,5 +34,11 @@ public class Genero {
         
         // If the object is compared with itself then return true
         return g.nombre.equals(this.nombre);
-    }  
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + descripcion + ')';
+    }
+    
 }

@@ -140,7 +140,8 @@ public class ventConsVentas extends javax.swing.JFrame {
         getContentPane().add(nroEjVendConsVen2);
         nroEjVendConsVen2.setBounds(90, 350, 80, 20);
 
-        pack();
+        setSize(new java.awt.Dimension(590, 382));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsVentaActionPerformed

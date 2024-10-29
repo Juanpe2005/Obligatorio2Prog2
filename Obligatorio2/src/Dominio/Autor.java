@@ -46,6 +46,11 @@ public class Autor {
         // If the object is compared with itself then return true
         return a.nombre.equals(this.nombre);
     }  
+
+    @Override
+    public String toString() {
+        return nombre + " (" + pais + ')';
+    }
     
     
 }

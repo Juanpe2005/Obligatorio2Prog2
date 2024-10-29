@@ -7,11 +7,13 @@ package Interfaz;
  */
 import Dominio.*;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 
-public class ventRegGenero extends javax.swing.JFrame {
+public class ventRegGenero extends javax.swing.JFrame implements Observer{
     
     Sistema sistema;
     /**
@@ -20,9 +22,21 @@ public class ventRegGenero extends javax.swing.JFrame {
     public ventRegGenero(Sistema sis) {
         initComponents();
         sistema=sis;
-        cargarLista();
+        //cargarLista();
+        cargar();
+        sis.addObserver(this);
     }
-
+    
+    public void update(Observable o, Object ob){
+        cargar();
+    }
+     public void cargar(){
+        if(sistema.getListaGeneros().size() >0){
+            listaRegGen.setListData(sistema.getListaGeneros().toArray());
+            pnlListaGen.setVisible(false);
+        }else
+            pnlListaGen.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,13 +48,14 @@ public class ventRegGenero extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        pnlListaGen = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtNomGen = new javax.swing.JTextField();
         txtDescGen = new javax.swing.JTextField();
         btnRegGen = new javax.swing.JButton();
         btnCancGen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaRegGen = new javax.swing.JList<>();
+        listaRegGen = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,6 +70,8 @@ public class ventRegGenero extends javax.swing.JFrame {
         jLabel2.setText("Nombre del género:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 70, 130, 16);
+        getContentPane().add(pnlListaGen);
+        pnlListaGen.setBounds(230, 10, 260, 230);
 
         jLabel3.setText("Descripción del género:");
         getContentPane().add(jLabel3);
@@ -97,14 +114,15 @@ public class ventRegGenero extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(270, 20, 190, 20);
 
-        pack();
+        setSize(new java.awt.Dimension(516, 256));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegGenActionPerformed
         // TODO add your handling code here:
         if(sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())){
             JOptionPane.showMessageDialog(null,"Se guardo el Genero", "info", JOptionPane.INFORMATION_MESSAGE);
-            cargarLista();
+            cargar();
             txtNomGen.setText("");
             txtDescGen.setText("");
             
@@ -124,17 +142,8 @@ public class ventRegGenero extends javax.swing.JFrame {
     private void txtNomGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomGenActionPerformed
-
-    public void cargarLista(){
-        DefaultListModel model = new DefaultListModel();
-        
-        ArrayList<Genero> list = sistema.getListaGeneros();
-        for (int i = 0; i < list.size(); i++) {
-            String text= list.get(i).getNombre()+" "+list.get(i).getDescripcion();
-            model.addElement(text);
-        }
-        listaRegGen.setModel(model);
-    }
+     
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancGen;
@@ -144,7 +153,8 @@ public class ventRegGenero extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listaRegGen;
+    private javax.swing.JList listaRegGen;
+    private javax.swing.JPanel pnlListaGen;
     private javax.swing.JTextField txtDescGen;
     private javax.swing.JTextField txtNomGen;
     // End of variables declaration//GEN-END:variables

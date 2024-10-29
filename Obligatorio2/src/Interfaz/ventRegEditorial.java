@@ -33,6 +33,7 @@ public class ventRegEditorial extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        pnlEdi = new javax.swing.JPanel();
         txtNombreEdi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPaisEdi = new javax.swing.JTextField();
@@ -51,6 +52,8 @@ public class ventRegEditorial extends javax.swing.JFrame {
         jLabel1.setText("Nombre de la editorial :");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(20, 50, 180, 16);
+        getContentPane().add(pnlEdi);
+        pnlEdi.setBounds(220, 0, 220, 240);
 
         txtNombreEdi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +117,8 @@ public class ventRegEditorial extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(240, 10, 190, 16);
 
-        pack();
+        setSize(new java.awt.Dimension(457, 253));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEdiActionPerformed
@@ -153,13 +157,19 @@ public class ventRegEditorial extends javax.swing.JFrame {
     public void cargaTabla(){
         DefaultTableModel tableModel = (DefaultTableModel) tblEdiReg.getModel();
         tableModel.setRowCount(0);
+        
            
-         ArrayList<Editorial> list = sistema.getListaEditoriales();
-           
+        ArrayList<Editorial> list = sistema.getListaEditoriales();
+        if(list.size()>0){
+            pnlEdi.setVisible(false);
+        }else{
+            pnlEdi.setVisible(true);
+
+        }  
             for (int i = 0; i < list.size(); i++) {
-                    String[] data = new String[2];
-                    data[0] = list.get(i).getNombre();
-                    data[1] = list.get(i).getPais();
+                String[] data = new String[2];
+                data[0] = list.get(i).getNombre();
+                data[1] = list.get(i).getPais();
                 tableModel.addRow(data);
             }
             tblEdiReg.setModel(tableModel);
@@ -175,6 +185,7 @@ public class ventRegEditorial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnlEdi;
     private javax.swing.JTable tblEdiReg;
     private javax.swing.JTextField txtNombreEdi;
     private javax.swing.JTextField txtPaisEdi;

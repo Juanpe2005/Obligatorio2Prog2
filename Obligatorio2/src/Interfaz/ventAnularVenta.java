@@ -71,7 +71,8 @@ public class ventAnularVenta extends javax.swing.JFrame {
         getContentPane().add(btnCancAnular);
         btnCancAnular.setBounds(320, 270, 74, 23);
 
-        pack();
+        setSize(new java.awt.Dimension(414, 307));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancAnularActionPerformed

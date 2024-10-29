@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import Dominio.*;
@@ -113,7 +110,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        pack();
+        setSize(new java.awt.Dimension(414, 307));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void registroAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroAutorActionPerformed
@@ -124,6 +122,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void registroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroLibroActionPerformed
         // TODO add your handling code here:
+        ventRegLibro vent=new ventRegLibro(sistema);
+        vent.setVisible(true);
     }//GEN-LAST:event_registroLibroActionPerformed
 
     private void anularVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularVentaActionPerformed

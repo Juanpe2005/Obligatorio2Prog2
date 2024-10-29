@@ -15,6 +15,18 @@ public class Libro {
     private int precioCosto;
     private int precioVenta;
     
+    //constructor del libro
+    public Libro(String titulo, Editorial editorial, String isbn, Autor autor, Genero genero, int stock, int precioCosto, int precioVenta) {
+        this.titulo = titulo;
+        this.editorial = editorial;
+        this.isbn = isbn;
+        this.autor = autor;
+        this.genero = genero;
+        this.stock = stock;
+        this.precioCosto = precioCosto;
+        this.precioVenta = precioVenta;
+    }
+    
     
     
     public String getTitulo() {
@@ -80,6 +92,13 @@ public class Libro {
     public void setPrecioVenta(int precioVenta) {
         this.precioVenta = precioVenta;
     }
+
+    @Override
+    public String toString() {
+        return isbn+ " - "+ titulo;
+    }
+    
+    
     
     public int chequearStock(int cantSolicitada) {
         int cantDisponible = cantSolicitada;

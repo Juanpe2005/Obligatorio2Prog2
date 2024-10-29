@@ -4,19 +4,37 @@
  */
 package Interfaz;
 
+import Dominio.*;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan
  */
-public class ventRegLibro extends javax.swing.JFrame {
-
+public class ventRegLibro extends javax.swing.JFrame implements Observer {
+    
+    Sistema sistema;
     /**
      * Creates new form ventRegLibro
      */
-    public ventRegLibro() {
+    public ventRegLibro(Sistema sis) {
         initComponents();
+        sistema=sis;
+        cargarListaEditoriales();
+        cargarListaGenero();
+     
+        sis.addObserver(this);
     }
 
+     public void update(Observable o, Object ob){
+        cargarListaEditoriales();
+        cargarListaGenero();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,15 +44,13 @@ public class ventRegLibro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtTituloLibro = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         txtPrecioCosto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -43,9 +59,23 @@ public class ventRegLibro extends javax.swing.JFrame {
         txtPrecioVenta = new javax.swing.JTextField();
         btnRegLibro = new javax.swing.JButton();
         btnCancLibro = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listGenero = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listEdi = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listAut = new javax.swing.JList();
+        btnFoto = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        pnllistGen = new javax.swing.JPanel();
+        pnlListEdi = new javax.swing.JPanel();
+        pnlListAut = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Libro");
+        setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Registrar Libro");
@@ -57,14 +87,6 @@ public class ventRegLibro extends javax.swing.JFrame {
         jLabel2.setBounds(30, 50, 29, 16);
         getContentPane().add(txtTituloLibro);
         txtTituloLibro.setBounds(30, 70, 64, 22);
-
-        jRadioButton1.setText("jRadioButton1");
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(30, 120, 98, 21);
-
-        jRadioButton2.setText("jRadioButton2");
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(30, 180, 98, 21);
 
         jLabel3.setText("Editorial:");
         getContentPane().add(jLabel3);
@@ -78,10 +100,6 @@ public class ventRegLibro extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(30, 210, 33, 16);
 
-        jRadioButton3.setText("jRadioButton3");
-        getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(30, 230, 98, 21);
-
         jLabel6.setText("Precio costo");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(210, 100, 70, 16);
@@ -91,6 +109,12 @@ public class ventRegLibro extends javax.swing.JFrame {
         jLabel7.setText("ISBN");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(210, 170, 25, 16);
+
+        txtISBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtISBNActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtISBN);
         txtISBN.setBounds(210, 190, 71, 22);
 
@@ -101,6 +125,11 @@ public class ventRegLibro extends javax.swing.JFrame {
         txtPrecioVenta.setBounds(330, 120, 64, 22);
 
         btnRegLibro.setText("Registrar");
+        btnRegLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegLibroActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnRegLibro);
         btnRegLibro.setBounds(210, 260, 80, 23);
 
@@ -113,6 +142,62 @@ public class ventRegLibro extends javax.swing.JFrame {
         getContentPane().add(btnCancLibro);
         btnCancLibro.setBounds(310, 260, 74, 23);
 
+        listGenero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listGenero.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listGeneroValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listGenero);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 120, 140, 30);
+
+        jScrollPane2.setToolTipText("");
+
+        listEdi.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listEdi);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(27, 176, 150, 30);
+
+        listAut.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(listAut);
+
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(30, 230, 150, 40);
+
+        btnFoto.setText("Subir foto");
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFoto);
+        btnFoto.setBounds(305, 190, 90, 23);
+
+        jLabel9.setText("Foto");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(320, 170, 40, 16);
+
+        txtStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStockActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtStock);
+        txtStock.setBounds(210, 70, 64, 22);
+
+        jLabel10.setText("Stock");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(210, 50, 29, 16);
+        getContentPane().add(pnllistGen);
+        pnllistGen.setBounds(10, 100, 180, 60);
+        getContentPane().add(pnlListEdi);
+        pnlListEdi.setBounds(20, 160, 170, 50);
+        getContentPane().add(pnlListAut);
+        pnlListAut.setBounds(10, 210, 190, 70);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,12 +206,94 @@ public class ventRegLibro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancLibroActionPerformed
 
-   
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFotoActionPerformed
+
+    private void listGeneroValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listGeneroValueChanged
+        // TODO add your handling code here:
+        //se toma con el index el numero que tiene ese genero seleccionado y se toma de la lista de generos
+        Genero gen= sistema.getListaGeneros().get(listGenero.getSelectedIndex());
+        cargarListaAutores(gen);
+    }//GEN-LAST:event_listGeneroValueChanged
+
+    private void txtISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtISBNActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtISBNActionPerformed
+
+    private void btnRegLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegLibroActionPerformed
+        // TODO add your handling code here:
+        //a la hora de registrar el libro hay que fijarse si ya existia el isbn
+        try{
+            if(!sistema.chequearISBN(txtISBN.getText())){
+                JOptionPane.showMessageDialog(null,"ISBN duplicado", "Error", JOptionPane.ERROR_MESSAGE);
+                txtISBN.setText("");
+                
+            }else if(Integer.parseInt(txtStock.getText())<=0){
+                //chequeo del stock, tiene que ser mayor a 0
+                JOptionPane.showMessageDialog(null,"El stock debe de ser mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
+                txtStock.setText("");
+            }
+            else{
+                //si los datos anterirores estan bien, hay que crear el libro y agregarlo a la lista
+                Genero gen= (Genero) listGenero.getSelectedValue();
+                Editorial edi=  (Editorial) listEdi.getSelectedValue();
+                Autor aut=  (Autor) listAut.getSelectedValue();
+                
+                //hay que parsear los datos que vienen en string
+                int stcok = Integer.parseInt(txtStock.getText());
+                int precioCosto = Integer.parseInt(txtPrecioCosto.getText());
+                int precioVenta =Integer.parseInt(txtPrecioVenta.getText());
+                
+                if(gen != null && edi !=null && aut!=null){
+                    Libro lib=new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stcok, precioCosto, precioVenta);
+                    sistema.getListaLibros().add(lib);
+                    JOptionPane.showMessageDialog(null,"guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"El stock no puede estar vacio y debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegLibroActionPerformed
+
+    private void txtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStockActionPerformed
+    
+    //se carga la lista de generos
+    public void cargarListaGenero(){
+        if(sistema.getListaGeneros().size() >0){
+            listGenero.setListData(sistema.getListaGeneros().toArray());
+            //pnllistGen.setVisible(false);
+        //}else{
+          //  pnllistGen.setVisible(true);
+        }
+    }
+    
+    //se carga la lista de editoriales
+    public void cargarListaEditoriales(){
+        listEdi.setListData(sistema.getListaEditoriales().toArray());
+    }
+    
+    //se carga la lista de autores dependiendo del genero que escriban
+    public void cargarListaAutores(Genero gen){
+        listAut.setListData(sistema.getAutoresPorGénero(gen).toArray());
+        
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancLibro;
+    private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnRegLibro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -134,12 +301,21 @@ public class ventRegLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList listAut;
+    private javax.swing.JList listEdi;
+    private javax.swing.JList listGenero;
+    private javax.swing.JPanel pnlListAut;
+    private javax.swing.JPanel pnlListEdi;
+    private javax.swing.JPanel pnllistGen;
     private javax.swing.JTextField txtISBN;
     private javax.swing.JTextField txtPrecioCosto;
     private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTituloLibro;
     // End of variables declaration//GEN-END:variables
 }

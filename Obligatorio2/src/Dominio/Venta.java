@@ -1,6 +1,8 @@
 
 package Dominio;
 
+import java.util.ArrayList;
+
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
@@ -9,7 +11,8 @@ public class Venta {
     private String fecha;
     private String cliente;
     private int nroFactura;
-    private Libro libro;
+    private ArrayList<Libro> listaLibros=new ArrayList<Libro>();
+    
 
     public String getFecha() {
         return fecha;
@@ -35,12 +38,17 @@ public class Venta {
         this.nroFactura = nroFactura;
     }
 
-    public Libro getLibro() {
-        return libro;
+    public ArrayList<Libro> getListaLibros() {
+        return listaLibros;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setListaLibros(ArrayList<Libro> listaLibros) {
+        this.listaLibros = listaLibros;
     }
+
+   
+
+   
+    
     
 }

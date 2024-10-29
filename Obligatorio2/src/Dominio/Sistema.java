@@ -5,7 +5,7 @@ import java.util.*;
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Sistema {
+public class Sistema extends Observable {
     private ArrayList<Editorial> listaEditoriales = new ArrayList<Editorial>();
     private ArrayList<Libro> listaLibros = new ArrayList<Libro>();
     private ArrayList<Autor> listaAutores = new ArrayList<Autor>();
@@ -27,7 +27,11 @@ public class Sistema {
         ArrayList<Genero> listaGenerosAutor = new ArrayList<Genero>();
         listaGenerosAutor.add(listaGeneros.get(1));
         listaGenerosAutor.add(listaGeneros.get(2));
+        autor1.setGenerosPorAutor(listaGenerosAutor);
         listaAutores.add(autor1);
+        
+        listaEditoriales.add(new Editorial("Santillana","uru"));
+        
         //====================================================================
         //====================================================================
         //====================================================================
@@ -94,6 +98,8 @@ public class Sistema {
         
         if(!existe){
             this.getListaEditoriales().add(editorial);
+            setChanged();
+            notifyObservers();
         }
         //si no existia antes, la agrega
         return !existe;
@@ -107,6 +113,8 @@ public class Sistema {
         
         if(!existe){
             this.getListaGeneros().add(genero);
+            setChanged();
+            notifyObservers();
         }
         //si no existia antes, la agrega
         return !existe;
@@ -119,6 +127,8 @@ public class Sistema {
         
         if(!existe){
             this.getListaAutores().add(autor);
+            setChanged();
+            notifyObservers();
         }
         //si no existia antes, la agrega
         return !existe;
