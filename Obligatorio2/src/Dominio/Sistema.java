@@ -105,7 +105,12 @@ public class Sistema extends Observable {
         return !existe;
         
     }
-    
+     public void regLibro(Libro lib){
+        this.getListaLibros().add(lib);
+        setChanged();
+        notifyObservers();
+      
+    }
 
     public boolean regGenero(String nom, String desc){
         Genero genero= new Genero(nom, desc);

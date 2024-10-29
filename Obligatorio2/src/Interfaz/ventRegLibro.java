@@ -75,20 +75,26 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Libro");
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
         lbRegLibro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbRegLibro.setForeground(new java.awt.Color(0, 171, 0));
         lbRegLibro.setText("Registrar Libro");
         getContentPane().add(lbRegLibro);
-        lbRegLibro.setBounds(28, 17, 170, 25);
+        lbRegLibro.setBounds(120, 10, 170, 25);
 
         lbTitRegLib.setText("Titulo");
         getContentPane().add(lbTitRegLib);
-        lbTitRegLib.setBounds(30, 50, 30, 16);
+        lbTitRegLib.setBounds(30, 40, 100, 16);
+
+        txtTituloLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTituloLibroActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtTituloLibro);
-        txtTituloLibro.setBounds(30, 70, 180, 22);
+        txtTituloLibro.setBounds(30, 60, 180, 20);
 
         lbEdiRegLib.setText("Editorial:");
         getContentPane().add(lbEdiRegLib);
@@ -96,21 +102,21 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
         lbGenRegLib.setText("Género:");
         getContentPane().add(lbGenRegLib);
-        lbGenRegLib.setBounds(30, 100, 60, 16);
+        lbGenRegLib.setBounds(30, 86, 130, 20);
 
         lbAutRegLib.setText("Autor:");
         getContentPane().add(lbAutRegLib);
-        lbAutRegLib.setBounds(30, 210, 33, 16);
+        lbAutRegLib.setBounds(30, 230, 90, 20);
 
         lbPrecCosRegLib.setText("Precio costo");
         getContentPane().add(lbPrecCosRegLib);
-        lbPrecCosRegLib.setBounds(230, 130, 70, 16);
+        lbPrecCosRegLib.setBounds(280, 120, 100, 16);
         getContentPane().add(txtPrecioCosto);
-        txtPrecioCosto.setBounds(230, 150, 64, 22);
+        txtPrecioCosto.setBounds(280, 140, 64, 22);
 
         lbisbnRegLib.setText("ISBN");
         getContentPane().add(lbisbnRegLib);
-        lbisbnRegLib.setBounds(320, 50, 25, 16);
+        lbisbnRegLib.setBounds(410, 50, 70, 16);
 
         txtISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,13 +124,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtISBN);
-        txtISBN.setBounds(320, 70, 71, 22);
+        txtISBN.setBounds(410, 70, 71, 22);
 
         lbPrecVentaRegLib.setText("Precio venta");
         getContentPane().add(lbPrecVentaRegLib);
-        lbPrecVentaRegLib.setBounds(320, 130, 65, 16);
+        lbPrecVentaRegLib.setBounds(410, 120, 80, 16);
         getContentPane().add(txtPrecioVenta);
-        txtPrecioVenta.setBounds(320, 150, 64, 22);
+        txtPrecioVenta.setBounds(410, 140, 70, 22);
 
         btnRegLibro.setText("Registrar");
         btnRegLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +139,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnRegLibro);
-        btnRegLibro.setBounds(210, 260, 80, 23);
+        btnRegLibro.setBounds(370, 290, 80, 23);
 
         btnCancLibro.setText("Cancelar");
         btnCancLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +148,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancLibro);
-        btnCancLibro.setBounds(310, 260, 76, 23);
+        btnCancLibro.setBounds(470, 290, 80, 23);
 
         listGenero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listGenero.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -153,7 +159,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         jScrollPane1.setViewportView(listGenero);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 120, 140, 30);
+        jScrollPane1.setBounds(30, 110, 190, 50);
 
         jScrollPane2.setToolTipText("");
 
@@ -161,13 +167,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         jScrollPane2.setViewportView(listEdi);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(27, 176, 150, 30);
+        jScrollPane2.setBounds(27, 176, 190, 50);
 
         listAut.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(listAut);
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(30, 230, 150, 40);
+        jScrollPane4.setBounds(30, 260, 190, 50);
 
         btnFoto.setText("Subir foto");
         btnFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -176,11 +182,11 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnFoto);
-        btnFoto.setBounds(260, 210, 90, 23);
+        btnFoto.setBounds(280, 210, 90, 23);
 
         lbFotoRegLib.setText("Foto");
         getContentPane().add(lbFotoRegLib);
-        lbFotoRegLib.setBounds(290, 190, 40, 16);
+        lbFotoRegLib.setBounds(280, 190, 90, 16);
 
         txtStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,19 +194,20 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtStock);
-        txtStock.setBounds(230, 70, 64, 22);
+        txtStock.setBounds(280, 70, 64, 22);
 
         lbStockRegLib.setText("Stock");
         getContentPane().add(lbStockRegLib);
-        lbStockRegLib.setBounds(230, 50, 29, 16);
+        lbStockRegLib.setBounds(280, 50, 60, 16);
         getContentPane().add(pnllistGen);
-        pnllistGen.setBounds(10, 100, 180, 60);
+        pnllistGen.setBounds(10, 90, 230, 70);
         getContentPane().add(pnlListEdi);
-        pnlListEdi.setBounds(20, 160, 170, 50);
+        pnlListEdi.setBounds(20, 160, 210, 70);
         getContentPane().add(pnlListAut);
-        pnlListAut.setBounds(10, 210, 190, 70);
+        pnlListAut.setBounds(20, 230, 200, 90);
 
-        pack();
+        setSize(new java.awt.Dimension(590, 337));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancLibroActionPerformed
@@ -259,7 +266,8 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 
                 if(gen != null && edi !=null && aut!=null){
                     Libro lib=new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
-                    sistema.getListaLibros().add(lib);
+                    sistema.regLibro(lib);
+                    
                     JOptionPane.showMessageDialog(null,"guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(null,"Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
@@ -275,6 +283,10 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void txtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStockActionPerformed
+
+    private void txtTituloLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTituloLibroActionPerformed
     
     //se carga la lista de generos
     public void cargarListaGenero(){
@@ -328,4 +340,5 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTituloLibro;
     // End of variables declaration//GEN-END:variables
+
 }

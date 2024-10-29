@@ -44,7 +44,7 @@ public class ventConsVentas extends javax.swing.JFrame {
         nroTotGanConsVen = new javax.swing.JLabel();
         nroEjVendConsVen2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Ventas");
         getContentPane().setLayout(null);
 

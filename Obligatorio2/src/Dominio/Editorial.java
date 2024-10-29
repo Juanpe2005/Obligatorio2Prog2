@@ -51,5 +51,12 @@ public class Editorial {
         Editorial e = (Editorial) obj;
         return e.nombre.equals(this.nombre);
     }  
+
+    @Override
+    public String toString() {
+        return nombre +" ("+ pais +")" ;
+    }
+    
+    
     
 }
