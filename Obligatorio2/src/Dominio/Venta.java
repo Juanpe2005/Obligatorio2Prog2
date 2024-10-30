@@ -2,6 +2,7 @@
 package Dominio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
 @author Juan Pedro Longo (329112)
@@ -11,7 +12,15 @@ public class Venta {
     private String fecha;
     private String cliente;
     private int nroFactura;
-    private ArrayList<Libro> listaLibros=new ArrayList<Libro>();
+    private HashMap<Libro, Integer> listaDeVenta=new HashMap<Libro, Integer>();
+
+    public HashMap<Libro, Integer> getListaDeVenta() {
+        return listaDeVenta;
+    }
+
+    public void setListaDeVenta(HashMap<Libro, Integer> listaDeVenta) {
+        this.listaDeVenta = listaDeVenta;
+    }
     
 
     public String getFecha() {
@@ -37,18 +46,11 @@ public class Venta {
     public void setNroFactura(int nroFactura) {
         this.nroFactura = nroFactura;
     }
-
-    public ArrayList<Libro> getListaLibros() {
-        return listaLibros;
-    }
-
-    public void setListaLibros(ArrayList<Libro> listaLibros) {
-        this.listaLibros = listaLibros;
-    }
-
-   
-
-   
-    
-    
 }
+    
+
+   
+
+   
+    
+    

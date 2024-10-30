@@ -8,6 +8,9 @@ import Dominio.Genero;
 import Dominio.Libro;
 import Dominio.Sistema;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -19,14 +22,16 @@ import javax.swing.JOptionPane;
 public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
-    
+    HashMap<Libro, Integer> librosEnVenta;
     /**
      * Creates new form ventRegVentas
      */
     public ventRegVentas(Sistema sis) {
         initComponents();
         sistema=sis;
+        librosEnVenta=new HashMap<>();
         cargarListaLibros();
+        
        
     }
     
@@ -56,7 +61,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         btnAgregarlbr1 = new javax.swing.JButton();
         lblVentaRegVenta = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listVentas = new javax.swing.JList<>();
+        listVentas = new javax.swing.JList();
         lblTotalVenta = new javax.swing.JLabel();
         btnCancVenta = new javax.swing.JButton();
         btnRegVenta = new javax.swing.JButton();
@@ -73,7 +78,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 30, 16);
+        lblFechaRegVenta.setBounds(20, 50, 31, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +147,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 74, 23);
+        btnCancVenta.setBounds(390, 300, 76, 23);
 
         btnRegVenta.setText("Registrar");
         btnRegVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +186,13 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     private void btnAgregarlbr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarlbr1ActionPerformed
         // TODO add your handling code here:
-        guardarEnLista();
-        cargarListaVentas();
+       if(listLibros.isSelectionEmpty()){
+           JOptionPane.showMessageDialog(null,"Debe seleccionar un libro", "Error", JOptionPane.ERROR_MESSAGE);
+       }
+       else{
+           guardarEnLista();
+           cargarListaVentas();
+       }
     }//GEN-LAST:event_btnAgregarlbr1ActionPerformed
 
     private void btnCancVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancVentaActionPerformed
@@ -200,14 +210,34 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     }
    
    public void cargarListaVentas(){
-       
+        ArrayList<String> aux = new ArrayList<>();
+        Iterator<Libro> it = librosEnVenta.keySet().iterator();
+        System.out.println("1");
+        while(it.hasNext()){
+           Libro l = it.next();
+           int cantidad = librosEnVenta.get(l);
+           String itemTexto = cantidad + " - " + l.getTitulo() + " - $" + l.getPrecioVenta();
+           aux.add(itemTexto); 
+        }
+        listVentas.setListData(aux.toArray());
    }
    //HASHMAP
    public void guardarEnLista(){
-       if(listLibros.isSelectionEmpty()){
+       Libro actual = (Libro) listLibros.getSelectedValue();
+       boolean esta = false;
+       Iterator<Libro> it = librosEnVenta.keySet().iterator();
+       while(it.hasNext() && !esta){
+           Libro aux = it.next();
+           int auxCant = librosEnVenta.get(aux);
+           if(aux.equals(actual)){
+               esta = true;
+               librosEnVenta.put(aux, auxCant+1);
+           }
+       }
+       if(!esta){
+           librosEnVenta.put(actual,1);
        }
    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarlbr1;
     private javax.swing.JButton btnCancVenta;
@@ -224,8 +254,10 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel lblTotalVenta;
     private javax.swing.JLabel lblVentaRegVenta;
     private javax.swing.JList listLibros;
-    private javax.swing.JList<String> listVentas;
+    private javax.swing.JList listVentas;
     private javax.swing.JTextField txtFechaVenta;
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
+
+    
 }
