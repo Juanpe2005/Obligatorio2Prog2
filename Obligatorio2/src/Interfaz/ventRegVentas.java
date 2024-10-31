@@ -70,6 +70,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de Libros");
+        setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(null);
 
         lblFacturaRegVenta.setText("Factura : ");
@@ -78,7 +79,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 31, 16);
+        lblFechaRegVenta.setBounds(20, 50, 30, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +148,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 76, 23);
+        btnCancVenta.setBounds(390, 300, 74, 23);
 
         btnRegVenta.setText("Registrar");
         btnRegVenta.addActionListener(new java.awt.event.ActionListener() {

@@ -114,7 +114,7 @@ public class Sistema extends Observable {
 
     public boolean regGenero(String nom, String desc){
         Genero genero= new Genero(nom, desc);
-        boolean existe =chequearNombre(this.getListaGeneros(), genero);;
+        boolean existe =chequearNombre(this.getListaGeneros(), genero);
         
         if(!existe){
             this.getListaGeneros().add(genero);
@@ -171,6 +171,7 @@ public class Sistema extends Observable {
         }
         return valido;
     }
+    
     
     public ArrayList<Libro> ordenarXTitulo(){
         //clonar la lista original para poder ordenarla y que la maquina quede siempre en la pos 0 en la original

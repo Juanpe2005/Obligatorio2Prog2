@@ -41,7 +41,8 @@ public class ventConsLibros extends javax.swing.JFrame {
         lbConsLib = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Libros");
 
         lbTitConsLib.setText("Título:");
 

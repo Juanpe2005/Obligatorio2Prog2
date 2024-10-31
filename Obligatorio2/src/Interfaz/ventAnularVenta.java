@@ -36,7 +36,7 @@ public class ventAnularVenta extends javax.swing.JFrame {
         btnCancAnular = new javax.swing.JButton();
         lbAnuVenta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Anular Venta");
         getContentPane().setLayout(null);
 
@@ -68,7 +68,7 @@ public class ventAnularVenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancAnular);
-        btnCancAnular.setBounds(320, 270, 76, 23);
+        btnCancAnular.setBounds(320, 270, 74, 23);
 
         lbAnuVenta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbAnuVenta.setForeground(new java.awt.Color(255, 0, 0));

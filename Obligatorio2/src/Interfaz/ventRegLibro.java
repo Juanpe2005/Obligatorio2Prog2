@@ -223,8 +223,12 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void listGeneroValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listGeneroValueChanged
         // TODO add your handling code here:
         //se toma con el index el numero que tiene ese genero seleccionado y se toma de la lista de generos
-        Genero gen= sistema.getListaGeneros().get(listGenero.getSelectedIndex());
-        cargarListaAutores(gen);
+        //cuando no hay nada seleccionado es -1
+        Genero gen = (Genero)listGenero.getSelectedValue();
+        if(gen != null){
+            cargarListaAutores(gen);
+        }
+        
     }//GEN-LAST:event_listGeneroValueChanged
 
     private void txtISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtISBNActionPerformed
@@ -239,12 +243,12 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             if (!sistema.chequearNum(Integer.parseInt(txtPrecioCosto.getText()))){
                 JOptionPane.showMessageDialog(null,"El precio de costo debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrecioCosto.setText("");
-            }
-            if (!sistema.chequearNum(Integer.parseInt(txtPrecioVenta.getText()))){
+            } 
+            else if (!sistema.chequearNum(Integer.parseInt(txtPrecioVenta.getText()))){
                 JOptionPane.showMessageDialog(null,"El precio de venta debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrecioVenta.setText("");
             }
-            if(!sistema.chequearISBN(txtISBN.getText())){
+            else if(!sistema.chequearISBN(txtISBN.getText())){
                 JOptionPane.showMessageDialog(null,"ISBN duplicado", "Error", JOptionPane.ERROR_MESSAGE);
                 txtISBN.setText("");
                 
@@ -276,6 +280,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 
             }
         }catch(Exception e){
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null,"No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegLibroActionPerformed
