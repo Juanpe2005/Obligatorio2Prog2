@@ -5,12 +5,11 @@
 package Interfaz;
 
 import Dominio.Genero;
+import Dominio.InfoVenta;
 import Dominio.Libro;
 import Dominio.Sistema;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -22,24 +21,26 @@ import javax.swing.JOptionPane;
 public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
-    HashMap<Libro, Integer> librosEnVenta;
+    ArrayList<InfoVenta> librosEnVenta;
+    int precio = 0;
+
     /**
      * Creates new form ventRegVentas
      */
     public ventRegVentas(Sistema sis) {
         initComponents();
-        sistema=sis;
-        librosEnVenta=new HashMap<>();
+        sistema = sis;
+        librosEnVenta = new ArrayList<>();
         cargarListaLibros();
-        
-       
+
     }
-    
-    public void update(Observable o, Object ob){
+
+    public void update(Observable o, Object ob) {
         cargarListaLibros();
-        
+
         sistema.addObserver(this);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +68,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         btnRegVenta = new javax.swing.JButton();
         lblRegVenta = new javax.swing.JLabel();
         lblNumFac = new javax.swing.JLabel();
+        lblCosto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de Libros");
@@ -79,7 +81,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 30, 16);
+        lblFechaRegVenta.setBounds(20, 50, 31, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,9 +139,9 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(330, 120, 230, 120);
 
-        lblTotalVenta.setText("Total: $ número total de venta");
+        lblTotalVenta.setText("Total: $");
         getContentPane().add(lblTotalVenta);
-        lblTotalVenta.setBounds(330, 260, 220, 16);
+        lblTotalVenta.setBounds(330, 260, 70, 16);
 
         btnCancVenta.setText("Cancelar");
         btnCancVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +150,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 74, 23);
+        btnCancVenta.setBounds(390, 300, 76, 23);
 
         btnRegVenta.setText("Registrar");
         btnRegVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +171,10 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         getContentPane().add(lblNumFac);
         lblNumFac.setBounds(90, 20, 100, 16);
 
+        lblCosto.setText("0");
+        getContentPane().add(lblCosto);
+        lblCosto.setBounds(410, 260, 160, 16);
+
         setSize(new java.awt.Dimension(602, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -182,18 +188,30 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_txtNombreClienteActionPerformed
 
     private void btnEliminarLbrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLbrActionPerformed
-        // TODO add your handling code here:
+        if (listVentas.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un libro", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            InfoVenta borrar = (InfoVenta) listVentas.getSelectedValue();
+            if (borrar.getCantidad() == 1) {
+                librosEnVenta.remove(borrar);
+            } else {
+                borrar.decrementar();
+            }
+            cargarListaVentas();
+            decrementarPrecio(borrar.getLibro().getPrecioVenta());
+            listVentas.clearSelection();
+        }
     }//GEN-LAST:event_btnEliminarLbrActionPerformed
 
     private void btnAgregarlbr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarlbr1ActionPerformed
         // TODO add your handling code here:
-       if(listLibros.isSelectionEmpty()){
-           JOptionPane.showMessageDialog(null,"Debe seleccionar un libro", "Error", JOptionPane.ERROR_MESSAGE);
-       }
-       else{
-           guardarEnLista();
-           cargarListaVentas();
-       }
+        if (listLibros.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un libro", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            guardarEnLista();
+            cargarListaVentas();
+            listLibros.clearSelection();
+        }
     }//GEN-LAST:event_btnAgregarlbr1ActionPerformed
 
     private void btnCancVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancVentaActionPerformed
@@ -203,41 +221,43 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     private void btnRegVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegVentaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnRegVentaActionPerformed
 
-   public void cargarListaLibros(){
+    public void cargarListaLibros() {
         listLibros.setListData(sistema.ordenarXTitulo().toArray());
     }
-   
-   public void cargarListaVentas(){
-        ArrayList<String> aux = new ArrayList<>();
-        Iterator<Libro> it = librosEnVenta.keySet().iterator();
-        System.out.println("1");
-        while(it.hasNext()){
-           Libro l = it.next();
-           int cantidad = librosEnVenta.get(l);
-           String itemTexto = cantidad + " - " + l.getTitulo() + " - $" + l.getPrecioVenta();
-           aux.add(itemTexto); 
+
+    public void cargarListaVentas() {
+        listVentas.setListData(librosEnVenta.toArray());
+    }
+
+    public void guardarEnLista() {
+        Libro actual = (Libro) listLibros.getSelectedValue();
+        boolean esta = false;
+
+        for (int i = 0; i < librosEnVenta.size(); i++) {
+            Libro aux = librosEnVenta.get(i).getLibro();
+            if (aux.equals(actual)) {
+                esta = true;
+                librosEnVenta.get(i).incrementar();
+            }
         }
-        listVentas.setListData(aux.toArray());
-   }
-   //HASHMAP
-   public void guardarEnLista(){
-       Libro actual = (Libro) listLibros.getSelectedValue();
-       boolean esta = false;
-       Iterator<Libro> it = librosEnVenta.keySet().iterator();
-       while(it.hasNext() && !esta){
-           Libro aux = it.next();
-           int auxCant = librosEnVenta.get(aux);
-           if(aux.equals(actual)){
-               esta = true;
-               librosEnVenta.put(aux, auxCant+1);
-           }
-       }
-       if(!esta){
-           librosEnVenta.put(actual,1);
-       }
+        if (!esta) {
+            InfoVenta nuevo = new InfoVenta(actual, 1);
+            librosEnVenta.add(nuevo);
+        }
+        incrementarPrecio(actual.getPrecioVenta());
+    }
+
+    public void incrementarPrecio(int venta) {
+        precio += venta;
+        lblCosto.setText(precio + "");
+    }
+
+    public void decrementarPrecio(int venta) {
+        precio -= venta;
+        lblCosto.setText(precio + "");
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarlbr1;
@@ -247,6 +267,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblClienteRegVenta;
+    private javax.swing.JLabel lblCosto;
     private javax.swing.JLabel lblFacturaRegVenta;
     private javax.swing.JLabel lblFechaRegVenta;
     private javax.swing.JLabel lblLibroRegVenta;
@@ -260,5 +281,4 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
 
-    
 }

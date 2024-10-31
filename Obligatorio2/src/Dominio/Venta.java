@@ -12,13 +12,13 @@ public class Venta {
     private String fecha;
     private String cliente;
     private int nroFactura;
-    private HashMap<Libro, Integer> listaDeVenta=new HashMap<Libro, Integer>();
+    private ArrayList<InfoVenta> listaDeVenta=new ArrayList<InfoVenta>();
 
-    public HashMap<Libro, Integer> getListaDeVenta() {
+    public ArrayList<InfoVenta> getListaDeVenta() {
         return listaDeVenta;
     }
 
-    public void setListaDeVenta(HashMap<Libro, Integer> listaDeVenta) {
+    public void setListaDeVenta(ArrayList<InfoVenta> listaDeVenta) {
         this.listaDeVenta = listaDeVenta;
     }
     
