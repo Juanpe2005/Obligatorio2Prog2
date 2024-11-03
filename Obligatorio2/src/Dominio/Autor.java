@@ -1,13 +1,14 @@
 
 package Dominio;
 
+import java.io.Serializable;
 import java.util.*;
 
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Autor {
+public class Autor implements Serializable{
     private String nombre;
     private String pais;
     private ArrayList<Genero> generosPorAutor = new ArrayList<Genero>();

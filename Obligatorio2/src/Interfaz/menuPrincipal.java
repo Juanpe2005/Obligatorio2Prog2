@@ -2,6 +2,16 @@
 package Interfaz;
 
 import Dominio.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
 @author Juan Pedro Longo (329112)
@@ -18,8 +28,32 @@ public class menuPrincipal extends javax.swing.JFrame {
     public menuPrincipal(Sistema sis) {
         initComponents();
         sistema = sis;
+        cerrar();
     }
 
+    //metodo para que cuando cierre guarde un archivo con los datos
+    public void cerrar(){
+        try {
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    try{
+                        FileOutputStream ff= new FileOutputStream("datos.ser");
+                        ObjectOutputStream out = new ObjectOutputStream(ff);
+                        out.writeObject(sistema);
+                        out.close();
+                     
+                     
+                    }catch(Exception ex){
+                        
+                    }
+                    // JOptionPane.showMessageDialog(null, "Cierra","cierra",JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
+            this.setVisible(true);
+        } catch (Exception e) {
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +76,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         consultaLibros = new javax.swing.JMenuItem();
         consultaVenta = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de librerias - Realizado por: Juan Pedro Longo (329112) - José Ignacio Arbilla (338084)");
         setMinimumSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);

@@ -1,11 +1,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Genero {
+public class Genero implements Serializable {
     private String nombre;
     private String descripcion;
 

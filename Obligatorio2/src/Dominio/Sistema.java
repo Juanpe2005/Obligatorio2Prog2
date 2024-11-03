@@ -1,11 +1,12 @@
 
 package Dominio;
+import java.io.Serializable;
 import java.util.*;
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Sistema extends Observable {
+public class Sistema extends Observable implements Serializable {
     private ArrayList<Editorial> listaEditoriales = new ArrayList<Editorial>();
     private ArrayList<Libro> listaLibros = new ArrayList<Libro>();
     private ArrayList<Autor> listaAutores = new ArrayList<Autor>();

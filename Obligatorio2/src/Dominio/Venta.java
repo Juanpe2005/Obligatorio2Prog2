@@ -1,14 +1,15 @@
 
 package Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Venta {
+public class Venta implements Serializable {
     private String fecha;
     private String cliente;
     private int nroFactura;

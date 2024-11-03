@@ -1,11 +1,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Libro {
+public class Libro implements Serializable{
     private String titulo;
     private Editorial editorial;
     private String isbn;

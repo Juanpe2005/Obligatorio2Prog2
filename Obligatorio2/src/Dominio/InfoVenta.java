@@ -4,11 +4,13 @@
  */
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Usuario
  */
-public class InfoVenta {
+public class InfoVenta implements Serializable {
     private Libro libro;
     private int cantidad;
     
