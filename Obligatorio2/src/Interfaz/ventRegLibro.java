@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import Dominio.*;
@@ -21,25 +20,27 @@ import javax.swing.JOptionPane;
 @author Jose Ignacio Arbilla (338084)
  */
 public class ventRegLibro extends javax.swing.JFrame implements Observer {
-    
+
     Sistema sistema;
+
     /**
      * Creates new form ventRegLibro
      */
     public ventRegLibro(Sistema sis) {
         initComponents();
-        sistema=sis;
+        sistema = sis;
         cargarListaEditoriales();
         cargarListaGenero();
-     
+
         sis.addObserver(this);
     }
 
-     public void update(Observable o, Object ob){
+    public void update(Observable o, Object ob) {
         cargarListaEditoriales();
         cargarListaGenero();
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,7 +190,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnFoto);
-        btnFoto.setBounds(280, 210, 90, 23);
+        btnFoto.setBounds(280, 210, 100, 23);
 
         lbFotoRegLib.setText("Foto");
         getContentPane().add(lbFotoRegLib);
@@ -232,98 +233,103 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         // TODO add your handling code here:
         //cargar foto en el panel
-        JFileChooser fc = new JFileChooser ();
-        int seleccion= fc.showOpenDialog(this);
-        File carpetaImagenes = new File("src/imagenes");
+        JFileChooser fc = new JFileChooser();
+        int seleccion = fc.showOpenDialog(this);
+        File carpetaImagenes = new File("src/Interfaz/imgs");
         if (!carpetaImagenes.exists()) {
             carpetaImagenes.mkdir();
         }
-        if (seleccion == JFileChooser.APPROVE_OPTION){
-            
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+
             String nombreNuevo = txtISBN.getText() + ".jpg";
+            System.out.println(nombreNuevo);
             File destino = new File(carpetaImagenes, nombreNuevo);
-            File foto= fc.getSelectedFile();
+            File foto = fc.getSelectedFile();
             try {
                 // Copiar el archivo a la carpeta de imágenes con el nuevo nombre
                 Files.copy(foto.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                JOptionPane.showMessageDialog(this, "Imagen guardada exitosamente como: " + nombreNuevo);
+
+                //JOptionPane.showMessageDialog(this, "Imagen guardada exitosamente como: " + nombreNuevo);
             } catch (IOException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
             }
-           
+            boolean waitforfile = true;
+            while (waitforfile) {
+                File f = new File("src//Interfaz/imgs/" + nombreNuevo);
+                if (f.exists() && !f.isDirectory()) {
+                    waitforfile = false;
+                }
+            }
+            String path = "/Interfaz/imgs/"+nombreNuevo;
+            System.out.println(path);
             //System.out.println(foto.getAbsolutePath());
-            Icon icono= new ImageIcon(new ImageIcon(getClass().getResource
-            ("123.jpg")).getImage()
-            .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(),0));
+            Icon icono = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
+                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), 0));
             lblFoto.setIcon(icono);
             //en ql caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
         }
-        
+
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void listGeneroValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listGeneroValueChanged
         // TODO add your handling code here:
         //se toma con el index el numero que tiene ese genero seleccionado y se toma de la lista de generos
         //cuando no hay nada seleccionado es -1
-        Genero gen = (Genero)listGenero.getSelectedValue();
-        if(gen != null){
+        Genero gen = (Genero) listGenero.getSelectedValue();
+        if (gen != null) {
             cargarListaAutores(gen);
         }
-        
+
     }//GEN-LAST:event_listGeneroValueChanged
 
     private void txtISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtISBNActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtISBNActionPerformed
 
     private void btnRegLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegLibroActionPerformed
         // TODO add your handling code here:
         //a la hora de registrar el libro hay que fijarse si ya existia el isbn
-        try{
-            if (!sistema.chequearNum(Integer.parseInt(txtPrecioCosto.getText()))){
-                JOptionPane.showMessageDialog(null,"El precio de costo debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (!sistema.chequearNum(Integer.parseInt(txtPrecioCosto.getText()))) {
+                JOptionPane.showMessageDialog(null, "El precio de costo debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrecioCosto.setText("");
-            } 
-            else if (!sistema.chequearNum(Integer.parseInt(txtPrecioVenta.getText()))){
-                JOptionPane.showMessageDialog(null,"El precio de venta debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!sistema.chequearNum(Integer.parseInt(txtPrecioVenta.getText()))) {
+                JOptionPane.showMessageDialog(null, "El precio de venta debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrecioVenta.setText("");
-            }
-            else if(!sistema.chequearISBN(txtISBN.getText())){
-                JOptionPane.showMessageDialog(null,"ISBN duplicado", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!sistema.chequearISBN(txtISBN.getText())) {
+                JOptionPane.showMessageDialog(null, "ISBN duplicado", "Error", JOptionPane.ERROR_MESSAGE);
                 txtISBN.setText("");
-                
-            }else if(!sistema.chequearNum(Integer.parseInt(txtStock.getText()))){
+
+            } else if (!sistema.chequearNum(Integer.parseInt(txtStock.getText()))) {
                 //chequeo del stock, tiene que ser mayor a 0
-                JOptionPane.showMessageDialog(null,"El stock debe de ser mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El stock debe de ser mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtStock.setText("");
-            }
-            else{
+            } else {
                 //si los datos anterirores estan bien, hay que crear el libro y agregarlo a la lista
-                Genero gen= (Genero) listGenero.getSelectedValue();
-                Editorial edi=  (Editorial) listEdi.getSelectedValue();
-                Autor aut=  (Autor) listAut.getSelectedValue();
-                
+                Genero gen = (Genero) listGenero.getSelectedValue();
+                Editorial edi = (Editorial) listEdi.getSelectedValue();
+                Autor aut = (Autor) listAut.getSelectedValue();
+
                 //hay que parsear los datos que vienen en string
                 int stock = Integer.parseInt(txtStock.getText());
                 int precioCosto = Integer.parseInt(txtPrecioCosto.getText());
-                int precioVenta =Integer.parseInt(txtPrecioVenta.getText());
-                
-                if(gen != null && edi !=null && aut!=null){
-                    Libro lib=new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
+                int precioVenta = Integer.parseInt(txtPrecioVenta.getText());
+
+                if (gen != null && edi != null && aut != null) {
+                    Libro lib = new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
                     sistema.regLibro(lib);
-                    
-                    JOptionPane.showMessageDialog(null,"guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null,"Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    JOptionPane.showMessageDialog(null, "guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                
-                
+
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegLibroActionPerformed
 
@@ -334,29 +340,29 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void txtTituloLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloLibroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloLibroActionPerformed
-    
+
     //se carga la lista de generos
-    public void cargarListaGenero(){
-        if(sistema.getListaGeneros().size() >0){
+    public void cargarListaGenero() {
+        if (sistema.getListaGeneros().size() > 0) {
             listGenero.setListData(sistema.getListaGeneros().toArray());
             //pnllistGen.setVisible(false);
-        //}else{
-          //  pnllistGen.setVisible(true);
+            //}else{
+            //  pnllistGen.setVisible(true);
         }
     }
-    
+
     //se carga la lista de editoriales
-    public void cargarListaEditoriales(){
+    public void cargarListaEditoriales() {
         listEdi.setListData(sistema.getListaEditoriales().toArray());
     }
-    
+
     //se carga la lista de autores dependiendo del genero que escriban
-    public void cargarListaAutores(Genero gen){
+    public void cargarListaAutores(Genero gen) {
         listAut.setListData(sistema.getAutoresPorGénero(gen).toArray());
-        
+
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancLibro;
     private javax.swing.JButton btnFoto;

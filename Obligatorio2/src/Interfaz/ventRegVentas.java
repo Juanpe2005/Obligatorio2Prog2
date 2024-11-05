@@ -81,7 +81,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 31, 16);
+        lblFechaRegVenta.setBounds(20, 50, 30, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +150,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancVenta);
-        btnCancVenta.setBounds(390, 300, 76, 23);
+        btnCancVenta.setBounds(390, 300, 100, 23);
 
         btnRegVenta.setText("Registrar");
         btnRegVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnRegVenta);
-        btnRegVenta.setBounds(130, 300, 80, 23);
+        btnRegVenta.setBounds(130, 300, 100, 23);
 
         lblRegVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblRegVenta.setForeground(new java.awt.Color(0, 171, 0));

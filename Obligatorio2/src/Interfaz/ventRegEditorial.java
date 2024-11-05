@@ -3,6 +3,8 @@ package Interfaz;
 
 import Dominio.*;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class ventRegEditorial extends javax.swing.JFrame {
+public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
     /**
@@ -19,10 +21,15 @@ public class ventRegEditorial extends javax.swing.JFrame {
     public ventRegEditorial(Sistema sis) {
         initComponents();
         sistema = sis;
+        sis.addObserver(this);
         //se carga la tabla con los datos que ya se tienen
         cargaTabla();
+         
     }
-
+    
+    public void update(Observable o, Object ob){
+       cargaTabla();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,7 +153,7 @@ public class ventRegEditorial extends javax.swing.JFrame {
            txtNombreEdi.setText("");
            txtPaisEdi.setText("");
            //se carga la tabla
-           cargaTabla();
+           //cargaTabla();
 
        }else{
             //si ya existe muestra mensaje de error
@@ -192,4 +199,5 @@ public class ventRegEditorial extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreEdi;
     private javax.swing.JTextField txtPaisEdi;
     // End of variables declaration//GEN-END:variables
+
 }
