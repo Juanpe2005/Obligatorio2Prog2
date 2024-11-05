@@ -1,14 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import Dominio.*;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /*
@@ -72,6 +77,8 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         pnllistGen = new javax.swing.JPanel();
         pnlListEdi = new javax.swing.JPanel();
         pnlListAut = new javax.swing.JPanel();
+        lblFoto = new javax.swing.JLabel();
+        pnlFoto = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Libro");
@@ -206,6 +213,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         getContentPane().add(pnlListAut);
         pnlListAut.setBounds(20, 230, 200, 90);
 
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setText("Sin Fotos");
+        getContentPane().add(lblFoto);
+        lblFoto.setBounds(390, 180, 140, 90);
+        getContentPane().add(pnlFoto);
+        pnlFoto.setBounds(380, 170, 70, 70);
+
         setSize(new java.awt.Dimension(590, 337));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -217,6 +231,34 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         // TODO add your handling code here:
+        //cargar foto en el panel
+        JFileChooser fc = new JFileChooser ();
+        int seleccion= fc.showOpenDialog(this);
+        File carpetaImagenes = new File("src/imagenes");
+        if (!carpetaImagenes.exists()) {
+            carpetaImagenes.mkdir();
+        }
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            
+            String nombreNuevo = txtISBN.getText() + ".jpg";
+            File destino = new File(carpetaImagenes, nombreNuevo);
+            File foto= fc.getSelectedFile();
+            try {
+                // Copiar el archivo a la carpeta de imágenes con el nuevo nombre
+                Files.copy(foto.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                JOptionPane.showMessageDialog(this, "Imagen guardada exitosamente como: " + nombreNuevo);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
+            }
+           
+            //System.out.println(foto.getAbsolutePath());
+            Icon icono= new ImageIcon(new ImageIcon(getClass().getResource
+            ("123.jpg")).getImage()
+            .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(),0));
+            lblFoto.setIcon(icono);
+            //en ql caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
+        }
         
     }//GEN-LAST:event_btnFotoActionPerformed
 
@@ -333,9 +375,11 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel lbStockRegLib;
     private javax.swing.JLabel lbTitRegLib;
     private javax.swing.JLabel lbisbnRegLib;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JList listAut;
     private javax.swing.JList listEdi;
     private javax.swing.JList listGenero;
+    private javax.swing.JPanel pnlFoto;
     private javax.swing.JPanel pnlListAut;
     private javax.swing.JPanel pnlListEdi;
     private javax.swing.JPanel pnllistGen;
