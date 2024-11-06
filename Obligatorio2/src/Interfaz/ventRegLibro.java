@@ -240,6 +240,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         JFileChooser fc = new JFileChooser();
         int seleccion = fc.showOpenDialog(this);
         File carpetaImagenes = new File("src/Interfaz/imgs");
+        //si la carpeta no existe la crea, solo va a pasar la primera vez
         if (!carpetaImagenes.exists()) {
             carpetaImagenes.mkdir();
         }
@@ -254,12 +255,12 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
                 //JOptionPane.showMessageDialog(this, "Imagen guardada exitosamente como: " + nombreNuevo);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                //ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
             }
             
             //este while es para que espere hasta que el archivo este copiado
-            boolean waitforfile = true;
+            /*boolean waitforfile = true;
             while (waitforfile) {
                 File f = new File("src/Interfaz/imgs/" + nombreNuevo);
                 if (f.exists() && !f.isDirectory()) {
@@ -267,7 +268,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 }
                 
             }
-            
+            */
             //con el path de destino se pide la URL de la imagen para setearla como Icono
             String path = "src/Interfaz/imgs/"+nombreNuevo;
             URL urlFoto;
@@ -279,7 +280,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //en ql caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
+            //en el caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
         }
 
     }//GEN-LAST:event_btnFotoActionPerformed
@@ -332,7 +333,14 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 if (gen != null && edi != null && aut != null) {
                     Libro lib = new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
                     sistema.regLibro(lib);
-
+                    //Luego de agregar sw borran todas las casillas
+                    txtTituloLibro.setText("");
+                    txtPrecioCosto.setText("");
+                    txtPrecioVenta.setText("");
+                    txtStock.setText("");
+                    txtISBN.setText("");
+                    lblFoto.setIcon(null);
+                    lblFoto.setText("Sin foto");
                     JOptionPane.showMessageDialog(null, "guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
