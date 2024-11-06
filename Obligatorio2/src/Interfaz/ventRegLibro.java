@@ -4,11 +4,15 @@ import Dominio.*;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -254,19 +258,28 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
             }
+            
+            //este while es para que espere hasta que el archivo este copiado
             boolean waitforfile = true;
             while (waitforfile) {
-                File f = new File("src//Interfaz/imgs/" + nombreNuevo);
+                File f = new File("src/Interfaz/imgs/" + nombreNuevo);
                 if (f.exists() && !f.isDirectory()) {
                     waitforfile = false;
                 }
+                
             }
-            String path = "/Interfaz/imgs/"+nombreNuevo;
-            System.out.println(path);
-            //System.out.println(foto.getAbsolutePath());
-            Icon icono = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
+            
+            //con el path de destino se pide la URL de la imagen para setearla como Icono
+            String path = "src/Interfaz/imgs/"+nombreNuevo;
+            URL urlFoto;
+            try {
+                urlFoto = new File(path).toURI().toURL();
+                Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
                     .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), 0));
             lblFoto.setIcon(icono);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+            }
             //en ql caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
         }
 
