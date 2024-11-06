@@ -246,7 +246,6 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
 
             String nombreNuevo = txtISBN.getText() + ".jpg";
-            System.out.println(nombreNuevo);
             File destino = new File(carpetaImagenes, nombreNuevo);
             File foto = fc.getSelectedFile();
             try {
@@ -276,7 +275,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 urlFoto = new File(path).toURI().toURL();
                 Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
                     .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), 0));
-            lblFoto.setIcon(icono);
+                lblFoto.setIcon(icono);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -341,7 +340,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegLibroActionPerformed
