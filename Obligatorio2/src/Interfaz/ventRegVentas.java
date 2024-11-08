@@ -4,12 +4,10 @@
  */
 package Interfaz;
 
-import Dominio.Genero;
 import Dominio.InfoVenta;
 import Dominio.Libro;
 import Dominio.Sistema;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -32,6 +30,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         sistema = sis;
         librosEnVenta = new ArrayList<>();
         cargarListaLibros();
+        lblNumFac.setText(sistema.getFactura()+"");
 
     }
 
@@ -81,7 +80,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 30, 16);
+        lblFechaRegVenta.setBounds(20, 50, 31, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,10 +165,8 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         lblRegVenta.setText("Registro de Ventas");
         getContentPane().add(lblRegVenta);
         lblRegVenta.setBounds(210, 0, 210, 25);
-
-        lblNumFac.setText("1");
         getContentPane().add(lblNumFac);
-        lblNumFac.setBounds(90, 20, 100, 16);
+        lblNumFac.setBounds(80, 20, 90, 20);
 
         lblCosto.setText("0");
         getContentPane().add(lblCosto);
@@ -196,6 +193,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
                 librosEnVenta.remove(borrar);
             } else {
                 borrar.decrementar();
+                        
             }
             cargarListaVentas();
             decrementarPrecio(borrar.getLibro().getPrecioVenta());
@@ -221,7 +219,42 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     private void btnRegVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegVentaActionPerformed
         // TODO add your handling code here:
-
+        if (txtFechaVenta.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            boolean sePuede = false;        //se utiliza para verificar que se hayan vendido al menos un ejemplar
+            String mensaje = "";        //se utiliza para desplegar el mensaje
+            for(int i = 0; i < librosEnVenta.size(); i++){
+                Libro l = librosEnVenta.get(i).getLibro();
+                int cant = librosEnVenta.get(i).getCantidad();
+                int aux = l.chequearStock(cant);
+                if(aux > 0){
+                    sePuede = true;    
+                }
+                if (cant > aux){            // Se verifica si la cantidad solicitada es mayor a la que hay en stock (aux)
+                   mensaje = mensaje + "\n-"+ l.getTitulo()+" ("+aux+") ";
+                   librosEnVenta.get(i).setCantidad(aux);
+                }
+            }
+            if (!sePuede){
+                JOptionPane.showMessageDialog(null, "No hay stock para los libros ingresados", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                ArrayList<InfoVenta> aux = new ArrayList<>(librosEnVenta);
+                sistema.regVenta(txtFechaVenta.getText(), txtNombreCliente.getText(), sistema.getFactura(), aux);
+                sistema.setFactura();
+                lblNumFac.setText(sistema.getFactura()+"");
+                if (mensaje.length() == 0){
+                    JOptionPane.showMessageDialog(null, "Se realizo correctamente la venta", "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Se realizo correctamente la venta. \nLas cantidades de ciertos libros fueron modificadas por falta de stock: "+mensaje, "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            librosEnVenta.clear();
+            cargarListaVentas();
+            resetPrecio();
+        }  
     }//GEN-LAST:event_btnRegVentaActionPerformed
 
     public void cargarListaLibros() {
@@ -257,6 +290,11 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
     public void decrementarPrecio(int venta) {
         precio -= venta;
+        lblCosto.setText(precio + "");
+   }
+    
+    public void resetPrecio() {
+        precio = 0;
         lblCosto.setText(precio + "");
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables

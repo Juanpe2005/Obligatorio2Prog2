@@ -78,6 +78,10 @@ public class Libro implements Serializable{
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+    public void agregarStock(int stock) {
+        this.stock = this.stock + stock;
+    }
 
     public int getPrecioCosto() {
         return precioCosto;

@@ -13,8 +13,23 @@ public class Venta implements Serializable {
     private String fecha;
     private String cliente;
     private int nroFactura;
-    private ArrayList<InfoVenta> listaDeVenta=new ArrayList<InfoVenta>();
+    private ArrayList<InfoVenta> listaDeVenta;
 
+    public Venta(String fecha, String cliente, int nroFactura, ArrayList<InfoVenta> contenido){
+        this.fecha = fecha;
+        this.cliente = cliente;
+        this.listaDeVenta = contenido;
+        this.nroFactura = nroFactura;
+    }
+
+    public Venta(){
+        this.fecha = "";
+        this.cliente = "";
+        this.listaDeVenta = new ArrayList<InfoVenta>();
+        this.nroFactura = 0;
+    }
+    
+    
     public ArrayList<InfoVenta> getListaDeVenta() {
         return listaDeVenta;
     }
@@ -47,6 +62,7 @@ public class Venta implements Serializable {
     public void setNroFactura(int nroFactura) {
         this.nroFactura = nroFactura;
     }
+    
 }
     
 

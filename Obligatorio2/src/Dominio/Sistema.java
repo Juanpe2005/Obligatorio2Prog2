@@ -12,7 +12,8 @@ public class Sistema extends Observable implements Serializable {
     private ArrayList<Autor> listaAutores = new ArrayList<Autor>();
     private ArrayList<Venta> listaVentas = new ArrayList<Venta>();
     private ArrayList<Genero> listaGeneros = new ArrayList<Genero>();
-
+    private int factura = 1;
+            
     public Sistema() {
         //====================================================================
         //====================================================================
@@ -38,6 +39,15 @@ public class Sistema extends Observable implements Serializable {
         //====================================================================
         //====================================================================
  
+    }
+
+    public int getFactura() {
+        return factura;
+    }
+
+    //la factura siempre se modificará de a uno
+    public void setFactura() {
+        this.factura = this.getFactura()+1;
     }
 
     public ArrayList<Editorial> getListaEditoriales() {
@@ -137,7 +147,54 @@ public class Sistema extends Observable implements Serializable {
             notifyObservers();
         }
         //si no existia antes, la agrega
-        return !existe;
+        return !existe;    
+    }
+    
+    public void regVenta(String fecha, String cliente, int nroFactura, ArrayList<InfoVenta> contenido){
+        Venta venta = new Venta(fecha, cliente, nroFactura, contenido);
+        this.getListaVentas().add(venta);
+        setChanged();
+        notifyObservers();
+    }
+    
+    //codigo que verifica si hay algun libro con ese numero de factura
+    public boolean existeVenta(int nro){
+        boolean esta = false;
+        for (int i = 0; i < this.getListaVentas().size() && !esta; i++){
+            if(this.getListaVentas().get(i).getNroFactura() == nro){
+                esta = true;
+            }
+        }
+        return esta;
+    }
+    
+    public Venta ubicarVenta(int nro){
+        Venta buscado = new Venta();
+        boolean esta = false;
+        for (int i = 0; i < this.getListaVentas().size() && !esta; i++){
+            if(this.getListaVentas().get(i).getNroFactura() == nro){
+                buscado = this.getListaVentas().get(i);
+                esta = true;
+            }
+        }
+        return buscado;
+    }
+    
+    public void anularVenta(ArrayList<InfoVenta> lista, int fact){
+        Iterator<InfoVenta> it = lista.iterator();
+        // recorremos cada info para agregarle el stock nuevamente a los libros
+        while(it.hasNext()){
+            int nro = it.next().getCantidad();
+            it.next().getLibro().agregarStock(nro);
+        }
+        Iterator<Venta> it2 = this.getListaVentas().iterator();
+        boolean encontro = false;
+        while(it2.hasNext() && !encontro){
+            if(it2.next().getNroFactura() == fact){
+                encontro = true;
+                this.getListaVentas().remove(it2.next());
+            } 
+        }
         
     }
 
