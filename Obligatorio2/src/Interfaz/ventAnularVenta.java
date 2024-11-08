@@ -155,23 +155,16 @@ public class ventAnularVenta extends javax.swing.JFrame {
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
         try{
-            System.out.println("0");
             if(!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))){
-                System.out.println("1");
                 JOptionPane.showMessageDialog(null, "No existe una venta con ese numero de factura", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                System.out.println("3");
                 Venta aEliminarse = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
-                System.out.println("4");
                 sistema.anularVenta(aEliminarse.getListaDeVenta(), Integer.parseInt(txtNumFact.getText()) ); //se le pasa el arraylist de infoventa para reestockear los libros y su numero de factura para eliminarlo del sistema 
-                System.out.println("5");
                 JOptionPane.showMessageDialog(null, "Venta anulada correctamente", "Anulación de Venta", JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("6");
                 lblFecha.setText("");
                 lblCliente.setText("");
                 listInfo.setListData(new String[0]); //Se le carga con un array de string vacío para que la lista quede vacía
-                System.out.println("1");
                 txtNumFact.setText("");
             }
         } 

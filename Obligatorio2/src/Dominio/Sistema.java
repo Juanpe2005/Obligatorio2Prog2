@@ -181,21 +181,18 @@ public class Sistema extends Observable implements Serializable {
     }
     
     public void anularVenta(ArrayList<InfoVenta> lista, int fact){
-        Iterator<InfoVenta> it = lista.iterator();
-        // recorremos cada info para agregarle el stock nuevamente a los libros
-        while(it.hasNext()){
-            int nro = it.next().getCantidad();
-            it.next().getLibro().agregarStock(nro);
+        for(int i=0; i< lista.size();i++){
+            int nro= lista.get(i).getCantidad();
+            lista.get(i).getLibro().agregarStock(nro);
         }
-        Iterator<Venta> it2 = this.getListaVentas().iterator();
+       
         boolean encontro = false;
-        while(it2.hasNext() && !encontro){
-            if(it2.next().getNroFactura() == fact){
+        for(int i=0; i<this.getListaVentas().size() && !encontro;i++){
+            if(this.getListaVentas().get(i).getNroFactura()==fact){
                 encontro = true;
-                this.getListaVentas().remove(it2.next());
-            } 
+                this.getListaVentas().remove(i);
+            }
         }
-        
     }
 
     public ArrayList<Autor> getAutoresPorGénero(Genero genBuscado){

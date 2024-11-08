@@ -259,7 +259,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
             }
             
-            //este while es para que espere hasta que el archivo este copiado
+            //este while es para que espere hasta que el archivo este copiado, puede que no se use
             /*boolean waitforfile = true;
             while (waitforfile) {
                 File f = new File("src/Interfaz/imgs/" + nombreNuevo);
