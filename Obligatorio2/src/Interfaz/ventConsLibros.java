@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import Dominio.Sistema;
+import javax.swing.JOptionPane;
 
 
 /*
@@ -49,6 +47,11 @@ public class ventConsLibros extends javax.swing.JFrame {
         lbAutConsLib.setText("Autor:");
 
         btnConsLibros.setText("Consultar");
+        btnConsLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsLibrosActionPerformed(evt);
+            }
+        });
 
         lbGenConsLib.setText("Género:");
 
@@ -113,6 +116,21 @@ public class ventConsLibros extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(559, 355));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConsLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsLibrosActionPerformed
+        // TODO add your handling code here:
+        if(txtAutConsLibro.getText().trim().equals("") && txtGenConsLibro.getText().trim().equals("") 
+                && txtTitConsLibro.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "No se puede consultar un libro sin ningun dato", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(!sistema.chequiarLibro(txtTitConsLibro.getText(), txtAutConsLibro.getText(),
+                    txtGenConsLibro.getText())){
+                JOptionPane.showMessageDialog(null, "No existe ningun libro con esos datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                
+            }
+        }
+    }//GEN-LAST:event_btnConsLibrosActionPerformed
 
     
 

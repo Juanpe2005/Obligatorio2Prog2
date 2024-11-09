@@ -34,6 +34,11 @@ public class Sistema extends Observable implements Serializable {
         
         listaEditoriales.add(new Editorial("Santillana","uru"));
         
+        Editorial ed = new Editorial("Com", "Bra"); 
+        Autor au = new Autor("Lewis","Chi"); 
+        Genero ge = new Genero("lalala", "fantasia"); 
+        listaLibros.add(new Libro("alicia", ed, "ALI", au, ge, 20, 20, 20));
+        
         //====================================================================
         //====================================================================
         //====================================================================
@@ -236,6 +241,22 @@ public class Sistema extends Observable implements Serializable {
             return dif;
         });
         return retorno;
+    }
+    
+    public boolean chequiarLibro(String tit, String aut, String gen){
+        boolean existe=false;
+        for(int i =0; i< this.getListaLibros().size() && !existe ; i++){
+            if(this.getListaLibros().get(i).getTitulo().equals(tit)){
+                existe=true;
+            }
+            if(this.getListaLibros().get(i).getGenero().getDescripcion().equals(gen)){
+                existe=true;
+            }
+            if(this.getListaLibros().get(i).getAutor().getNombre().equals(aut)){
+                existe=true;
+            }
+        }
+        return existe;
     }
     
     
