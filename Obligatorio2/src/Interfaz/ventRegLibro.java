@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class ventRegLibro extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
-
+    boolean tieneFoto=false;
     /**
      * Creates new form ventRegLibro
      */
@@ -259,16 +259,6 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
             }
             
-            //este while es para que espere hasta que el archivo este copiado, puede que no se use
-            /*boolean waitforfile = true;
-            while (waitforfile) {
-                File f = new File("src/Interfaz/imgs/" + nombreNuevo);
-                if (f.exists() && !f.isDirectory()) {
-                    waitforfile = false;
-                }
-                
-            }
-            */
             //con el path de destino se pide la URL de la imagen para setearla como Icono
             String path = "src/Interfaz/imgs/"+nombreNuevo;
             URL urlFoto;
@@ -277,6 +267,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
                     .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), 0));
                 lblFoto.setIcon(icono);
+                tieneFoto=true;
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -331,7 +322,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 int precioVenta = Integer.parseInt(txtPrecioVenta.getText());
 
                 if (gen != null && edi != null && aut != null) {
-                    Libro lib = new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta);
+                    Libro lib = new Libro(txtTituloLibro.getText(), edi, txtISBN.getText(), aut, gen, stock, precioCosto, precioVenta,tieneFoto);
                     sistema.regLibro(lib);
                     //Luego de agregar sw borran todas las casillas
                     txtTituloLibro.setText("");

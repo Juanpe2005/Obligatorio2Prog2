@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Dominio.Libro;
 import Dominio.Sistema;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -55,9 +57,9 @@ public class ventConsLibros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Libros");
-        setMaximumSize(new java.awt.Dimension(500, 500));
-        setMinimumSize(new java.awt.Dimension(500, 500));
-        setPreferredSize(new java.awt.Dimension(500, 500));
+        setMaximumSize(new java.awt.Dimension(600, 500));
+        setMinimumSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
         lbTitConsLib.setText("Título:");
 
@@ -149,52 +151,55 @@ public class ventConsLibros extends javax.swing.JFrame {
 
     private void btnConsLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsLibrosActionPerformed
 
-        GridLayout experimentLayout = new GridLayout(0, 2);
-        //panelLibros.setLayout(experimentLayout);
-        JPanel panel = new JPanel();
-        JPanel subPanel = new JPanel();
-        subPanel.setLayout(new GridLayout(0, 2));
-        for (int i = 0; i < 15; i++) {
-            String path = "src/Interfaz/imgs/" + "aaa.jpg";
-            URL urlFoto;
-            try {
-                urlFoto = new File(path).toURI().toURL();
-                Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
-                        .getScaledInstance(50, 100, 0));
-
-                JButton nuevo = new JButton(icono);
-                nuevo.addActionListener(new LibroListener());
-                subPanel.add(nuevo);
-
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-        //panelLibros.setVisible(true);
-        //add(panelLibros);
-        JScrollPane scroller = new JScrollPane(subPanel);
-        scroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        panel.setLayout(new BorderLayout());
-        panel.setSize(120, 200);
-        panel.add(scroller, BorderLayout.CENTER);
-        panelLibros.add(panel);
-        pack();
-
-        /*
-
         // TODO add your handling code here:
         if (txtAutConsLibro.getText().trim().equals("") && txtGenConsLibro.getText().trim().equals("")
                 && txtTitConsLibro.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "No se puede consultar un libro sin ningun dato", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (!sistema.chequiarLibro(txtTitConsLibro.getText(), txtAutConsLibro.getText(),
-                    txtGenConsLibro.getText())) {
+            ArrayList<Libro> list = sistema.chequiarLibro(txtTitConsLibro.getText(), txtAutConsLibro.getText(),
+                    txtGenConsLibro.getText());
+            if (list.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No existe ningun libro con esos datos", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                
+                //se vacia el panel 
+                panelLibros.removeAll();
+                JPanel panel = new JPanel();
+                JPanel subPanel = new JPanel();
+                subPanel.setLayout(new GridLayout(0, 2));
+                for (int i = 0; i < list.size(); i++) {
+                    Libro lib = list.get(i);
+                    if (lib.isFoto()) {
+                        String path = "src/Interfaz/imgs/" + lib.getIsbn() + ".jpg";
+                        URL urlFoto;
+                        try {
+
+                            urlFoto = new File(path).toURI().toURL();
+                            Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
+                                    .getScaledInstance(50, 100, 0));
+
+                            crearBoton(lib.getIsbn(), subPanel, icono, true);
+                        
+                        } catch (MalformedURLException ex) {
+                            //Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        crearBoton(lib.getIsbn(), subPanel, null, false);
+                        
+                    }
+
+                }
+                //genera el scroll en el panel
+                JScrollPane scroller = new JScrollPane(subPanel);
+                scroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                panel.setLayout(new BorderLayout());
+                panel.setSize(250, 200);
+                panel.add(scroller, BorderLayout.CENTER);
+                panelLibros.add(panel);
+                //preguntar
+                pack();
+
             }
-        }*/
+        }
     }//GEN-LAST:event_btnConsLibrosActionPerformed
 
     private class LibroListener implements ActionListener {
@@ -202,8 +207,33 @@ public class ventConsLibros extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             // este código se ejecutará al presionar el botón, obtengo cuál botón  
             JButton cual = ((JButton) e.getSource());
-            // código a completar según el botón presionado  
+            //se toma el tooltip para tener el libro
+            Libro l = sistema.tomarLibro(cual.getToolTipText());
+            
+            if(l != null){
+                JOptionPane.showMessageDialog(null, "Titulo: " 
+                        + l.getTitulo()+ "\nAutor: "+l.getAutor().getNombre()+
+                        "\nEditorial: "+l.getEditorial()+"\n ISBN: "
+                        +l.getIsbn()+"\nStock  "+l.getStock()+"\nPrecio costo:  "+l.getPrecioCosto()
+                        +"\nPrecio venta  "+l.getPrecioVenta(), "informacion", JOptionPane.INFORMATION_MESSAGE);
+            
+            }
         }
+    }
+    //se crea boton con isbn o con la foto
+    private void crearBoton(String isbn, JPanel subPanel, Icon ic, boolean foto) {
+        JButton nuevo;
+        
+        if(foto){
+            nuevo = new JButton(ic);
+        }else{
+            nuevo = new JButton(isbn);
+        }
+        //preguntar como pasar el texto para tomar el libro
+        nuevo.setToolTipText(isbn);
+        nuevo.addActionListener(new LibroListener());
+        subPanel.add(nuevo);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

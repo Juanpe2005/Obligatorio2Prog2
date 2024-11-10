@@ -16,9 +16,9 @@ public class Libro implements Serializable{
     private int stock;
     private int precioCosto;
     private int precioVenta;
-    
+    private boolean foto;
     //constructor del libro
-    public Libro(String titulo, Editorial editorial, String isbn, Autor autor, Genero genero, int stock, int precioCosto, int precioVenta) {
+    public Libro(String titulo, Editorial editorial, String isbn, Autor autor, Genero genero, int stock, int precioCosto, int precioVenta, boolean foto) {
         this.titulo = titulo;
         this.editorial = editorial;
         this.isbn = isbn;
@@ -27,6 +27,16 @@ public class Libro implements Serializable{
         this.stock = stock;
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;
+        //booleana para saber si tiene foto o no
+        this.foto=foto;
+    }
+
+    public boolean isFoto() {
+        return foto;
+    }
+
+    public void setFoto(boolean foto) {
+        this.foto = foto;
     }
     
     
