@@ -148,29 +148,29 @@ public class ventConsLibros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsLibrosActionPerformed
-       
-        GridLayout experimentLayout = new GridLayout(0,2);
+
+        GridLayout experimentLayout = new GridLayout(0, 2);
         //panelLibros.setLayout(experimentLayout);
         JPanel panel = new JPanel();
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridLayout(0, 2));
         for (int i = 0; i < 15; i++) {
-                    String path = "src/Interfaz/imgs/" + "aaa.jpg";
-                    URL urlFoto;
-                    try {
-                        urlFoto = new File(path).toURI().toURL();
-                        Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
-                                .getScaledInstance(50, 100, 0));
+            String path = "src/Interfaz/imgs/" + "aaa.jpg";
+            URL urlFoto;
+            try {
+                urlFoto = new File(path).toURI().toURL();
+                Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
+                        .getScaledInstance(50, 100, 0));
 
-                        JButton nuevo = new JButton(icono);
-                        nuevo.addActionListener(new LibroListener());
-                        subPanel.add(nuevo);
+                JButton nuevo = new JButton(icono);
+                nuevo.addActionListener(new LibroListener());
+                subPanel.add(nuevo);
 
-                    } catch (MalformedURLException ex) {
-                        Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                }
+        }
         //panelLibros.setVisible(true);
         //add(panelLibros);
         JScrollPane scroller = new JScrollPane(subPanel);
@@ -179,9 +179,8 @@ public class ventConsLibros extends javax.swing.JFrame {
         panel.setSize(120, 200);
         panel.add(scroller, BorderLayout.CENTER);
         panelLibros.add(panel);
-       pack();
-        
-        
+        pack();
+
         /*
 
         // TODO add your handling code here:
