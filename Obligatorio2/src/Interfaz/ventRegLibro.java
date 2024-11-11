@@ -269,7 +269,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 lblFoto.setIcon(icono);
                 tieneFoto=true;
             } catch (MalformedURLException ex) {
-                Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
             //en el caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
         }
@@ -334,7 +334,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                     lblFoto.setText("Sin foto");
                     JOptionPane.showMessageDialog(null, "guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe seleccion genero, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Debe selección género, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

@@ -154,12 +154,12 @@ public class ventConsLibros extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtAutConsLibro.getText().trim().equals("") && txtGenConsLibro.getText().trim().equals("")
                 && txtTitConsLibro.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "No se puede consultar un libro sin ningun dato", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se puede consultar un libro sin ningún dato", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             ArrayList<Libro> list = sistema.chequiarLibro(txtTitConsLibro.getText(), txtAutConsLibro.getText(),
                     txtGenConsLibro.getText());
             if (list.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No existe ningun libro con esos datos", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No existe ningún libro con esos datos", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 //se vacia el panel 
                 panelLibros.removeAll();
@@ -195,7 +195,7 @@ public class ventConsLibros extends javax.swing.JFrame {
                 panel.setSize(250, 200);
                 panel.add(scroller, BorderLayout.CENTER);
                 panelLibros.add(panel);
-                //preguntar
+                
                 pack();
 
             }

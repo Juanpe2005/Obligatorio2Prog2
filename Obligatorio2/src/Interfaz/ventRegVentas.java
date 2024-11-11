@@ -245,10 +245,10 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
                 sistema.setFactura();
                 lblNumFac.setText(sistema.getFactura()+"");
                 if (mensaje.length() == 0){
-                    JOptionPane.showMessageDialog(null, "Se realizo correctamente la venta", "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se realizó correctamente la venta", "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Se realizo correctamente la venta. \nLas cantidades de ciertos libros fueron modificadas por falta de stock: "+mensaje, "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se realizó correctamente la venta. \nLas cantidades de ciertos libros fueron modificadas por falta de stock: "+mensaje, "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
             librosEnVenta.clear();

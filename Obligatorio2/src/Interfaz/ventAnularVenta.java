@@ -138,7 +138,7 @@ public class ventAnularVenta extends javax.swing.JFrame {
         // Se hace con try catch por si no ingresan un número en el num de factura
         try{
             if(!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))){
-                JOptionPane.showMessageDialog(null, "No existe una venta con ese numero de factura", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No existe una venta con ese número de factura", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 Venta escogida = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
@@ -156,7 +156,7 @@ public class ventAnularVenta extends javax.swing.JFrame {
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
         try{
             if(!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))){
-                JOptionPane.showMessageDialog(null, "No existe una venta con ese numero de factura", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No existe una venta con ese número de factura", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 Venta aEliminarse = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));

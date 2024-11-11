@@ -146,7 +146,7 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
         // TODO add your handling code here:
 
         if (listGenAut.isSelectionEmpty()){
-            JOptionPane.showMessageDialog(null,"No se puede guardar un autor sin genero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No se puede guardar un autor sin género", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             ArrayList<Genero> generosPorAutor = (ArrayList<Genero>) listGenAut.getSelectedValuesList();
         

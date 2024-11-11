@@ -123,7 +123,7 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
     private void btnRegGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegGenActionPerformed
         // TODO add your handling code here:
         if(sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())){
-            JOptionPane.showMessageDialog(null,"Se guardo el Genero", "info", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Se guardo el Género", "info", JOptionPane.INFORMATION_MESSAGE);
             cargar();
             actualizar();
         }else{
