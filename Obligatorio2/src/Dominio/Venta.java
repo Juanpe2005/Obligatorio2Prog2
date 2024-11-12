@@ -29,6 +29,18 @@ public class Venta implements Serializable {
         this.nroFactura = 0;
     }
     
+    public int cantidadXLibro(Libro l){
+        int cant = 0;
+        boolean encontro = false;
+        for(int i = 0; i < listaDeVenta.size() && !encontro; i++){
+            if (listaDeVenta.get(i).getLibro().equals(l)){
+                cant = listaDeVenta.get(i).getCantidad();
+                encontro = true;
+            }
+        }
+        return cant;
+    }
+    
     
     public ArrayList<InfoVenta> getListaDeVenta() {
         return listaDeVenta;
