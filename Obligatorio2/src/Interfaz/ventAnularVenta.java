@@ -1,23 +1,30 @@
-
 package Interfaz;
 
 import Dominio.Sistema;
 import Dominio.Venta;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class ventAnularVenta extends javax.swing.JFrame {
+public class ventAnularVenta extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
+
     /**
      * Creates new form ventAnularVenta
      */
     public ventAnularVenta(Sistema sis) {
         initComponents();
-        sistema=sis;
+        sistema = sis;
+        sis.addObserver(this);
+    }
+
+    public void update(Observable o, Object ob) {
+        agregarVentaAnulada();
     }
 
     /**
@@ -136,45 +143,43 @@ public class ventAnularVenta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Se hace con try catch por si no ingresan un número en el num de factura
-        try{
-            if(!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))){
+        try {
+            if (!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))) {
                 JOptionPane.showMessageDialog(null, "No existe una venta con ese número de factura", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                agregarVentaAnulada();
             }
-            else{
-                Venta escogida = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
-                lblFecha.setText(escogida.getFecha());
-                lblCliente.setText(escogida.getCliente());
-                listInfo.setListData(escogida.getListaDeVenta().toArray());
-            }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Debe ingresar un número", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void agregarVentaAnulada() {
+        Venta escogida = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
+        lblFecha.setText(escogida.getFecha());
+        lblCliente.setText(escogida.getCliente());
+        listInfo.setListData(escogida.getListaDeVenta().toArray());
+    }
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
-        try{
-            if(!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))){
+        try {
+            if (!sistema.existeVenta(Integer.parseInt(txtNumFact.getText()))) {
                 JOptionPane.showMessageDialog(null, "No existe una venta con ese número de factura", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
+            } else {
                 Venta aEliminarse = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
-                sistema.anularVenta(aEliminarse.getListaDeVenta(), Integer.parseInt(txtNumFact.getText()) ); //se le pasa el arraylist de infoventa para reestockear los libros y su numero de factura para eliminarlo del sistema 
+                sistema.anularVenta(aEliminarse.getListaDeVenta(), Integer.parseInt(txtNumFact.getText())); //se le pasa el arraylist de infoventa para reestockear los libros y su numero de factura para eliminarlo del sistema 
                 JOptionPane.showMessageDialog(null, "Venta anulada correctamente", "Anulación de Venta", JOptionPane.INFORMATION_MESSAGE);
                 lblFecha.setText("");
                 lblCliente.setText("");
                 listInfo.setListData(new String[0]); //Se le carga con un array de string vacío para que la lista quede vacía
                 txtNumFact.setText("");
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Debe ingresar un número", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAnularActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnular;

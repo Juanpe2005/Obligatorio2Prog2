@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import Dominio.*;
@@ -15,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
+
     /**
      * Creates new form ventRegEditorial
      */
@@ -24,12 +24,13 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
         sis.addObserver(this);
         //se carga la tabla con los datos que ya se tienen
         cargaTabla();
-         
+
     }
-    
-    public void update(Observable o, Object ob){
-       cargaTabla();
+
+    public void update(Observable o, Object ob) {
+        cargaTabla();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,45 +148,44 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
     private void btnRegEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEdiActionPerformed
         // TODO add your handling code here:
         //Se agrega una nueva editorial si el nobre no existe 
-       if(sistema.regEditorial(txtNombreEdi.getText(), txtPaisEdi.getText())){
-           JOptionPane.showMessageDialog(null,"Se guardo la Editorial", "info", JOptionPane.INFORMATION_MESSAGE);
-           //luego de agregar se ponen ambos campos de texto vacios
-           txtNombreEdi.setText("");
-           txtPaisEdi.setText("");
-           //se carga la tabla
-           //cargaTabla();
+        if (sistema.regEditorial(txtNombreEdi.getText(), txtPaisEdi.getText())) {
+            JOptionPane.showMessageDialog(null, "Se guardo la Editorial", "info", JOptionPane.INFORMATION_MESSAGE);
+            //luego de agregar se ponen ambos campos de texto vacios
+            txtNombreEdi.setText("");
+            txtPaisEdi.setText("");
+            //se carga la tabla
+            //cargaTabla();
 
-       }else{
+        } else {
             //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
-       }
-       
+            JOptionPane.showMessageDialog(null, "no guardo", "info", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnRegEdiActionPerformed
 
     //sacado de una pagina de internet, para cargar la tabla con los datos
-    public void cargaTabla(){
+    public void cargaTabla() {
         DefaultTableModel tableModel = (DefaultTableModel) tblEdiReg.getModel();
         tableModel.setRowCount(0);
-        
-           
+
         ArrayList<Editorial> list = sistema.getListaEditoriales();
-        if(list.size()>0){
+        if (list.size() > 0) {
             pnlEdi.setVisible(false);
-        }else{
+        } else {
             pnlEdi.setVisible(true);
 
-        }  
-            for (int i = 0; i < list.size(); i++) {
-                String[] data = new String[2];
-                data[0] = list.get(i).getNombre();
-                data[1] = list.get(i).getPais();
-                tableModel.addRow(data);
-            }
-            tblEdiReg.setModel(tableModel);
-            tableModel.fireTableDataChanged();
+        }
+        for (int i = 0; i < list.size(); i++) {
+            String[] data = new String[2];
+            data[0] = list.get(i).getNombre();
+            data[1] = list.get(i).getPais();
+            tableModel.addRow(data);
+        }
+        tblEdiReg.setModel(tableModel);
+        tableModel.fireTableDataChanged();
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancRegEdi;
     private javax.swing.JButton btnRegEdi;

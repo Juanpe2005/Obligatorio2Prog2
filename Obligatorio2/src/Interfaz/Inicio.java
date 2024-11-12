@@ -15,13 +15,14 @@ public class Inicio {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
-        msjInicio();
-        //Sistema sistema=new Sistema();
-        //menuPrincipal vent=new menuPrincipal(sistema);
-        //vent.setVisible(true);  
+        //msjInicio();
+        Sistema sistema=new Sistema();
+        ventInicio vent=new ventInicio(sistema);
+        vent.setVisible(true); 
+        
     }
 
-    public static void msjInicio() throws IOException, ClassNotFoundException {
+   /* public static void msjInicio() throws IOException, ClassNotFoundException {
         Scanner in = new Scanner(System.in);
         System.out.println("Ingrese una opcion");
         System.out.println("1- Utilizar el sistema con uno nuevo");
@@ -60,4 +61,5 @@ public class Inicio {
 
         }
     }
+    */
 }

@@ -247,9 +247,9 @@ public class Sistema extends Observable implements Serializable {
     public ArrayList<Libro> chequiarLibro(String tit, String aut, String gen) {
         ArrayList<Libro> list = new ArrayList<>();
         for (int i = 0; i < this.getListaLibros().size(); i++) {
-            if (this.getListaLibros().get(i).getTitulo().contains(tit) &&
-                    this.getListaLibros().get(i).getGenero().getDescripcion().contains(gen) &&
-                    this.getListaLibros().get(i).getAutor().getNombre().contains(aut)) {
+            if (this.getListaLibros().get(i).getTitulo().contains(tit.toLowerCase()) &&
+                    this.getListaLibros().get(i).getGenero().getDescripcion().contains(gen.toLowerCase()) &&
+                    this.getListaLibros().get(i).getAutor().getNombre().contains(aut.toLowerCase())) {
                 list.add(this.getListaLibros().get(i));
             } 
         }
