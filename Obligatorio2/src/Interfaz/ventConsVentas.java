@@ -83,11 +83,16 @@ public class ventConsVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConsVenta);
-        btnConsVenta.setBounds(320, 20, 90, 23);
+        btnConsVenta.setBounds(320, 20, 100, 23);
 
         btnExpVenta.setText("Exportar");
+        btnExpVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpVentaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnExpVenta);
-        btnExpVenta.setBounds(450, 20, 74, 23);
+        btnExpVenta.setBounds(460, 20, 90, 23);
 
         tablaConsVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,6 +201,17 @@ public class ventConsVentas extends javax.swing.JFrame {
         listaOpcionesLibros.setVisible(false);
         scrollListaOpciones.setVisible(false);
     }//GEN-LAST:event_listaOpcionesLibrosMousePressed
+
+    private void btnExpVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpVentaActionPerformed
+        // TODO add your handling code here:
+        ArchivoGrabacion arch = new ArchivoGrabacion("VENTAS.CSV");
+        Libro l = sistema.tomarLibro(isbnConsVenta.getText());
+        String cols = "Fecha | Cliente | Factura | Cantidad | Precio | Importe";
+        
+        for(int i = 0; i < sistema.ventasDeUnLibro(l).size(); i++){
+            
+        }
+    }//GEN-LAST:event_btnExpVentaActionPerformed
 
     public void cargarTabla(ArrayList<Venta> cargado, Libro l){
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaConsVentas.getModel();
