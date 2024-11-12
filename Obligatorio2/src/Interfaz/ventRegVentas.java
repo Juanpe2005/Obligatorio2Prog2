@@ -31,6 +31,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
         librosEnVenta = new ArrayList<>();
         cargarListaLibros();
         lblNumFac.setText(sistema.getFactura()+"");
+        sis.addObserver(this);
 
     }
 
@@ -234,6 +235,8 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
                 if (cant > aux){            // Se verifica si la cantidad solicitada es mayor a la que hay en stock (aux)
                    mensaje = mensaje + "\n-"+ l.getTitulo()+" ("+aux+") ";
                    librosEnVenta.get(i).setCantidad(aux);
+                   precio -= ((cant-aux)*librosEnVenta.get(i).getLibro().getPrecioVenta());
+                   //Esto lo que hace es restarle al precio total lo que no se pudo vender por falta de stock
                 }
             }
             if (!sePuede){
@@ -248,7 +251,7 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
                     JOptionPane.showMessageDialog(null, "Se realizó correctamente la venta", "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Se realizó correctamente la venta. \nLas cantidades de ciertos libros fueron modificadas por falta de stock: "+mensaje, "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se realizó correctamente la venta. \nLas cantidades de ciertos libros fueron modificadas por falta de stock: "+mensaje+"\nEl nuevo precio es: "+precio, "Venta registrada", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
             librosEnVenta.clear();

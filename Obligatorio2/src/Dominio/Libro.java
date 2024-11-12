@@ -128,4 +128,5 @@ public class Libro implements Serializable{
         //Devuelve la cantidad que se puede vender, en caso de que dé el stock se devuelve el mismo numero que el solicitado y sino lo que queda de stock 
     }
 
+
 }

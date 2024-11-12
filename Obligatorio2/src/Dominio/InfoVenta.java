@@ -43,6 +43,7 @@ public class InfoVenta implements Serializable {
         this.setCantidad(this.getCantidad()-1); 
     }   
     
+    
     @Override
     public String toString(){
         return cantidad+" - "+libro.getTitulo()+ " - $"+libro.getPrecioVenta();

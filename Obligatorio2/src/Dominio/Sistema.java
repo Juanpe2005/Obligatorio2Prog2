@@ -243,6 +243,28 @@ public class Sistema extends Observable implements Serializable {
         });
         return retorno;
     }
+    
+    public ArrayList<Venta> ordenarXFactura(ArrayList<Venta> retorno) {
+        retorno.sort((Venta v1, Venta v2) -> {
+            int dif = v1.getNroFactura()- v2.getNroFactura();
+            return dif;
+        });
+        return retorno;
+    }
+    
+    public ArrayList<Venta> ventasDeUnLibro(Libro l){
+        ArrayList<Venta> retorno = new ArrayList<Venta>();
+        for(int i = 0; i < this.getListaVentas().size(); i++){
+            Venta v = this.getListaVentas().get(i);
+            for(int j = 0; j < v.getListaDeVenta().size(); j++){
+                if(v.getListaDeVenta().get(j).getLibro().equals(l)){
+                    retorno.add(v);
+                } 
+            }
+        }
+        return ordenarXFactura(retorno);
+    }
+    
 
     public ArrayList<Libro> chequiarLibro(String tit, String aut, String gen) {
         ArrayList<Libro> list = new ArrayList<>();
