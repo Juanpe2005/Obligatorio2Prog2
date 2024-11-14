@@ -207,9 +207,14 @@ public class ventConsVentas extends javax.swing.JFrame {
         ArchivoGrabacion arch = new ArchivoGrabacion("VENTAS.CSV");
         Libro l = sistema.tomarLibro(isbnConsVenta.getText());
         String cols = "Fecha | Cliente | Factura | Cantidad | Precio | Importe";
-        
-        for(int i = 0; i < sistema.ventasDeUnLibro(l).size(); i++){
-            
+        ArrayList<Venta> lista = sistema.ventasDeUnLibro(l);
+        for(int i = 0; i < lista.size(); i++){
+            String txt = "";
+            Venta v = lista.get(i);
+            //se agrega toda la info en un string y se carga en el archivo
+            txt += v.getFecha() + ";"+v.getCliente()+";"+v.getNroFactura()+";"
+                    +v.cantidadXLibro(l)+";"+l.getPrecioVenta()+";"+(v.cantidadXLibro(l)*l.getPrecioVenta());  
+            arch.grabarLinea(txt);
         }
     }//GEN-LAST:event_btnExpVentaActionPerformed
 
