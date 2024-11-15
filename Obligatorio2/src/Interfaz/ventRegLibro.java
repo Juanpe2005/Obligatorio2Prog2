@@ -1,23 +1,21 @@
 package Interfaz;
 
 import Dominio.*;
-import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel; 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
 @author Juan Pedro Longo (329112)
@@ -238,6 +236,11 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         //cargar foto en el panel
         JFileChooser fc = new JFileChooser();
+        //Este filtro se usa para que solo te deje agregar imagenes
+        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        fc.addChoosableFileFilter(imageFilter);
+        fc.setAcceptAllFileFilterUsed(false);
+
         int seleccion = fc.showOpenDialog(this);
         File carpetaImagenes = new File("src/Interfaz/imgs");
         //si la carpeta no existe la crea, solo va a pasar la primera vez
@@ -269,7 +272,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                 lblFoto.setIcon(icono);
                 tieneFoto=true;
             } catch (MalformedURLException ex) {
-                //Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error al mostrar la imagen.");
             }
             //en el caso de que no exista la carpeta de imagenes la tiene que crear y guardar la imagen con el nombre de isbn
         }
@@ -295,7 +298,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     private void btnRegLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegLibroActionPerformed
         // TODO add your handling code here:
         //a la hora de registrar el libro hay que fijarse si ya existia el isbn
-        try {
+       try {
             if (!sistema.chequearNum(Integer.parseInt(txtPrecioCosto.getText()))) {
                 JOptionPane.showMessageDialog(null, "El precio de costo debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtPrecioCosto.setText("");
@@ -332,13 +335,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
                     txtISBN.setText("");
                     lblFoto.setIcon(null);
                     lblFoto.setText("Sin foto");
-                    JOptionPane.showMessageDialog(null, "guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Guardo", "Info", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe selección género, editorial y autor", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
-        } catch (Exception e) {
+       } catch (NumberFormatException e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "No pueden haber datos vacios y los números tienen que ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
         }

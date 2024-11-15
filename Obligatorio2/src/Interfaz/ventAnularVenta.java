@@ -93,7 +93,7 @@ public class ventAnularVenta extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancAnular);
-        btnCancAnular.setBounds(380, 290, 76, 23);
+        btnCancAnular.setBounds(380, 290, 90, 23);
 
         lbAnuVenta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbAnuVenta.setForeground(new java.awt.Color(255, 0, 0));
@@ -108,7 +108,7 @@ public class ventAnularVenta extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 50, 72, 23);
+        jButton1.setBounds(380, 50, 90, 23);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Fecha:");
@@ -149,17 +149,21 @@ public class ventAnularVenta extends javax.swing.JFrame implements Observer {
             } else {
                 agregarVentaAnulada();
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Debe ingresar un número", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarVentaAnulada() {
-        Venta escogida = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
-        lblFecha.setText(escogida.getFecha());
-        lblCliente.setText(escogida.getCliente());
-        listInfo.setListData(escogida.getListaDeVenta().toArray());
+        try {
+            Venta escogida = sistema.ubicarVenta(Integer.parseInt(txtNumFact.getText()));
+            lblFecha.setText(escogida.getFecha());
+            lblCliente.setText(escogida.getCliente());
+            listInfo.setListData(escogida.getListaDeVenta().toArray());
+        } catch (NumberFormatException e) {
+            
+        }
     }
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
         try {
@@ -174,7 +178,7 @@ public class ventAnularVenta extends javax.swing.JFrame implements Observer {
                 listInfo.setListData(new String[0]); //Se le carga con un array de string vacío para que la lista quede vacía
                 txtNumFact.setText("");
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Debe ingresar un número", "Error", JOptionPane.ERROR_MESSAGE);
         }

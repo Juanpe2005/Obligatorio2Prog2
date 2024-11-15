@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import Dominio.InfoVenta;
@@ -77,11 +74,11 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblFacturaRegVenta.setText("Factura : ");
         getContentPane().add(lblFacturaRegVenta);
-        lblFacturaRegVenta.setBounds(20, 20, 50, 16);
+        lblFacturaRegVenta.setBounds(20, 20, 60, 16);
 
         lblFechaRegVenta.setText("Fecha");
         getContentPane().add(lblFechaRegVenta);
-        lblFechaRegVenta.setBounds(20, 50, 31, 16);
+        lblFechaRegVenta.setBounds(20, 50, 60, 16);
 
         txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,11 +86,11 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtFechaVenta);
-        txtFechaVenta.setBounds(60, 50, 200, 22);
+        txtFechaVenta.setBounds(90, 50, 150, 22);
 
         lblClienteRegVenta.setText("Cliente");
         getContentPane().add(lblClienteRegVenta);
-        lblClienteRegVenta.setBounds(280, 50, 37, 16);
+        lblClienteRegVenta.setBounds(267, 50, 60, 16);
 
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,11 +98,11 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(txtNombreCliente);
-        txtNombreCliente.setBounds(330, 50, 230, 22);
+        txtNombreCliente.setBounds(340, 50, 220, 22);
 
         lblLibroRegVenta.setText("Libros");
         getContentPane().add(lblLibroRegVenta);
-        lblLibroRegVenta.setBounds(20, 100, 32, 16);
+        lblLibroRegVenta.setBounds(20, 100, 50, 16);
 
         jScrollPane1.setViewportView(listLibros);
 
@@ -132,12 +129,12 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
 
         lblVentaRegVenta.setText("Venta");
         getContentPane().add(lblVentaRegVenta);
-        lblVentaRegVenta.setBounds(340, 100, 30, 16);
+        lblVentaRegVenta.setBounds(340, 100, 140, 16);
 
         jScrollPane2.setViewportView(listVentas);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(330, 120, 230, 120);
+        jScrollPane2.setBounds(340, 120, 220, 120);
 
         lblTotalVenta.setText("Total: $");
         getContentPane().add(lblTotalVenta);

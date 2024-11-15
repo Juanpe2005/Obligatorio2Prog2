@@ -6,6 +6,8 @@ import Dominio.Libro;
 import Dominio.Sistema;
 import Dominio.Venta;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class ventConsVentas extends javax.swing.JFrame {
+public class ventConsVentas extends javax.swing.JFrame  implements Observer {
 
     Sistema sistema;
     
@@ -25,8 +27,14 @@ public class ventConsVentas extends javax.swing.JFrame {
         sistema=sis;
         listaOpcionesLibros.setVisible(false);
         scrollListaOpciones.setVisible(false);
+        sis.addObserver(this);
     }
-
+    public void update(Observable o, Object ob) {
+        String isbnActual = isbnConsVenta.getText();
+        Libro libroPedido = sistema.tomarLibro(isbnActual);
+        cargarTabla(sistema.ventasDeUnLibro(libroPedido), libroPedido);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -206,7 +214,9 @@ public class ventConsVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
         ArchivoGrabacion arch = new ArchivoGrabacion("VENTAS.CSV");
         Libro l = sistema.tomarLibro(isbnConsVenta.getText());
-        String cols = "Fecha | Cliente | Factura | Cantidad | Precio | Importe";
+        String cols = "Fecha;Cliente;Factura;Cantidad;Precio;Importe";
+        arch.grabarLinea(cols);
+        arch.grabarLinea(System.lineSeparator());
         ArrayList<Venta> lista = sistema.ventasDeUnLibro(l);
         for(int i = 0; i < lista.size(); i++){
             String txt = "";
@@ -215,7 +225,12 @@ public class ventConsVentas extends javax.swing.JFrame {
             txt += v.getFecha() + ";"+v.getCliente()+";"+v.getNroFactura()+";"
                     +v.cantidadXLibro(l)+";"+l.getPrecioVenta()+";"+(v.cantidadXLibro(l)*l.getPrecioVenta());  
             arch.grabarLinea(txt);
+            arch.grabarLinea(System.lineSeparator());
         }
+        arch.cerrar();
+            JOptionPane.showMessageDialog(null, "Exportación guardada", "Info", JOptionPane.INFORMATION_MESSAGE);
+        
+
     }//GEN-LAST:event_btnExpVentaActionPerformed
 
     public void cargarTabla(ArrayList<Venta> cargado, Libro l){

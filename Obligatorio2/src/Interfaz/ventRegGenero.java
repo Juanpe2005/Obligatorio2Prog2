@@ -96,7 +96,7 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
             }
         });
         getContentPane().add(btnRegGen);
-        btnRegGen.setBounds(30, 190, 80, 23);
+        btnRegGen.setBounds(30, 190, 90, 23);
 
         btnCancGen.setText("Cancelar");
         btnCancGen.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
             }
         });
         getContentPane().add(btnCancGen);
-        btnCancGen.setBounds(120, 190, 76, 23);
+        btnCancGen.setBounds(130, 190, 90, 23);
 
         jScrollPane1.setViewportView(listaRegGen);
 
@@ -128,7 +128,7 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
             actualizar();
         }else{
             //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ya exise genero con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
             actualizar();
        }
     }//GEN-LAST:event_btnRegGenActionPerformed

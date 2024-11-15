@@ -198,7 +198,7 @@ public class ventConsLibros extends javax.swing.JFrame implements Observer {
                     crearBoton(lib.getIsbn(), subPanel, icono, true);
 
                 } catch (MalformedURLException ex) {
-                    //Logger.getLogger(ventRegLibro.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null,"Error al recuperar la imagen", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 crearBoton(lib.getIsbn(), subPanel, null, false);

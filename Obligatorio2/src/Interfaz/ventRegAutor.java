@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import javax.swing.JOptionPane;
@@ -158,7 +155,7 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
                 cargarLista();
             }else{
                 //si ya existe muestra mensaje de error
-                JOptionPane.showMessageDialog(null,"no guardo", "info", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Ya existe autor con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
                 actualizar();
             }
         }

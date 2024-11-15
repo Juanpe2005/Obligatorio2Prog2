@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import Dominio.*;
@@ -19,10 +18,11 @@ import javax.swing.JOptionPane;
  */
 public class menuPrincipal extends javax.swing.JFrame {
 
-     Sistema sistema;
-     
+    Sistema sistema;
+
     /**
      * Creates new form menuPrincipal
+     *
      * @param sis
      */
     public menuPrincipal(Sistema sis) {
@@ -32,28 +32,29 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     //metodo para que cuando cierre guarde un archivo con los datos
-    public void cerrar(){
-        try {
+    public void cerrar() {
+        
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
-                    try{
-                        FileOutputStream ff= new FileOutputStream("datos.ser");
+                    try {
+                        FileOutputStream ff = new FileOutputStream("datos.ser");
                         ObjectOutputStream out = new ObjectOutputStream(ff);
                         out.writeObject(sistema);
                         out.close();
-                     
-                     
-                    }catch(Exception ex){
-                        
+
+                    } catch (FileNotFoundException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al encontrar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al escribir archivo", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    // JOptionPane.showMessageDialog(null, "Cierra","cierra",JOptionPane.INFORMATION_MESSAGE);
                 }
             });
             this.setVisible(true);
-        } catch (Exception e) {
-        }
+        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,51 +167,51 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void registroAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroAutorActionPerformed
         // TODO add your handling code here:
-        ventRegAutor vent=new ventRegAutor(sistema);
+        ventRegAutor vent = new ventRegAutor(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_registroAutorActionPerformed
 
     private void registroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroLibroActionPerformed
         // TODO add your handling code here:
-        ventRegLibro vent=new ventRegLibro(sistema);
+        ventRegLibro vent = new ventRegLibro(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_registroLibroActionPerformed
 
     private void anularVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularVentaActionPerformed
         // TODO add your handling code here:
-        ventAnularVenta vent=new ventAnularVenta(sistema);
+        ventAnularVenta vent = new ventAnularVenta(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_anularVentaActionPerformed
 
     private void registroEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroEditorialActionPerformed
         // TODO add your handling code here:
         //se crea la ventana y se le manda el sistema
-        ventRegEditorial vent=new ventRegEditorial(sistema);
+        ventRegEditorial vent = new ventRegEditorial(sistema);
         vent.setVisible(true);
-       
+
     }//GEN-LAST:event_registroEditorialActionPerformed
 
     private void registroGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroGeneroActionPerformed
         // TODO add your handling code here:
-        ventRegGenero vent=new ventRegGenero(sistema);
+        ventRegGenero vent = new ventRegGenero(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_registroGeneroActionPerformed
 
     private void registrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaActionPerformed
         // TODO add your handling code here:
-        ventRegVentas vent=new ventRegVentas(sistema);
+        ventRegVentas vent = new ventRegVentas(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_registrarVentaActionPerformed
 
     private void consultaLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaLibrosActionPerformed
         // TODO add your handling code here:
-        ventConsLibros vent=new ventConsLibros(sistema);
+        ventConsLibros vent = new ventConsLibros(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_consultaLibrosActionPerformed
 
     private void consultaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaVentaActionPerformed
         // TODO add your handling code here:
-        ventConsVentas vent=new ventConsVentas(sistema);
+        ventConsVentas vent = new ventConsVentas(sistema);
         vent.setVisible(true);
     }//GEN-LAST:event_consultaVentaActionPerformed
 

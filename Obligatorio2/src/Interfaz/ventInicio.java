@@ -4,6 +4,7 @@ import Dominio.Sistema;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,8 +115,14 @@ public class ventInicio extends javax.swing.JFrame {
                 Sistema sis = (Sistema) gg.readObject();
                 menuPrincipal ventana = new menuPrincipal(sis);
                 ventana.setVisible(true);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,"Error al recuperar archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null,"Error no encotro el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"Error al leer archivo", "Error", JOptionPane.ERROR_MESSAGE);
+
+            } catch (ClassNotFoundException ex) {
+               JOptionPane.showMessageDialog(null,"Error al recuperar archivo", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
             

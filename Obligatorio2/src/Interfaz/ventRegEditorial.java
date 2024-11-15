@@ -96,7 +96,7 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnRegEdi);
-        btnRegEdi.setBounds(20, 180, 80, 23);
+        btnRegEdi.setBounds(20, 180, 90, 23);
 
         btnCancRegEdi.setText("Cancelar");
         btnCancRegEdi.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
             }
         });
         getContentPane().add(btnCancRegEdi);
-        btnCancRegEdi.setBounds(110, 180, 76, 23);
+        btnCancRegEdi.setBounds(120, 180, 90, 23);
 
         tblEdiReg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,7 +158,7 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
         } else {
             //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null, "no guardo", "info", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya existe editrorial con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnRegEdiActionPerformed

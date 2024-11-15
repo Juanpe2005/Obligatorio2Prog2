@@ -127,7 +127,6 @@ public class Sistema extends Observable implements Serializable {
         this.getListaLibros().add(lib);
         setChanged();
         notifyObservers();
-
     }
 
     public boolean regGenero(String nom, String desc) {
@@ -200,6 +199,8 @@ public class Sistema extends Observable implements Serializable {
                 this.getListaVentas().remove(i);
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
     public ArrayList<Autor> getAutoresPorGénero(Genero genBuscado) {
