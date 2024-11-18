@@ -56,7 +56,8 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Autor");
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(330, 330));
         getContentPane().setLayout(null);
 
         lbNomRegAut.setText("Ingrese nombre");
@@ -130,7 +131,7 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(250, 50, 220, 190);
 
-        pack();
+        setSize(new java.awt.Dimension(524, 297));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

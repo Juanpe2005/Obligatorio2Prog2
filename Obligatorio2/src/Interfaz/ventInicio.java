@@ -6,13 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Juan
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class ventInicio extends javax.swing.JFrame {
 
@@ -70,7 +68,7 @@ public class ventInicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlbSisVie)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlbSisNuevo)
@@ -89,10 +87,10 @@ public class ventInicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlbSisVie)
                     .addComponent(jButton2))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(414, 307));
+        setSize(new java.awt.Dimension(438, 194));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

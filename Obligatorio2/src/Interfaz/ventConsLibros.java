@@ -65,8 +65,8 @@ public class ventConsLibros extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Libros");
-        setMaximumSize(new java.awt.Dimension(600, 500));
-        setMinimumSize(new java.awt.Dimension(600, 500));
+        setMaximumSize(new java.awt.Dimension(400, 400));
+        setMinimumSize(new java.awt.Dimension(400, 400));
         setPreferredSize(new java.awt.Dimension(600, 500));
 
         lbTitConsLib.setText("Título:");

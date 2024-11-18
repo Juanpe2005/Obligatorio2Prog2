@@ -58,7 +58,7 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Genero");
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(300, 300));
         getContentPane().setLayout(null);
 
         lbRegGen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -70,6 +70,10 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
         lbNomRegGen.setText("Nombre del género:");
         getContentPane().add(lbNomRegGen);
         lbNomRegGen.setBounds(30, 70, 130, 16);
+
+        pnlListaGen.setMaximumSize(null);
+        pnlListaGen.setMinimumSize(new java.awt.Dimension(300, 300));
+        pnlListaGen.setName(""); // NOI18N
         getContentPane().add(pnlListaGen);
         pnlListaGen.setBounds(230, 10, 260, 230);
 

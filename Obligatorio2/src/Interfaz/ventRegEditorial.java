@@ -54,7 +54,9 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Editorial");
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(300, 300));
+        setSize(new java.awt.Dimension(600, 500));
         getContentPane().setLayout(null);
 
         lbNomRegEdi.setText("Nombre de la editorial :");
@@ -127,7 +129,7 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
         getContentPane().add(lbEdiIngRegEdi);
         lbEdiIngRegEdi.setBounds(240, 10, 190, 16);
 
-        setSize(new java.awt.Dimension(457, 253));
+        setSize(new java.awt.Dimension(461, 261));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

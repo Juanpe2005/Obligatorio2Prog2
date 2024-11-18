@@ -79,8 +79,9 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de librerias - Realizado por: Juan Pedro Longo (329112) - José Ignacio Arbilla (338084)");
-        setMaximumSize(new java.awt.Dimension(500, 500));
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setSize(new java.awt.Dimension(200, 200));
         getContentPane().setLayout(null);
 
         registro.setText("Registros");
@@ -173,7 +174,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(414, 307));
+        setSize(new java.awt.Dimension(393, 205));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -52,6 +52,8 @@ public class ventAnularVenta extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Anular Venta");
+        setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(360, 360));
         getContentPane().setLayout(null);
 
         lbFacAnuVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
