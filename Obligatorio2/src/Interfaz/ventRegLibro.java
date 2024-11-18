@@ -359,9 +359,7 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
     public void cargarListaGenero() {
         if (sistema.getListaGeneros().size() > 0) {
             listGenero.setListData(sistema.getListaGeneros().toArray());
-            //pnllistGen.setVisible(false);
-            //}else{
-            //  pnllistGen.setVisible(true);
+            
         }
     }
 

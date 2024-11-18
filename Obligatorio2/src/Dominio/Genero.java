@@ -33,8 +33,6 @@ public class Genero implements Serializable {
     }
     
     public boolean equals(Genero g) {
-        
-        // If the object is compared with itself then return true
         return g.nombre.equals(this.nombre);
     }
 

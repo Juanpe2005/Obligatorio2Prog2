@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Dominio;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Usuario
+/*
+@author Juan Pedro Longo (329112)
+@author Jose Ignacio Arbilla (338084)
  */
 public class InfoVenta implements Serializable {
     private Libro libro;

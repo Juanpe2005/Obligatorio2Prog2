@@ -6,7 +6,6 @@ import Dominio.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.DefaultListModel;
 
 /*
 @author Juan Pedro Longo (329112)

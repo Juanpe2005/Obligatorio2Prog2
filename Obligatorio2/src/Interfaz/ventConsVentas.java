@@ -1,7 +1,6 @@
 
 package Interfaz;
 
-import Dominio.InfoVenta;
 import Dominio.Libro;
 import Dominio.Sistema;
 import Dominio.Venta;
@@ -216,6 +215,7 @@ public class ventConsVentas extends javax.swing.JFrame  implements Observer {
         Libro l = sistema.tomarLibro(isbnConsVenta.getText());
         String cols = "Fecha;Cliente;Factura;Cantidad;Precio;Importe";
         arch.grabarLinea(cols);
+        //salta directamente a la siguiente linea en el archivo de grabación
         arch.grabarLinea(System.lineSeparator());
         ArrayList<Venta> lista = sistema.ventasDeUnLibro(l);
         for(int i = 0; i < lista.size(); i++){

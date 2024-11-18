@@ -153,8 +153,6 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
             //luego de agregar se ponen ambos campos de texto vacios
             txtNombreEdi.setText("");
             txtPaisEdi.setText("");
-            //se carga la tabla
-            //cargaTabla();
 
         } else {
             //si ya existe muestra mensaje de error
@@ -163,7 +161,6 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
     }//GEN-LAST:event_btnRegEdiActionPerformed
 
-    //sacado de una pagina de internet, para cargar la tabla con los datos
     public void cargaTabla() {
         DefaultTableModel tableModel = (DefaultTableModel) tblEdiReg.getModel();
         tableModel.setRowCount(0);

@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -76,6 +74,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         consultas = new javax.swing.JMenu();
         consultaLibros = new javax.swing.JMenuItem();
         consultaVenta = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        btnSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de librerias - Realizado por: Juan Pedro Longo (329112) - José Ignacio Arbilla (338084)");
@@ -159,6 +159,18 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(consultas);
 
+        jMenu1.setText("Terminar");
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnSalir);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         setSize(new java.awt.Dimension(414, 307));
@@ -215,11 +227,18 @@ public class menuPrincipal extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_consultaVentaActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem anularVenta;
+    private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenuItem consultaLibros;
     private javax.swing.JMenuItem consultaVenta;
     private javax.swing.JMenu consultas;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem registrarVenta;
     private javax.swing.JMenu registro;
