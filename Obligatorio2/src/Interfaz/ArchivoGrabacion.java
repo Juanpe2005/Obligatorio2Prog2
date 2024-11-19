@@ -35,7 +35,7 @@ public class ArchivoGrabacion {
     }
 
     public void grabarLinea(String linea) {
-        out.format(linea,";");
+        out.format("%s%n",linea);
     }
 
     public void cerrar() {

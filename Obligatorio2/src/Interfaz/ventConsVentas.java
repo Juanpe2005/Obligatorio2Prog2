@@ -210,26 +210,27 @@ public class ventConsVentas extends javax.swing.JFrame  implements Observer {
     }//GEN-LAST:event_listaOpcionesLibrosMousePressed
 
     private void btnExpVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpVentaActionPerformed
-        // TODO add your handling code here:
-        ArchivoGrabacion arch = new ArchivoGrabacion("VENTAS.CSV");
-        Libro l = sistema.tomarLibro(isbnConsVenta.getText());
-        String cols = "Fecha;Cliente;Factura;Cantidad;Precio;Importe";
-        arch.grabarLinea(cols);
-        //salta directamente a la siguiente linea en el archivo de grabación
-        arch.grabarLinea(System.lineSeparator());
-        ArrayList<Venta> lista = sistema.ventasDeUnLibro(l);
-        for(int i = 0; i < lista.size(); i++){
-            String txt = "";
-            Venta v = lista.get(i);
-            //se agrega toda la info en un string y se carga en el archivo
-            txt += v.getFecha() + ";"+v.getCliente()+";"+v.getNroFactura()+";"
-                    +v.cantidadXLibro(l)+";"+l.getPrecioVenta()+";"+(v.cantidadXLibro(l)*l.getPrecioVenta());  
-            arch.grabarLinea(txt);
-            arch.grabarLinea(System.lineSeparator());
-        }
-        arch.cerrar();
+          // TODO add your handling code here:
+        if(!sistema.getListaVentas().isEmpty()){
+            ArchivoGrabacion arch = new ArchivoGrabacion("VENTAS.CSV");
+            Libro l = sistema.tomarLibro(isbnConsVenta.getText());
+            String cols = "Fecha;Cliente;Factura;Cantidad;Precio;Importe";
+            arch.grabarLinea(cols);
+            ArrayList<Venta> lista = sistema.ventasDeUnLibro(l);
+            for(int i = 0; i < lista.size(); i++){
+                String txt = "";
+                Venta v = lista.get(i);
+                //se agrega toda la info en un string y se carga en el archivo
+                txt += v.getFecha() + ";"+v.getCliente()+";"+v.getNroFactura()+";"
+                        +v.cantidadXLibro(l)+";"+l.getPrecioVenta()+";"+(v.cantidadXLibro(l)*l.getPrecioVenta());  
+                arch.grabarLinea(txt);
+
+            }
+            arch.cerrar();
             JOptionPane.showMessageDialog(null, "Exportación guardada", "Info", JOptionPane.INFORMATION_MESSAGE);
-        
+        }else{
+            JOptionPane.showMessageDialog(null, "Se exporto el archivo vacio", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnExpVentaActionPerformed
 
