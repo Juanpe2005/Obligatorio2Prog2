@@ -45,7 +45,7 @@ public class Autor implements Serializable{
      public boolean equals(Autor a) {
  
         // If the object is compared with itself then return true
-        return a.nombre.equals(this.nombre);
+        return a.nombre.equalsIgnoreCase(this.nombre);
     }  
 
     @Override

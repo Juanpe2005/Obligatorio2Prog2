@@ -33,7 +33,7 @@ public class Genero implements Serializable {
     }
     
     public boolean equals(Genero g) {
-        return g.nombre.equals(this.nombre);
+        return g.nombre.equalsIgnoreCase(this.nombre);
     }
 
     @Override

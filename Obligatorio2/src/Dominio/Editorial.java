@@ -42,7 +42,7 @@ public class Editorial implements Serializable {
         // If the object is compared with itself then return true
         //hay que castear el obj con editorial para luego usar este equals y no el que tiene object por defecto
         Editorial e = (Editorial) obj;
-        return e.nombre.equals(this.nombre);
+        return e.nombre.equalsIgnoreCase(this.nombre);
     }  
 
     @Override
