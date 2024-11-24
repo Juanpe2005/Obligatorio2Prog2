@@ -150,16 +150,22 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
     private void btnRegEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEdiActionPerformed
         // TODO add your handling code here:
         //Se agrega una nueva editorial si el nobre no existe 
-        if (sistema.regEditorial(txtNombreEdi.getText(), txtPaisEdi.getText())) {
-            JOptionPane.showMessageDialog(null, "Se guardo la Editorial", "info", JOptionPane.INFORMATION_MESSAGE);
-            //luego de agregar se ponen ambos campos de texto vacios
-            txtNombreEdi.setText("");
-            txtPaisEdi.setText("");
-
+        if (txtNombreEdi.getText().isEmpty() || txtPaisEdi.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede guardar una editorial con falta de datos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null, "Ya existe editrorial con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            if (sistema.regEditorial(txtNombreEdi.getText(), txtPaisEdi.getText())) {
+                JOptionPane.showMessageDialog(null, "Se guardo la Editorial", "info", JOptionPane.INFORMATION_MESSAGE);
+                //luego de agregar se ponen ambos campos de texto vacios
+                txtNombreEdi.setText("");
+                txtPaisEdi.setText("");
+
+            } else {
+                //si ya existe muestra mensaje de error
+                JOptionPane.showMessageDialog(null, "Ya existe editrorial con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
+
 
     }//GEN-LAST:event_btnRegEdiActionPerformed
 

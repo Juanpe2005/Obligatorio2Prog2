@@ -22,6 +22,7 @@ public class Sistema extends Observable implements Serializable {
         // datos preCargados para prueba
         //====================================================================
         //====================================================================
+        /*
         listaGeneros.add(new Genero("Ciencia", "dec ciencia"));
         listaGeneros.add(new Genero("Fisica", "dec fisica"));
         listaGeneros.add(new Genero("Mat", "dec Math"));
@@ -40,7 +41,7 @@ public class Sistema extends Observable implements Serializable {
         Autor au = new Autor("Lewis", "Chi");
         Genero ge = new Genero("lalala", "fantasia");
         listaLibros.add(new Libro("alicia", ed, "ALI", au, ge, 20, 20, 20, false));
-
+        */
         //====================================================================
         //====================================================================
         //====================================================================
@@ -271,7 +272,7 @@ public class Sistema extends Observable implements Serializable {
         ArrayList<Libro> list = new ArrayList<>();
         for (int i = 0; i < this.getListaLibros().size(); i++) {
             if (this.getListaLibros().get(i).getTitulo().contains(tit.toLowerCase()) &&
-                    this.getListaLibros().get(i).getGenero().getDescripcion().contains(gen.toLowerCase()) &&
+                    this.getListaLibros().get(i).getGenero().getNombre().contains(gen.toLowerCase()) &&
                     this.getListaLibros().get(i).getAutor().getNombre().contains(aut.toLowerCase())) {
                 list.add(this.getListaLibros().get(i));
             } 

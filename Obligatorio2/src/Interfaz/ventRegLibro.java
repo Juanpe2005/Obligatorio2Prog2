@@ -238,11 +238,13 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
         JFileChooser fc = new JFileChooser();
         //Este filtro se usa para que solo te deje agregar imagenes
         FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        //agrega el filtro
         fc.addChoosableFileFilter(imageFilter);
+        //todo el resto de archivos no se muestran en el combo de filtros
         fc.setAcceptAllFileFilterUsed(false);
 
         int seleccion = fc.showOpenDialog(this);
-        File carpetaImagenes = new File("src/Interfaz/imgs");
+        File carpetaImagenes = new File("imgs");
         //si la carpeta no existe la crea, solo va a pasar la primera vez
         if (!carpetaImagenes.exists()) {
             carpetaImagenes.mkdir();
@@ -263,10 +265,12 @@ public class ventRegLibro extends javax.swing.JFrame implements Observer {
             }
             
             //con el path de destino se pide la URL de la imagen para setearla como Icono
-            String path = "src/Interfaz/imgs/"+nombreNuevo;
+            String path = "imgs/"+nombreNuevo;
             URL urlFoto;
+            //con esto se muestra la imagen
             try {
                 urlFoto = new File(path).toURI().toURL();
+                //se toma la foto y se le cambia el tamaño para mostrarla
                 Icon icono = new ImageIcon(new ImageIcon(urlFoto).getImage()
                     .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), 0));
                 lblFoto.setIcon(icono);

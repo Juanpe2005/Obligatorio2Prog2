@@ -185,7 +185,7 @@ public class ventConsLibros extends javax.swing.JFrame implements Observer {
         for (int i = 0; i < list.size(); i++) {
             Libro lib = list.get(i);
             if (lib.isFoto()) {
-                String path = "src/Interfaz/imgs/" + lib.getIsbn() + ".jpg";
+                String path = "imgs/" + lib.getIsbn() + ".jpg";
                 URL urlFoto;
                 try {
 

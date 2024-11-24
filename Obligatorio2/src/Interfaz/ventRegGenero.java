@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 /*
@@ -10,31 +9,34 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
 
+public class ventRegGenero extends javax.swing.JFrame implements Observer {
 
-public class ventRegGenero extends javax.swing.JFrame implements Observer{
-    
     Sistema sistema;
+
     /**
      * Creates new form ventRegGenero
      */
     public ventRegGenero(Sistema sis) {
         initComponents();
-        sistema=sis;
+        sistema = sis;
         //cargarLista();
         cargar();
         sis.addObserver(this);
     }
-    
-    public void update(Observable o, Object ob){
+
+    public void update(Observable o, Object ob) {
         cargar();
     }
-     public void cargar(){
-        if(sistema.getListaGeneros().size() >0){
+
+    public void cargar() {
+        if (sistema.getListaGeneros().size() > 0) {
             listaRegGen.setListData(sistema.getListaGeneros().toArray());
             pnlListaGen.setVisible(false);
-        }else
+        } else {
             pnlListaGen.setVisible(true);
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,15 +126,20 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
 
     private void btnRegGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegGenActionPerformed
         // TODO add your handling code here:
-        if(sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())){
-            JOptionPane.showMessageDialog(null,"Se guardo el Género", "info", JOptionPane.INFORMATION_MESSAGE);
-            cargar();
-            actualizar();
-        }else{
-            //si ya existe muestra mensaje de error
-            JOptionPane.showMessageDialog(null,"Ya exise genero con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-            actualizar();
-       }
+        if (txtNomGen.getText().isEmpty() || txtDescGen.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede guardar un genero con falta de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())) {
+                JOptionPane.showMessageDialog(null, "Se guardo el Género", "info", JOptionPane.INFORMATION_MESSAGE);
+                cargar();
+                actualizar();
+            } else {
+                //si ya existe muestra mensaje de error
+                JOptionPane.showMessageDialog(null, "Ya exise genero con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                actualizar();
+            }
+        }
+
     }//GEN-LAST:event_btnRegGenActionPerformed
 
     private void btnCancGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancGenActionPerformed
@@ -143,11 +150,11 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer{
     private void txtNomGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomGenActionPerformed
-     public void actualizar(){
+    public void actualizar() {
         txtNomGen.setText("");
         txtDescGen.setText("");
     }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancGen;
