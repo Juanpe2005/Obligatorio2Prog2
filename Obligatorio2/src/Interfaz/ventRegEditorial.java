@@ -23,8 +23,10 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
         sistema = sis;
         sis.addObserver(this);
         //se carga la tabla con los datos que ya se tienen
+        //cargaTabla();
+        int c= sistema.getCantidadEdiConA();
+        lblCantConA.setText(c+"");
         cargaTabla();
-
     }
 
     public void update(Observable o, Object ob) {
@@ -51,6 +53,9 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEdiReg = new javax.swing.JTable();
         lbEdiIngRegEdi = new javax.swing.JLabel();
+        btnNuevo = new javax.swing.JButton();
+        txtNuevo = new javax.swing.JTextField();
+        lblCantConA = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Editorial");
@@ -129,6 +134,21 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
         getContentPane().add(lbEdiIngRegEdi);
         lbEdiIngRegEdi.setBounds(240, 10, 190, 16);
 
+        btnNuevo.setText("apretar");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNuevo);
+        btnNuevo.setBounds(130, 220, 72, 23);
+        getContentPane().add(txtNuevo);
+        txtNuevo.setBounds(30, 220, 90, 22);
+
+        lblCantConA.setText("0");
+        getContentPane().add(lblCantConA);
+        lblCantConA.setBounds(30, 160, 70, 20);
+
         setSize(new java.awt.Dimension(461, 261));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -165,9 +185,18 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
             }
 
         }
+        int c= sistema.getCantidadEdiConA();
+        lblCantConA.setText(c+"");
 
 
     }//GEN-LAST:event_btnRegEdiActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+        String txt=txtNuevo.getText();
+        int res=sistema.calcularCantidad(txt);
+        JOptionPane.showMessageDialog(null, res, "Info", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     public void cargaTabla() {
         DefaultTableModel tableModel = (DefaultTableModel) tblEdiReg.getModel();
@@ -193,15 +222,18 @@ public class ventRegEditorial extends javax.swing.JFrame implements Observer {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancRegEdi;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegEdi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbEdiIngRegEdi;
     private javax.swing.JLabel lbNomRegEdi;
     private javax.swing.JLabel lbPaisRegEdi;
     private javax.swing.JLabel lbRegEdi;
+    private javax.swing.JLabel lblCantConA;
     private javax.swing.JPanel pnlEdi;
     private javax.swing.JTable tblEdiReg;
     private javax.swing.JTextField txtNombreEdi;
+    private javax.swing.JTextField txtNuevo;
     private javax.swing.JTextField txtPaisEdi;
     // End of variables declaration//GEN-END:variables
 

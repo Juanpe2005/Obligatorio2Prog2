@@ -7,7 +7,7 @@ import java.io.Serializable;
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class Genero implements Serializable {
+public class Genero implements Comparable <Genero> {
     private String nombre;
     private String descripcion;
 
@@ -40,5 +40,9 @@ public class Genero implements Serializable {
     public String toString() {
         return nombre + " (" + descripcion + ')';
     }
-    
+
+    @Override
+    public int compareTo(Genero o) {
+        return this.getDescripcion().compareTo(o.getDescripcion());
+    }    
 }

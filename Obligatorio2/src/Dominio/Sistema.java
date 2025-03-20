@@ -2,7 +2,7 @@ package Dominio;
 
 import java.io.Serializable;
 import java.util.*;
-
+import java.util.Collections;
 /*
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
@@ -15,6 +15,7 @@ public class Sistema extends Observable implements Serializable {
     private ArrayList<Venta> listaVentas = new ArrayList<Venta>();
     private ArrayList<Genero> listaGeneros = new ArrayList<Genero>();
     private int factura = 1;
+    
 
     public Sistema() {
         //====================================================================
@@ -292,5 +293,124 @@ public class Sistema extends Observable implements Serializable {
         }
         return l;
     }
+    
+    public ArrayList<Genero> getListaGenerosOrd(){
+        Collections.sort(listaGeneros);
+        return listaGeneros;
+                
+    }
 
+    public int calcularCantidad(String txt){
+        ArrayList<Editorial>list=listaEditoriales;
+        int cant=0;
+        for(int i=0;i<list.size();i++){
+            if((list.get(i).getNombre().toLowerCase().charAt(0) + "").equals(txt.toLowerCase())){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    public int getCantidadEdiConA(){
+        int cant=0;
+        ArrayList<Editorial>list=listaEditoriales;
+        for(int i=0;i<list.size();i++){
+            if((list.get(i).getNombre().toLowerCase().charAt(0)+"").equals('a'+"")){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    public ArrayList<Libro>buscarLibrosPrecio(int num){
+        ArrayList<Libro>ret=new ArrayList<>();
+        ArrayList<Libro>list=listaLibros;
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getPrecioVenta()>num){
+                ret.add(list.get(i));
+            }
+        }
+        return ret;
+    }
+        
+   public int getcantidadAutores(){
+       int cant=listaAutores.size();
+       return cant;
+   }
+   public int getcantidadGeneros(){
+       int cant=listaGeneros.size();
+       return cant;
+   }
+   
+   public ArrayList<Libro> getLibrosNoVendidos(){
+       ArrayList<Libro> ret= new ArrayList<>();
+       ArrayList<Libro> libros=listaLibros;
+       ArrayList<Venta> vendidos=listaVentas;
+       for(int i=0;i<libros.size();i++){
+           Libro l=libros.get(i);
+           boolean esta=false;
+           for(int j=0;j<vendidos.size() && !esta;j++){
+               Venta v=vendidos.get(j);
+               InfoVenta q=v.getListaDeVenta().get(j);
+               if(q.getLibro().equals(l)){
+                   esta=true;
+               }
+           }
+           if(!esta){
+               ret.add(l);
+           }
+       }
+       return ret;
+   }
+   
+   public int cantPorGnero(String g){
+       System.out.println("entro");
+       int ret=0;
+       ArrayList<Autor> list=listaAutores;
+       for(int i=0;i<list.size();i++){
+           System.out.println(list.size());
+           ArrayList<Genero> lis=list.get(i).getGenerosPorAutor();
+                for(int j=0;j<lis.size();j++){
+                    System.out.println(lis.get(j).getNombre());
+                    if(lis.get(j).getNombre().equals(g)){
+                        ret++;
+                    }
+                }
+                
+       }
+       return ret;
+       
+   }
+   
+   public int getCantidadEdi(){
+       int ret=listaEditoriales.size();
+       return ret;
+   }
+   
+   public int getCantidadGen(){
+       int ret=listaGeneros.size();
+       return ret;
+   }
+   
+   public ArrayList<Libro> getListaLibrosConStock(){
+       ArrayList<Libro> ret=new ArrayList<>();
+       ArrayList<Libro> list=listaLibros;
+       for(int i=0;i<list.size();i++){
+           if(list.get(i).getStock()>5){
+               ret.add(list.get(i));
+           }
+       }
+       return ret;
+   }
+   
+   public int getCantidadLibrosCon(String l){
+       ArrayList <Libro>list=listaLibros;
+       int cant=0;
+       for(int i=0;i<list.size();i++){
+           if((list.get(i).getTitulo().charAt(0)+"").equals(l)){
+               cant++;
+           }
+       }
+       return cant;
+   }
 }

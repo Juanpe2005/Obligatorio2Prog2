@@ -258,7 +258,8 @@ public class ventRegVentas extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnRegVentaActionPerformed
 
     public void cargarListaLibros() {
-        listLibros.setListData(sistema.ordenarXTitulo().toArray());
+        //listLibros.setListData(sistema.ordenarXTitulo().toArray());
+        listLibros.setListData(sistema .getListaLibrosConStock().toArray());
     }
 
     public void cargarListaVentas() {

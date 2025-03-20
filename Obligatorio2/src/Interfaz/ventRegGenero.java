@@ -5,6 +5,7 @@ package Interfaz;
 @author Jose Ignacio Arbilla (338084)
  */
 import Dominio.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -30,7 +31,9 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer {
 
     public void cargar() {
         if (sistema.getListaGeneros().size() > 0) {
-            listaRegGen.setListData(sistema.getListaGeneros().toArray());
+            listaRegGen.setListData(sistema.getListaGenerosOrd().toArray());
+            
+            
             pnlListaGen.setVisible(false);
         } else {
             pnlListaGen.setVisible(true);
@@ -129,15 +132,25 @@ public class ventRegGenero extends javax.swing.JFrame implements Observer {
         if (txtNomGen.getText().isEmpty() || txtDescGen.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se puede guardar un genero con falta de datos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())) {
-                JOptionPane.showMessageDialog(null, "Se guardo el Género", "info", JOptionPane.INFORMATION_MESSAGE);
+            if(sistema.getListaGeneros().size()<4){
+                if (sistema.regGenero(txtNomGen.getText(), txtDescGen.getText())) {
+                    JOptionPane.showMessageDialog(null, "Se guardo el Género", "info", JOptionPane.INFORMATION_MESSAGE);
+                if(txtNomGen.getText().equals("Fortnite")){
+                    JOptionPane.showMessageDialog(null, "El genero es fortnite", "info", JOptionPane.INFORMATION_MESSAGE);
+                }
                 cargar();
                 actualizar();
-            } else {
+                
+                } else {
                 //si ya existe muestra mensaje de error
                 JOptionPane.showMessageDialog(null, "Ya exise genero con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
                 actualizar();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya hay mas de 4 generos", "Error", JOptionPane.ERROR_MESSAGE);
+                actualizar();
             }
+            
         }
 
     }//GEN-LAST:event_btnRegGenActionPerformed

@@ -74,6 +74,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         consultas = new javax.swing.JMenu();
         consultaLibros = new javax.swing.JMenuItem();
         consultaVenta = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
 
@@ -158,6 +163,46 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         consultas.add(consultaVenta);
 
+        jMenuItem1.setText("Consultar Precio de libro");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        consultas.add(jMenuItem1);
+
+        jMenuItem2.setText("Cantidad aut y gen");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        consultas.add(jMenuItem2);
+
+        jMenuItem3.setText("cantLibros no vendidos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        consultas.add(jMenuItem3);
+
+        jMenuItem4.setText("cant generos y editoriales");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        consultas.add(jMenuItem4);
+
+        jMenuItem5.setText("librosCon");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        consultas.add(jMenuItem5);
+
         jMenuBar1.add(consultas);
 
         jMenu1.setText("Terminar");
@@ -233,6 +278,36 @@ public class menuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        ventLibroPrecio vent=new ventLibroPrecio(sistema);
+         vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ventCantAutyGen vent=new ventCantAutyGen(sistema);
+         vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        ventLibrosQueNoSeVendieron vent=new ventLibrosQueNoSeVendieron(sistema);
+         vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        ventCntEdiGen vent=new ventCntEdiGen(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        ventLibroCon vent=new ventLibroCon(sistema);
+        vent.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem anularVenta;
     private javax.swing.JMenuItem btnSalir;
@@ -241,6 +316,11 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu consultas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem registrarVenta;
     private javax.swing.JMenu registro;
     private javax.swing.JMenuItem registroAutor;

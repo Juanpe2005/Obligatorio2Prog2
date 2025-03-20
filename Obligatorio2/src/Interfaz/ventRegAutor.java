@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import javax.swing.JOptionPane;
@@ -11,24 +10,26 @@ import java.util.Observer;
 @author Juan Pedro Longo (329112)
 @author Jose Ignacio Arbilla (338084)
  */
-public class ventRegAutor extends javax.swing.JFrame implements Observer{
+public class ventRegAutor extends javax.swing.JFrame implements Observer {
 
     Sistema sistema;
+    //int cant=0;
     /**
      * Creates new form ventRegAutor
      */
     public ventRegAutor(Sistema sis) {
         initComponents();
-        sistema= sis;
+        sistema = sis;
         cargarLista();
         cargarListaGenero();
         sis.addObserver(this);
     }
 
-    public void update(Observable o, Object ob){
+    public void update(Observable o, Object ob) {
         cargarLista();
         cargarListaGenero();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,25 +142,47 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
 
     private void btnRegAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAutActionPerformed
         // TODO add your handling code here:
-
-        if (listGenAut.isSelectionEmpty()){
-            JOptionPane.showMessageDialog(null,"No se puede guardar un autor sin género", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        String g="Poesia";
+        boolean sePuede=true;
+        if (listGenAut.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede guardar un autor sin género", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             ArrayList<Genero> generosPorAutor = (ArrayList<Genero>) listGenAut.getSelectedValuesList();
-        
-            if(sistema.regAutor(txtNomAut.getText(), txtNacAut.getText(), generosPorAutor)){
-                JOptionPane.showMessageDialog(null,"Se guardo el Autor", "info", JOptionPane.INFORMATION_MESSAGE);
-
-                actualizar();
-                listGenAut.clearSelection();
-                cargarLista();
-            }else{
-                //si ya existe muestra mensaje de error
-                JOptionPane.showMessageDialog(null,"Ya existe autor con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-                actualizar();
+            boolean chequiar = false;
+            int cant=0;
+            for (int i = 0; i < generosPorAutor.size(); i++) {
+                if (generosPorAutor.get(i).getNombre().equals(g)) {
+                    chequiar = true;
+                    cant++;
+                }
             }
+            
+            if (chequiar) {
+               cant=sistema.cantPorGnero(g);
+            }
+            if(cant==3){
+                sePuede = false;
+            }
+            
+            if (sePuede) {
+                if (sistema.regAutor(txtNomAut.getText(), txtNacAut.getText(), generosPorAutor)) {
+                    JOptionPane.showMessageDialog(null, "Se guardo el Autor", "info", JOptionPane.INFORMATION_MESSAGE);
+
+                    actualizar();
+                    listGenAut.clearSelection();
+                    cargarLista();
+                } else {
+                    //si ya existe muestra mensaje de error
+                    JOptionPane.showMessageDialog(null, "Ya existe autor con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                    actualizar();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya existen mas de 3 autores que escriben en poesia", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
         
+
     }//GEN-LAST:event_btnRegAutActionPerformed
 
     private void btnCancAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancAutActionPerformed
@@ -169,31 +192,32 @@ public class ventRegAutor extends javax.swing.JFrame implements Observer{
 
     private void txtNomAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomAutActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtNomAutActionPerformed
 
-    public void actualizar(){
+    public void actualizar() {
         txtNomAut.setText("");
         txtNacAut.setText("");
     }
-    public void cargarListaGenero(){
-        if(sistema.getListaGeneros().size() >0){
+
+    public void cargarListaGenero() {
+        if (sistema.getListaGeneros().size() > 0) {
             listGenAut.setListData(sistema.getListaGeneros().toArray());
             pnlListGen.setVisible(false);
-        }else{
+        } else {
             pnlListGen.setVisible(true);
         }
     }
-    
-    public void cargarLista(){
-        if(sistema.getListaAutores().size() >0){
+
+    public void cargarLista() {
+        if (sistema.getListaAutores().size() > 0) {
             listaAutIngresados.setListData(sistema.getListaAutores().toArray());
             pnlListAut.setVisible(false);
-        }else{
+        } else {
             pnlListAut.setVisible(true);
         }
     }
-     
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancAut;
     private javax.swing.JButton btnRegAut;
